@@ -1,134 +1,132 @@
-"""Reachy Mini Motion Sequence Example.
-
-Demonstrates a variety of head motions using set_target() in a real-time loop.
-Each step showcases a different degree of freedom or combination:
-  1. Yaw oscillation (left-right)
-  2. Pitch oscillation (up-down)
-  3. Roll oscillation (tilt)
-  4. Vertical translation (Z bounce)
-  5. Antenna wave (alternating left/right)
-  6. Circular XY translation
-  7. Static pose sequence (position + yaw snaps)
-
-The whole sequence loops until interrupted with Ctrl+C.
-"""
-
-# START doc_example
-
 import time
-
 import numpy as np
-from scipy.spatial.transform import Rotation as R
 
 from reachy_mini import ReachyMini
+from reachy_mini.utils import create_head_pose
 
+def sinusoides_une_dimension_a_la_fois():
+    hz = 100
+    dt = 1.0 / hz
+    f_move = 0.5
+    cycle = 3
+    duree_totale_axe = cycle / f_move 
 
-def main() -> None:
-    """Run the motion sequence in a loop."""
-    with ReachyMini(media_backend="no_media") as reachy_mini:
-        reachy_mini.goto_target(np.eye(4), antennas=[0.0, 0.0], duration=1.0)
-        try:
-            while True:
-                pose = np.eye(4)
+    amplitudes = {
+        'roll': 20, 'pitch': 20, 'yaw': 30,
+        'x': 20, 'y': 20, 'z': 12
+    }
+    dimensions = ['roll', 'pitch', 'yaw', 'x', 'y', 'z']
+    
+    print(f"\nBoucle de contrôle à {hz} Hz (dt={dt*1000} ms)")
+    print(f"Chaque dimension : {cycle} cycles à {f_move} Hz = {duree_totale_axe}s\n")
+    
+    with ReachyMini(media_backend="no_media") as mini:
+        for dim in dimensions:
+            amp = amplitudes[dim]
+            print(f" -> {dim} : ±{amp}")
+            
+            t_debut = time.time()
+            
+            while (time.time() - t_debut) < duree_totale_axe:
+                t = time.time() - t_debut
+                
+                valeur = amp * np.sin(2 * np.pi * f_move * t)
+                
+                pose_head = {'roll': 0, 'pitch': 0, 'yaw': 0, 'x': 0, 'y': 0, 'z': 0}
+                pose_head[dim] = valeur
+                
+                mini.goto_target(
+                    head=create_head_pose(**pose_head, degrees=True, mm=True),
+                    duration=0.1
+                )
+                
+                time.sleep(dt)
 
-                t = 0.0
-                t0 = time.time()
+        print("\n Retour position neutre...")
+        mini.goto_target(head=create_head_pose(z=0, degrees=True, mm=True), duration=1.0)
+        time.sleep(1)
+        print("Terminé !")
 
-                # --- Step 1: Yaw oscillation (0.7 rad amplitude, 0.5 Hz) ---
-                s = time.time()
-                while time.time() - s < 2.0:
-                    t = time.time() - t0
-                    euler_rot = np.array([0, 0.0, 0.7 * np.sin(2 * np.pi * 0.5 * t)])
-                    rot_mat = R.from_euler("xyz", euler_rot, degrees=False).as_matrix()
-                    pose[:3, :3] = rot_mat
-                    reachy_mini.set_target(head=pose, antennas=[0, 0])
-                    time.sleep(0.01)
+def mouvements_combines():
+    hz = 100
+    dt = 1.0 / hz
+    
+    print(f"\nBoucle de contrôle à {hz} Hz (dt={dt*1000} ms)\n")
+    
+    # Paramètres Séquence A
+    f_y = 0.4
+    f_pitch = 1.6
+    cycles_A = 3       
+    duree_totale_A = cycles_A / f_y
+    amp_y = 24
+    amp_pitch = 16
 
-                # --- Step 2: Pitch oscillation (0.3 rad amplitude, 0.5 Hz) ---
-                s = time.time()
-                while time.time() - s < 2.0:
-                    t = time.time() - t0
-                    euler_rot = np.array([0, 0.3 * np.sin(2 * np.pi * 0.5 * t), 0])
-                    rot_mat = R.from_euler("xyz", euler_rot, degrees=False).as_matrix()
-                    pose[:3, :3] = rot_mat
-                    reachy_mini.set_target(head=pose, antennas=[0, 0])
-                    time.sleep(0.01)
+    # Paramètres Séquence B
+    f_cercle = 0.5
+    cycles_B = 3       
+    duree_totale_B = cycles_B / f_cercle  # Donne bien 6.0s
+    rayon_cercle = 20
+    z_constant = 5
 
-                # --- Step 3: Roll oscillation (0.3 rad amplitude, 0.5 Hz) ---
-                s = time.time()
-                while time.time() - s < 2.0:
-                    t = time.time() - t0
-                    euler_rot = np.array([0.3 * np.sin(2 * np.pi * 0.5 * t), 0, 0])
-                    rot_mat = R.from_euler("xyz", euler_rot, degrees=False).as_matrix()
-                    pose[:3, :3] = rot_mat
-                    reachy_mini.set_target(head=pose, antennas=[0, 0])
-                    time.sleep(0.01)
+    with ReachyMini(media_backend="no_media") as mini:
+        print(f"Séquence A : {cycles_A} cycles")
+        print(f" y : ±{amp_y}mm à {f_y}Hz")
+        print(f" pitch : ±{amp_pitch}° à {f_pitch}Hz")
+        print(f" Durée : {duree_totale_A}s\n")
+        
+        t_debut = time.time()
+        while (time.time() - t_debut) < duree_totale_A:
+            t = time.time() - t_debut
+            
+            val_y = amp_y * np.sin(2 * np.pi * f_y * t)
+            val_pitch = amp_pitch * np.sin(2 * np.pi * f_pitch * t)
+            
+            pose_head = {'roll': 0, 'pitch': val_pitch, 'yaw': 0, 'x': 0, 'y': val_y, 'z': 0}
+            
+            mini.goto_target(
+                head=create_head_pose(**pose_head, degrees=True, mm=True),
+                duration=0.1
+            )
+            time.sleep(dt)
 
-                # --- Step 4: Vertical bounce (25 mm amplitude, 0.5 Hz) ---
-                s = time.time()
-                while time.time() - s < 2.0:
-                    t = time.time() - t0
-                    pose = np.eye(4)
-                    pose[:3, 3][2] += 0.025 * np.sin(2 * np.pi * 0.5 * t)
-                    reachy_mini.set_target(head=pose, antennas=[0, 0])
-                    time.sleep(0.01)
-
-                # --- Step 5: Antenna wave (alternating, 0.5 rad amplitude) ---
-                s = time.time()
-                while time.time() - s < 2.0:
-                    t = time.time() - t0
-                    antennas = [
-                        0.5 * np.sin(2 * np.pi * 0.5 * t),
-                        -0.5 * np.sin(2 * np.pi * 0.5 * t),
-                    ]
-                    reachy_mini.set_target(head=pose, antennas=antennas)
-                    time.sleep(0.01)
-
-                # --- Step 6: Circular XY translation (15 mm radius, 1 Hz) ---
-                s = time.time()
-                while time.time() - s < 5.0:
-                    t = time.time() - t0
-                    pose[:3, 3] = [
-                        0.015 * np.sin(2 * np.pi * 1.0 * t),
-                        0.015 * np.sin(2 * np.pi * 1.0 * t + np.pi / 2),
-                        0.0,
-                    ]
-                    reachy_mini.set_target(head=pose, antennas=[0, 0])
-                    time.sleep(0.01)
-
-                # --- Step 7: Static pose sequence (position + yaw snaps) ---
-                pose[:3, 3] = [0, 0, 0.0]
-                reachy_mini.set_target(head=pose, antennas=[0, 0])
-
-                time.sleep(0.5)
-
-                pose[:3, 3] = [0.02, 0.02, 0.0]
-                reachy_mini.set_target(head=pose, antennas=[0, 0])
-                time.sleep(0.5)
-
-                pose[:3, 3] = [0.00, 0.02, 0.0]
-                euler_rot = np.array([0, 0, 0.5])
-                rot_mat = R.from_euler("xyz", euler_rot, degrees=False).as_matrix()
-                pose[:3, :3] = rot_mat
-                reachy_mini.set_target(head=pose, antennas=[0, 0])
-                time.sleep(0.5)
-
-                pose[:3, 3] = [0.00, -0.02, 0.0]
-                euler_rot = np.array([0, 0, -0.5])
-                rot_mat = R.from_euler("xyz", euler_rot, degrees=False).as_matrix()
-                pose[:3, :3] = rot_mat
-                reachy_mini.set_target(head=pose, antennas=[0, 0])
-                time.sleep(0.5)
-
-                pose[:3, 3] = [0, 0, 0.0]
-                reachy_mini.set_target(head=pose, antennas=[0, 0])
-                time.sleep(2)
-
-        except KeyboardInterrupt:
-            pass
-
+        print(" Transition...\n")
+        
+        print(f"Séquence B : {cycles_B} tours de cercle")
+        print(f" Rayon : {rayon_cercle}mm, z constant : {z_constant}mm")
+        print(f" Vitesse : {f_cercle}Hz")
+        print(f" Durée : {duree_totale_B}s\n")
+        
+        t_debut = time.time()
+        while (time.time() - t_debut) < duree_totale_B:
+            t = time.time() - t_debut
+            
+            val_x = rayon_cercle * np.cos(2 * np.pi * f_cercle * t)
+            val_y = rayon_cercle * np.sin(2 * np.pi * f_cercle * t)
+            
+            pose_head = {'roll': 0, 'pitch': 0, 'yaw': 0, 'x': val_x, 'y': val_y, 'z': z_constant}
+            
+            mini.goto_target(
+                head=create_head_pose(**pose_head, degrees=True, mm=True),
+                duration=0.1
+            )
+            time.sleep(dt)
+            
+        print(" Retour position neutre...")
+        mini.goto_target(head=create_head_pose(z=0, degrees=True, mm=True), duration=1.0)
+        time.sleep(1)
+        print("Terminé !")
+        
+def select_program():
+    print("1. sinusoides_une_dimension_a_la_fois")
+    print("2. mouvements_combines")
+    choix = input("Sélectionnez un programme : ")
+    if choix == '1':
+        sinusoides_une_dimension_a_la_fois()
+    elif choix == '2':
+        mouvements_combines()
 
 if __name__ == "__main__":
-    main()
-
-# END doc_example
+    try:
+        select_program()
+    except KeyboardInterrupt:
+        print("\nArrêt.")
