@@ -9,7 +9,7 @@ def sinusoides_une_dimension_a_la_fois():
     dt = 1.0 / hz
     f_move = 0.5
     cycle = 3
-    duree_totale_axe = cycle / f_move 
+    duree_totale_axe = cycle / f_move
 
     amplitudes = {
         'roll': 20, 'pitch': 20, 'yaw': 30,
