@@ -3,3 +3,5 @@ __pycache__/
 build/
 *.mp4
 *.wav
+*.csv
+*.json
