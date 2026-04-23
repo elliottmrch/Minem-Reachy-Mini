@@ -132,7 +132,7 @@ def main():
         print("2. POC 2 : Extraction du mouvement du nez vers JSON")
         print("3. POC 3 : Extraction de l'audio d'une vidéo locale")
         print("4. POC 4 : Téléchargement d'une vidéo YouTube via URL")
-        print("0. Quitter")
+        print("q. Quitter")
         
         choix = input("\nVotre choix : ").lower()
 
@@ -147,7 +147,7 @@ def main():
         elif choix == '4':
             u = input("URL YouTube : ")
             poc_4(u)
-        elif choix == '0':
+        elif choix == 'q':
             print("Fin du programme.")
             break
         else:
