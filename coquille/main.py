@@ -66,10 +66,67 @@ class Coquille(ReachyMiniApp):
 
             time.sleep(0.02)
 
+import sys
+import os
+
+# Ajout du dossier courant au path pour garantir le fonctionnement des imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
+# Import des autres modules du projet
+try:
+    from experiments.poc.poc import main as run_poc_menu
+    from experiments.programmes_test import select_program as run_tests
+except ImportError as e:
+    print(f"[INFO] Impossible d'importer certains modules : {e}")
+    run_poc_menu = None
+    run_tests = None
+
+def menu_principal():
+    """Menu de sélection pour le projet Coquille"""
+    while True:
+        print("\n" + "="*40)
+        print("       PROJET COQUILLE - HUB PRINCIPAL")
+        print("="*40)
+        print("1. Lancer l'App Coquille (Web Interface + Robot)")
+        print("2. Lancer le menu des POC (Vision, Audio, YouTube)")
+        print("3. Lancer les programmes de test (Sinusoïdes, Cercles)")
+        print("q. Quitter")
+        
+        choix = input("\nVotre choix : ").lower()
+
+        if choix == '1':
+            print("\nLancement de l'application Reachy Mini...")
+            app = Coquille()
+            try:
+                app.wrapped_run()
+            except KeyboardInterrupt:
+                app.stop()
+                
+        elif choix == '2':
+            if run_poc_menu:
+                print("\nOuverture du menu POC...")
+                run_poc_menu()
+            else:
+                print("\n[ERREUR] Le module POC n'a pas pu être chargé. Vérifier les dossiers.")
+                
+        elif choix == '3':
+            if run_tests:
+                print("\nOuverture des programmes de test...")
+                run_tests()
+            else:
+                print("\n[ERREUR] Le module de test n'a pas pu être chargé. Vérifier les dossiers.")
+                
+        elif choix == 'q':
+            print("Fermeture du hub. À bientôt !")
+            break
+            
+        else:
+            print("Option invalide. Réessayer.")
 
 if __name__ == "__main__":
-    app = Coquille()
     try:
-        app.wrapped_run()
+        menu_principal()
     except KeyboardInterrupt:
-        app.stop()
+        print("\nArrêt forcé du programme.")

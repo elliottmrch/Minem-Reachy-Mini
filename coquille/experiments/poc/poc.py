@@ -1,25 +1,27 @@
 import os
+# GESTION DES CHEMINS 
+# Chemin absolu du dossier contenant ce script (coquille/experiments/poc)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+# On remonte de 3 dossiers pour atteindre la racine du projet, puis on va dans 'data'
+DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", "..", "data"))
+
 import json
-import time
+
 import cv2
 import mediapipe as mp
-from moviepy import VideoFileClip
-import yt_dlp
-
-
 # MEDIAPIPE 
 # 468 points 3D
 # Optimisé pour CPU, évite le besoin d'un GPU lourd.
-# Coordonnées entre 0 et 1 facilitant le mapping vers le robot.
 # Dlib = trop lourd à compiler/installer et seulement 68 points.
 # OpenCV Haar Cascades = trop basique et pas de maillage fin du visage.
 
+from moviepy import VideoFileClip
 # MOVIEPY
 # Extraction audio en une ligne de code.
 # Gestion propre des ressources (.close()) pour éviter les fuites mémoire.
-# PyAV = trop bas niveau, gestion des codecs complexe.
 # Subprocess + FFmpeg = risqué pour la gestion des erreurs et des flux.
 
+import yt_dlp
 # YT-DLP
 # Version la plus maintenue face aux mises à jour fréquentes de YouTube.
 # Contourne le bridage de bande passante imposé par YouTube.
@@ -61,9 +63,12 @@ def poc_1():
     cv2.destroyAllWindows()
 
 # POC 2 : MediaPipe sur vidéo locale du nez vers JSON
-def poc_2(video_path):
+def poc_2(video_filename):
+    # On cherche la vidéo dans le dossier data/
+    video_path = os.path.join(DATA_DIR, video_filename)
+    
     if not os.path.exists(video_path):
-        print(f"[ERREUR] Fichier '{video_path}' non trouvé.")
+        print(f"[ERREUR] Fichier '{video_path}' non trouvé. Vérifie qu'il est bien dans le dossier 'data'.")
         return
 
     cap = cv2.VideoCapture(video_path)
@@ -89,36 +94,42 @@ def poc_2(video_path):
                 })
             frame_count += 1
         
-    with open("mouvement.json", "w") as f:
+    # On sauvegarde le JSON dans le dossier du script
+    output_path = os.path.join(SCRIPT_DIR, "mouvement.json")
+    with open(output_path, "w") as f:
         json.dump(donnees, f, indent=4)
     
     cap.release()
-    print(f"[SUCCES] {len(donnees)} points sauvegardés dans 'mouvement.json'.")
+    print(f"[SUCCES] {len(donnees)} points sauvegardés dans '{output_path}'.")
 
 # POC 3 : MoviePy pour extraire l'audio d'une vidéo locale
-def poc_3(video_path):
+def poc_3(video_filename):
+    video_path = os.path.join(DATA_DIR, video_filename)
+    
     if not os.path.exists(video_path):
         print(f"[ERREUR] Fichier '{video_path}' non trouvé.")
         return
     try:
         video = VideoFileClip(video_path)
-        video.audio.write_audiofile("audio_extrait.mp3", logger=None)
+        output_path = os.path.join(SCRIPT_DIR, "audio_extrait.mp3")
+        video.audio.write_audiofile(output_path, logger=None)
         video.close()
-        print("[SUCCES] Fichier 'audio_extrait.mp3' créé.")
+        print(f"[SUCCES] Fichier créé : '{output_path}'.")
     except Exception as e:
         print(f"[ERREUR] Echec de l'extraction audio : {e}")
 
 # POC 4 : yt_dlp pour télécharger une vidéo ytb avec url
 def poc_4(url):
+    output_path = os.path.join(SCRIPT_DIR, "video_ytb.mp4")
     ydl_opts = {
         'format': 'best[ext=mp4]/best', 
-        'outtmpl': 'video_ytb.mp4',
+        'outtmpl': output_path, # On sauvegarde dans le dossier du script
         'noplaylist': True,
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print("[SUCCES] Vidéo enregistrée sous 'video_ytb.mp4'.")
+        print(f"[SUCCES] Vidéo enregistrée sous '{output_path}'.")
     except Exception as e:
         print(f"[ERREUR] Echec du téléchargement : {e}")
 
@@ -139,10 +150,10 @@ def main():
         if choix == '1':
             poc_1()
         elif choix == '2':
-            f = input("Nom du fichier vidéo : ")
+            f = input("Nom du fichier vidéo dans data/ (ex: haine.mp4) : ")
             poc_2(f)
         elif choix == '3':
-            f = input("Nom du fichier vidéo : ")
+            f = input("Nom du fichier vidéo dans data/ (ex: haine.mp4) : ")
             poc_3(f)
         elif choix == '4':
             u = input("URL YouTube : ")
