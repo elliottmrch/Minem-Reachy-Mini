@@ -2,12 +2,15 @@ import json
 import os
 import numpy as np
 
-# Tête : yaw réduit à 80 % pour atténuer les rotations amples, pitch/roll repris tels quels
+# Tête
+# Les angles viennent désormais de la géométrie MediaPipe (pas solvePnP) :
+# les valeurs sont cohérentes en degrés, ajuste les FACTOR selon le ressenti.
+# Si un axe est inversé sur le robot, passe son FACTOR en négatif.
 YAW_FACTOR     = 0.8
 YAW_MAX        = 30.0   # degrés
-PITCH_FACTOR   = 0.1
+PITCH_FACTOR   = 0.8
 PITCH_MAX      = 20.0   # degrés
-ROLL_FACTOR    = 0.1
+ROLL_FACTOR    = 0.5
 ROLL_MAX       = 15.0   # degrés
 
 # Antennes
@@ -33,7 +36,7 @@ DATA_DIR   = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 def _clamp(val, lo, hi):
     return max(lo, min(hi, val))
 
-# Chargement
+# Chargement + calibration automatique du pitch
 def _charger_signaux(json_path: str) -> list[dict]:
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -60,6 +63,19 @@ def _charger_signaux(json_path: str) -> list[dict]:
                 "timestamp":     frame["timestamp"],
                 "face_detected": False,
             })
+
+    # Calibration du pitch : la géométrie MediaPipe introduit un biais constant
+    # (menton légèrement plus reculé que le nez → normale un peu inclinée vers le bas).
+    # On soustrait la médiane du pitch sur toute la vidéo pour que la pose "moyenne"
+    # corresponde à pitch = 0°. Ne touche pas au yaw ni au roll.
+    pitches = [f["pitch_deg"] for f in frames if f.get("face_detected")]
+    if pitches:
+        pitch_offset = float(np.median(pitches))
+        print(f"[INFO] Correction pitch neutre : {pitch_offset:+.1f}°")
+        for f in frames:
+            if f.get("face_detected"):
+                f["pitch_deg"] -= pitch_offset
+
     return frames
 
 # Mapping
@@ -75,22 +91,9 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
             pitch = _clamp(frame["pitch_deg"] * PITCH_FACTOR, -PITCH_MAX, PITCH_MAX)
             roll  = _clamp(frame["roll_deg"]  * ROLL_FACTOR,  -ROLL_MAX,  ROLL_MAX)
 
-            # smile et eyebrow : on soustrait leur position de repos pour ne réagir
-            # qu'aux variations expressives, pas à leur niveau absolu constant.
-            ant_base = (
-                frame["mouth_opening"]                                         * ANT_MOUTH_FACTOR
-                + max(0.0, frame["smile_index"]   - ANT_SMILE_NEUTRAL)         * ANT_SMILE_FACTOR
-                + max(0.0, frame["eyebrow_raise"] - ANT_EYEBROW_BASE)          * ANT_EYEBROW_FACTOR
-            )
-            ant_base = _clamp(ant_base, 0.0, ANTENNA_MAX)
-
-            # EAR peut dépasser 1.0 sur des artefacts de détection ; on borne avant le diff.
-            eye_diff = (
-                _clamp(frame["left_eye_opening"],  0.0, 1.0)
-                - _clamp(frame["right_eye_opening"], 0.0, 1.0)
-            ) * ANT_EYE_DIFF_FACTOR
-            ant_l = _clamp(ant_base + eye_diff, 0.0, ANTENNA_MAX)
-            ant_r = _clamp(ant_base - eye_diff, 0.0, ANTENNA_MAX)
+            # Antennes en pause (focus tête uniquement)
+            ant_l = 0.0
+            ant_r = 0.0
 
             cx_dev = frame["face_cx"] - 0.5
             if abs(cx_dev) < BODY_YAW_DEAD:

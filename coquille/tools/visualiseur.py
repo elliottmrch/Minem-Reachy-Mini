@@ -5,39 +5,39 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 COQUILLE_DIR = os.path.dirname(SCRIPT_DIR)
-DATA_DIR     = os.path.abspath(os.path.join(COQUILLE_DIR, "..", "data"))
+DATA_DIR = os.path.abspath(os.path.join(COQUILLE_DIR, "..", "data"))
 
 _VIS_CONNECTIONS = {
-    "lips":           mp.solutions.face_mesh.FACEMESH_LIPS,
-    "left_eye":       mp.solutions.face_mesh.FACEMESH_LEFT_EYE,
-    "right_eye":      mp.solutions.face_mesh.FACEMESH_RIGHT_EYE,
-    "left_eyebrow":   mp.solutions.face_mesh.FACEMESH_LEFT_EYEBROW,
-    "right_eyebrow":  mp.solutions.face_mesh.FACEMESH_RIGHT_EYEBROW,
+    "lips": mp.solutions.face_mesh.FACEMESH_LIPS,
+    "left_eye": mp.solutions.face_mesh.FACEMESH_LEFT_EYE,
+    "right_eye": mp.solutions.face_mesh.FACEMESH_RIGHT_EYE,
+    "left_eyebrow": mp.solutions.face_mesh.FACEMESH_LEFT_EYEBROW,
+    "right_eyebrow": mp.solutions.face_mesh.FACEMESH_RIGHT_EYEBROW,
 }
+
 # Couleurs BGR
 _COLORS = {
-    "lips":          (60,  100, 255),  # rouge-orangé
-    "left_eye":      (255, 200, 50 ),  # cyan-jaune
-    "right_eye":     (255, 200, 50 ),
-    "left_eyebrow":  (50,  220, 80 ),  # vert
-    "right_eyebrow": (50,  220, 80 ),
+    "lips": (60, 100, 255),
+    "left_eye": (255, 200, 50),
+    "right_eye": (255, 200, 50),
+    "left_eyebrow": (50, 220, 80),
+    "right_eyebrow": (50, 220, 80),
 }
 
 
 def visualiser_video(video_path: str, json_path: str) -> None:
-    """
-    Lit la vidéo originale et le JSON de signaux, produit une vidéo annotée
-    et la joue dans une fenêtre OpenCV. Appuyer sur 'q' pour quitter.
-    Les annotations proviennent uniquement du JSON (pas de re-traitement MediaPipe).
-    """
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     frames_data = data["frames"]
     video_name  = os.path.splitext(os.path.basename(video_path))[0]
     annot_path  = os.path.join(DATA_DIR, f"{video_name}_annote.mp4")
+
+    pitches = [r["head_orientation"]["pitch"]
+               for r in frames_data if r.get("face_detected") and r.get("head_orientation")]
+    pitch_offset = float(np.median(pitches)) if pitches else 0.0
 
     cap = cv2.VideoCapture(video_path)
     fps = data["metadata"]["fps"]
@@ -55,7 +55,7 @@ def visualiser_video(video_path: str, json_path: str) -> None:
         if not ok:
             break
 
-        annotated = _annoter_frame(frame, record, w, h)
+        annotated = _annoter_frame(frame, record, w, h, pitch_offset)
         writer.write(annotated)
 
         cv2.imshow("Vérification signaux", annotated)
@@ -73,7 +73,8 @@ def visualiser_video(video_path: str, json_path: str) -> None:
     print(f"\n[OK] Vidéo annotée → {annot_path}")
 
 
-def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int) -> np.ndarray:
+def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int,
+                   pitch_offset: float = 0.0) -> np.ndarray:
     _draw_timestamp(frame, record["timestamp"])
 
     if not record["face_detected"]:
@@ -84,7 +85,7 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int) -> np.ndarra
     fp = record["face_position"]
     ho = record["head_orientation"]
 
-    # Rectangle englobant (vert)
+    # Rectangle englobant tête
     x1 = int((fp["cx"] - fp["width"]  / 2) * w) # haut gauche
     y1 = int((fp["cy"] - fp["height"] / 2) * h) 
     x2 = int((fp["cx"] + fp["width"]  / 2) * w) # bas droit
@@ -95,19 +96,20 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int) -> np.ndarra
     if record["landmarks_vis"]:
         _draw_landmarks(frame, record["landmarks_vis"], w, h)
 
-    # Flèche d'orientation 2D (yaw + pitch > direction dans l'image)
+    # Flèche d'orientation 2D (yaw + pitch)
+    pitch_cal = ho["pitch"] - pitch_offset
     cx_px    = int(fp["cx"] * w)
     cy_px    = int(fp["cy"] * h)
-    arrow_r  = int(fp["height"] * h * 0.35) # taille fleche
+    arrow_r  = int(fp["height"] * h * 0.35) #taille fleche
     dx = int(arrow_r * math.sin(math.radians(ho["yaw"])))
-    dy = int(-arrow_r * math.sin(math.radians(ho["pitch"])))
+    dy = int(arrow_r * math.sin(math.radians(pitch_cal)))
     cv2.arrowedLine(frame, (cx_px, cy_px), (cx_px + dx, cy_px + dy),
                     (0, 220, 255), 2, tipLength=0.3)
 
-    # Overlay signaux (bas-gauche)
+    # Overlay signaux
     lines = [
         f"Yaw  : {ho['yaw']:+.1f}deg",
-        f"Pitch: {ho['pitch']:+.1f}deg",
+        f"Pitch: {pitch_cal:+.1f}deg",
         f"Roll : {ho['roll']:+.1f}deg",
         f"Bouche : {record['mouth_opening']:.3f}",
         f"OeilG  : {record['left_eye_opening']:.3f}",
