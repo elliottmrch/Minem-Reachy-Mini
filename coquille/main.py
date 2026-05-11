@@ -92,6 +92,7 @@ def menu_principal():
         print("1. Lancer l'App Coquille (Web Interface + Robot)")
         print("2. Lancer le menu des POC (Vision, Audio, YouTube)")
         print("3. Lancer les programmes de test (Sinusoïdes, Cercles)")
+        print("4. Analyse de vidéo — extraction de signaux (Jalon 2)")
         print("q. Quitter")
         
         choix = input("\nVotre choix : ").lower()
@@ -117,7 +118,23 @@ def menu_principal():
                 run_tests()
             else:
                 print("\n[ERREUR] Le module de test n'a pas pu être chargé. Vérifier les dossiers.")
-                
+
+        elif choix == '4':
+            data_dir = os.path.abspath(os.path.join(current_dir, "..", "data"))
+            filename = input("\nNom du fichier vidéo dans data/ (ex: haine.mp4) : ").strip()
+            video_path = os.path.join(data_dir, filename)
+            if not os.path.exists(video_path):
+                print(f"[ERREUR] '{video_path}' introuvable.")
+            else:
+                try:
+                    from extracteur import analyser_video
+                    from tools.visualiseur import visualiser_video
+                    json_path = analyser_video(video_path)
+                    if json_path:
+                        visualiser_video(video_path, json_path)
+                except ImportError as e:
+                    print(f"[ERREUR] Impossible de charger les modules Jalon 2 : {e}")
+
         elif choix == 'q':
             print("Fermeture du hub. À bientôt !")
             break
