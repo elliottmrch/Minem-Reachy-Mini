@@ -112,7 +112,8 @@ def lancer_rejeu(movement_json: str | None = None):
             print("[ERREUR] Choix invalide.")
             return
 
-    app = Rejoueur(movement_json=movement_json)
+    app = Rejoueur()
+    app.movement_json = movement_json
     try:
         app.wrapped_run()
     except KeyboardInterrupt:

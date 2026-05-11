@@ -75,6 +75,8 @@ if current_dir not in sys.path:
     sys.path.append(current_dir)
 
 # Import des autres modules du projet
+DATA_DIR = os.path.abspath(os.path.join(current_dir, "..", "data"))
+
 try:
     from experiments.poc.poc import main as run_poc_menu
     from experiments.programmes_test import select_program as run_tests
@@ -83,8 +85,24 @@ except ImportError as e:
     run_poc_menu = None
     run_tests = None
 
+try:
+    from extracteur import analyser_video
+    from tools.visualiseur import visualiser_video
+except ImportError as e:
+    print(f"[INFO] Impossible d'importer les modules Jalon 2 : {e}")
+    analyser_video = None
+    visualiser_video = None
+
+try:
+    from mapper import lancer_mapping
+    from rejoueur import lancer_rejeu
+except ImportError as e:
+    print(f"[INFO] Impossible d'importer les modules Jalon 3 : {e}")
+    lancer_mapping = None
+    lancer_rejeu = None
+
+
 def menu_principal():
-    """Menu de sélection pour le projet Coquille"""
     while True:
         print("\n" + "="*40)
         print("       PROJET COQUILLE - HUB PRINCIPAL")
@@ -92,11 +110,11 @@ def menu_principal():
         print("1. Lancer l'App Coquille (Web Interface + Robot)")
         print("2. Lancer le menu des POC (Vision, Audio, YouTube)")
         print("3. Lancer les programmes de test (Sinusoïdes, Cercles)")
-        print("4. Analyse de vidéo — extraction de signaux (Jalon 2)")
+        print("4. Analyse de vidéo - extraction de signaux (Jalon 2)")
         print("5. Générer un mouvement robot depuis les signaux (Jalon 3)")
         print("6. Rejouer un mouvement en simulation (Jalon 3)")
         print("q. Quitter")
-        
+
         choix = input("\nVotre choix : ").lower()
 
         if choix == '1':
@@ -106,14 +124,14 @@ def menu_principal():
                 app.wrapped_run()
             except KeyboardInterrupt:
                 app.stop()
-                
+
         elif choix == '2':
             if run_poc_menu:
                 print("\nOuverture du menu POC...")
                 run_poc_menu()
             else:
                 print("\n[ERREUR] Le module POC n'a pas pu être chargé. Vérifier les dossiers.")
-                
+
         elif choix == '3':
             if run_tests:
                 print("\nOuverture des programmes de test...")
@@ -122,39 +140,34 @@ def menu_principal():
                 print("\n[ERREUR] Le module de test n'a pas pu être chargé. Vérifier les dossiers.")
 
         elif choix == '4':
-            data_dir = os.path.abspath(os.path.join(current_dir, "..", "data"))
-            filename = input("\nNom du fichier vidéo dans data/ (ex: haine.mp4) : ").strip()
-            video_path = os.path.join(data_dir, filename)
-            if not os.path.exists(video_path):
-                print(f"[ERREUR] '{video_path}' introuvable.")
+            if not analyser_video:
+                print("\n[ERREUR] Les modules Jalon 2 n'ont pas pu être chargés.")
             else:
-                try:
-                    from extracteur import analyser_video
-                    from tools.visualiseur import visualiser_video
+                filename = input("\nNom du fichier vidéo dans data/ (ex: haine.mp4) : ").strip()
+                video_path = os.path.join(DATA_DIR, filename)
+                if not os.path.exists(video_path):
+                    print(f"[ERREUR] '{video_path}' introuvable.")
+                else:
                     json_path = analyser_video(video_path)
                     if json_path:
                         visualiser_video(video_path, json_path)
-                except ImportError as e:
-                    print(f"[ERREUR] Impossible de charger les modules Jalon 2 : {e}")
 
         elif choix == '5':
-            try:
-                from mapper import lancer_mapping
+            if lancer_mapping:
                 lancer_mapping()
-            except ImportError as e:
-                print(f"[ERREUR] Impossible de charger le module mapper : {e}")
+            else:
+                print("\n[ERREUR] Le module mapper n'a pas pu être chargé.")
 
         elif choix == '6':
-            try:
-                from rejoueur import lancer_rejeu
+            if lancer_rejeu:
                 lancer_rejeu()
-            except ImportError as e:
-                print(f"[ERREUR] Impossible de charger le module rejoueur : {e}")
+            else:
+                print("\n[ERREUR] Le module rejoueur n'a pas pu être chargé.")
 
         elif choix == 'q':
             print("Fermeture du hub. À bientôt !")
             break
-            
+
         else:
             print("Option invalide. Réessayer.")
 
