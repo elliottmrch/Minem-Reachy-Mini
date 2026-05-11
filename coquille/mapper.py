@@ -2,8 +2,7 @@ import json
 import os
 import numpy as np
 
-# ─── Constantes de mapping ────────────────────────────────────────────────────
-
+# Tête : yaw réduit à 80 % pour atténuer les rotations amples, pitch/roll repris tels quels
 YAW_FACTOR     = 0.8
 YAW_MAX        = 30.0   # degrés
 PITCH_FACTOR   = 1.0
@@ -11,34 +10,30 @@ PITCH_MAX      = 20.0   # degrés
 ROLL_FACTOR    = 1.0
 ROLL_MAX       = 15.0   # degrés
 
-# Antennes — contributions combinées (calibrées sur les plages réelles des signaux)
-ANTENNA_MAX         = 0.8   # radians max
-ANT_MOUTH_FACTOR    = 4.0   # mouth_opening [0-0.13] → jusqu'à 0.52 rad
-ANT_SMILE_NEUTRAL   = 0.55  # ratio sourire neutre (extrait de extracteur.py)
-ANT_SMILE_FACTOR    = 0.6   # excès de sourire au-dessus du neutre → antennes
-ANT_EYEBROW_BASE    = 0.05  # plancher sourcils à soustraire (signal = offset + variation)
-ANT_EYEBROW_FACTOR  = 3.0   # sourcils levés [0-0.07 après offset] → jusqu'à 0.21 rad
-ANT_EYE_DIFF_FACTOR = 0.20  # asymétrie œils → asymétrie antennes (clin d'œil)
+# Antennes
+ANTENNA_MAX         = 0.8
+ANT_MOUTH_FACTOR    = 4.0
+ANT_SMILE_NEUTRAL   = 0.55
+ANT_SMILE_FACTOR    = 0.6
+ANT_EYEBROW_BASE    = 0.05
+ANT_EYEBROW_FACTOR  = 3.0
+ANT_EYE_DIFF_FACTOR = 0.20
 
-# Corps — suivi horizontal du visage (face_position.cx ∈ [0,1], 0.5 = centre)
-BODY_YAW_FACTOR = 1.2   # radians par unité de déviation cx
-BODY_YAW_DEAD   = 0.06  # zone morte autour du centre (filtre le bruit)
-BODY_YAW_MAX    = 0.35  # radians (~20°)
+# Corps
+BODY_YAW_FACTOR = 1.2
+BODY_YAW_DEAD   = 0.06
+BODY_YAW_MAX    = 0.35
 
 ROBOT_FPS      = 100
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR   = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
-
-# ─── Helpers ─────────────────────────────────────────────────────────────────
-
+# Helpers
 def _clamp(val, lo, hi):
     return max(lo, min(hi, val))
 
-
-# ─── Chargement ──────────────────────────────────────────────────────────────
-
+# Chargement
 def _charger_signaux(json_path: str) -> list[dict]:
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -67,11 +62,11 @@ def _charger_signaux(json_path: str) -> list[dict]:
             })
     return frames
 
-
-# ─── Mapping ─────────────────────────────────────────────────────────────────
-
+# Mapping
 def _appliquer_mapping(frames: list[dict]) -> list[dict]:
     result = []
+    # Position neutre maintenue tant que le visage n'est pas encore détecté
+    # puis gelée sur la dernière valeur connue si la détection se perd en cours de vidéo.
     last = {"yaw": 0.0, "pitch": 0.0, "roll": 0.0, "ant_l": 0.0, "ant_r": 0.0, "body_yaw": 0.0}
 
     for frame in frames:
@@ -80,15 +75,16 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
             pitch = _clamp(frame["pitch_deg"] * PITCH_FACTOR, -PITCH_MAX, PITCH_MAX)
             roll  = _clamp(frame["roll_deg"]  * ROLL_FACTOR,  -ROLL_MAX,  ROLL_MAX)
 
-            # Antennes : somme pondérée de 3 composantes expressives
+            # smile et eyebrow : on soustrait leur position de repos pour ne réagir
+            # qu'aux variations expressives, pas à leur niveau absolu constant.
             ant_base = (
                 frame["mouth_opening"]                                         * ANT_MOUTH_FACTOR
-                + max(0.0, frame["smile_index"]    - ANT_SMILE_NEUTRAL)        * ANT_SMILE_FACTOR
-                + max(0.0, frame["eyebrow_raise"]  - ANT_EYEBROW_BASE)         * ANT_EYEBROW_FACTOR
+                + max(0.0, frame["smile_index"]   - ANT_SMILE_NEUTRAL)         * ANT_SMILE_FACTOR
+                + max(0.0, frame["eyebrow_raise"] - ANT_EYEBROW_BASE)          * ANT_EYEBROW_FACTOR
             )
             ant_base = _clamp(ant_base, 0.0, ANTENNA_MAX)
 
-            # Asymétrie : chaque antenne suit l'ouverture de l'œil du même côté
+            # EAR peut dépasser 1.0 sur des artefacts de détection ; on borne avant le diff.
             eye_diff = (
                 _clamp(frame["left_eye_opening"],  0.0, 1.0)
                 - _clamp(frame["right_eye_opening"], 0.0, 1.0)
@@ -96,7 +92,6 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
             ant_l = _clamp(ant_base + eye_diff, 0.0, ANTENNA_MAX)
             ant_r = _clamp(ant_base - eye_diff, 0.0, ANTENNA_MAX)
 
-            # Corps : suivi horizontal du visage (cx=0.5 → centré)
             cx_dev = frame["face_cx"] - 0.5
             if abs(cx_dev) < BODY_YAW_DEAD:
                 cx_dev = 0.0
@@ -109,9 +104,7 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
 
     return result
 
-
-# ─── Interpolation ────────────────────────────────────────────────────────────
-
+# Interpolation
 def _interpoler(mapped: list[dict]) -> list[dict]:
     ts   = np.array([f["timestamp"] for f in mapped])
     keys = ["yaw", "pitch", "roll", "ant_l", "ant_r", "body_yaw"]
@@ -128,9 +121,7 @@ def _interpoler(mapped: list[dict]) -> list[dict]:
 
     return result
 
-
-# ─── Sauvegarde ───────────────────────────────────────────────────────────────
-
+# Sauvegarde
 def _sauvegarder(frames: list[dict], source_path: str, output_path: str):
     duration = round(frames[-1]["timestamp"] - frames[0]["timestamp"], 3) if frames else 0.0
 
@@ -162,9 +153,7 @@ def _sauvegarder(frames: list[dict], source_path: str, output_path: str):
 
     print(f"[OK] {len(frames)} frames sauvegardees -> {output_path}")
 
-
-# ─── Point d'entrée principal ─────────────────────────────────────────────────
-
+# Point d'entrée principal
 def generer_mouvement(input_json: str, output_json: str | None = None) -> str:
     stem = os.path.splitext(os.path.basename(input_json))[0]
 
@@ -184,9 +173,7 @@ def generer_mouvement(input_json: str, output_json: str | None = None) -> str:
     _sauvegarder(interpolated, input_json, output_json)
     return output_json
 
-
-# ─── Lancement interactif ─────────────────────────────────────────────────────
-
+# Lancement interactif
 def lancer_mapping(input_json: str | None = None) -> str | None:
     if input_json is None:
         fichiers = sorted(f for f in os.listdir(DATA_DIR) if f.endswith("_signaux.json"))
@@ -208,9 +195,7 @@ def lancer_mapping(input_json: str | None = None) -> str | None:
 
     return generer_mouvement(input_json)
 
-
-# ─── Lancement direct ─────────────────────────────────────────────────────────
-
+# Lancement direct
 if __name__ == "__main__":
     import sys
 

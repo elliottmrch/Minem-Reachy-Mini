@@ -90,9 +90,7 @@ class Rejoueur(ReachyMiniApp):
             antennas=np.array([0.0, 0.0]),
         )
 
-
-# ─── Lancement direct ─────────────────────────────────────────────────────────
-
+# Lancement direct
 def lancer_rejeu(movement_json: str | None = None):
     if movement_json is None:
         fichiers = [f for f in os.listdir(DATA_DIR) if f.endswith("_mouvement.json")]
