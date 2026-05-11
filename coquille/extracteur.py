@@ -10,11 +10,11 @@ DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 # Points 3D du modèle de visage générique (mm, origine au nez)
 _MODEL_3D = np.array([
     [0.0,    0.0,    0.0],   # 1   : Nez (origine)
-    [0.0,   -63.6,  -12.5],  # 152 : Menton
-    [-43.3,  32.7,  -26.0],  # 33  : Coin œil gauche (ext.)
-    [ 43.3,  32.7,  -26.0],  # 362 : Coin œil droit (ext.)
-    [-28.9, -28.9,  -24.1],  # 61  : Coin bouche gauche
-    [ 28.9, -28.9,  -24.1],  # 291 : Coin bouche droit
+    [0.0,   -63.6,   -12.5],  # 152 : Menton
+    [-43.3,  32.7,   -26.0],  # 33  : Coin œil gauche (ext.)
+    [ 43.3,  32.7,   -26.0],  # 362 : Coin œil droit (ext.)
+    [-28.9, -28.9,   -24.1],  # 61  : Coin bouche gauche
+    [ 28.9, -28.9,   -24.1],  # 291 : Coin bouche droit
 ], dtype=np.float64)
 
 _PNP_INDICES = [1, 152, 33, 362, 61, 291]

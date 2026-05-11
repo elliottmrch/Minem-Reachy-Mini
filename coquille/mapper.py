@@ -5,13 +5,13 @@ import numpy as np
 # Tête : yaw réduit à 80 % pour atténuer les rotations amples, pitch/roll repris tels quels
 YAW_FACTOR     = 0.8
 YAW_MAX        = 30.0   # degrés
-PITCH_FACTOR   = 1.0
+PITCH_FACTOR   = 0.1
 PITCH_MAX      = 20.0   # degrés
-ROLL_FACTOR    = 1.0
+ROLL_FACTOR    = 0.1
 ROLL_MAX       = 15.0   # degrés
 
 # Antennes
-ANTENNA_MAX         = 0.8
+ANTENNA_MAX         = 2
 ANT_MOUTH_FACTOR    = 4.0
 ANT_SMILE_NEUTRAL   = 0.55
 ANT_SMILE_FACTOR    = 0.6
