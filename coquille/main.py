@@ -93,6 +93,8 @@ def menu_principal():
         print("2. Lancer le menu des POC (Vision, Audio, YouTube)")
         print("3. Lancer les programmes de test (Sinusoïdes, Cercles)")
         print("4. Analyse de vidéo — extraction de signaux (Jalon 2)")
+        print("5. Générer un mouvement robot depuis les signaux (Jalon 3)")
+        print("6. Rejouer un mouvement en simulation (Jalon 3)")
         print("q. Quitter")
         
         choix = input("\nVotre choix : ").lower()
@@ -134,6 +136,20 @@ def menu_principal():
                         visualiser_video(video_path, json_path)
                 except ImportError as e:
                     print(f"[ERREUR] Impossible de charger les modules Jalon 2 : {e}")
+
+        elif choix == '5':
+            try:
+                from mapper import lancer_mapping
+                lancer_mapping()
+            except ImportError as e:
+                print(f"[ERREUR] Impossible de charger le module mapper : {e}")
+
+        elif choix == '6':
+            try:
+                from rejoueur import lancer_rejeu
+                lancer_rejeu()
+            except ImportError as e:
+                print(f"[ERREUR] Impossible de charger le module rejoueur : {e}")
 
         elif choix == 'q':
             print("Fermeture du hub. À bientôt !")
