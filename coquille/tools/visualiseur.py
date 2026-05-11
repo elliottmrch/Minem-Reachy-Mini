@@ -9,7 +9,6 @@ SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 COQUILLE_DIR = os.path.dirname(SCRIPT_DIR)
 DATA_DIR     = os.path.abspath(os.path.join(COQUILLE_DIR, "..", "data"))
 
-# Même connexions que dans extracteur.py (mêmes constantes MediaPipe)
 _VIS_CONNECTIONS = {
     "lips":           mp.solutions.face_mesh.FACEMESH_LIPS,
     "left_eye":       mp.solutions.face_mesh.FACEMESH_LEFT_EYE,
@@ -17,7 +16,7 @@ _VIS_CONNECTIONS = {
     "left_eyebrow":   mp.solutions.face_mesh.FACEMESH_LEFT_EYEBROW,
     "right_eyebrow":  mp.solutions.face_mesh.FACEMESH_RIGHT_EYEBROW,
 }
-# Couleurs BGR par feature
+# Couleurs BGR
 _COLORS = {
     "lips":          (60,  100, 255),  # rouge-orangé
     "left_eye":      (255, 200, 50 ),  # cyan-jaune
@@ -59,7 +58,7 @@ def visualiser_video(video_path: str, json_path: str) -> None:
         annotated = _annoter_frame(frame, record, w, h)
         writer.write(annotated)
 
-        cv2.imshow("Coquille — Jalon 2 — Vérification signaux", annotated)
+        cv2.imshow("Vérification signaux", annotated)
         wait_ms = max(1, int(1000 / fps))
         if cv2.waitKey(wait_ms) & 0xFF == ord("q"):
             break
@@ -86,9 +85,9 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int) -> np.ndarra
     ho = record["head_orientation"]
 
     # Rectangle englobant (vert)
-    x1 = int((fp["cx"] - fp["width"]  / 2) * w)
-    y1 = int((fp["cy"] - fp["height"] / 2) * h)
-    x2 = int((fp["cx"] + fp["width"]  / 2) * w)
+    x1 = int((fp["cx"] - fp["width"]  / 2) * w) # haut gauche
+    y1 = int((fp["cy"] - fp["height"] / 2) * h) 
+    x2 = int((fp["cx"] + fp["width"]  / 2) * w) # bas droit
     y2 = int((fp["cy"] + fp["height"] / 2) * h)
     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 200, 0), 2)
 
@@ -96,10 +95,10 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int) -> np.ndarra
     if record["landmarks_vis"]:
         _draw_landmarks(frame, record["landmarks_vis"], w, h)
 
-    # Flèche d'orientation 2D (yaw + pitch → direction dans l'image)
+    # Flèche d'orientation 2D (yaw + pitch > direction dans l'image)
     cx_px    = int(fp["cx"] * w)
     cy_px    = int(fp["cy"] * h)
-    arrow_r  = int(fp["height"] * h * 0.35)
+    arrow_r  = int(fp["height"] * h * 0.35) # taille fleche
     dx = int(arrow_r * math.sin(math.radians(ho["yaw"])))
     dy = int(-arrow_r * math.sin(math.radians(ho["pitch"])))
     cv2.arrowedLine(frame, (cx_px, cy_px), (cx_px + dx, cy_px + dy),
@@ -143,7 +142,7 @@ def _draw_overlay(frame: np.ndarray, lines: list[str], h: int) -> None:
 
 
 def _draw_landmarks(frame: np.ndarray, landmarks_vis: dict, w: int, h: int) -> None:
-    # Traits colorés par feature
+    # Traits colorés
     for feature, connections in _VIS_CONNECTIONS.items():
         color = _COLORS[feature]
         for (a, b) in connections:
