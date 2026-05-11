@@ -9,7 +9,7 @@ DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
 # Points 3D du modèle de visage générique (mm, origine au nez)
 _MODEL_3D = np.array([
-    [0.0,    0.0,    0.0],    # 1   : Nez (origine)
+    [0.0,    0.0,    0.0],   # 1   : Nez (origine)
     [0.0,   -63.6,  -12.5],  # 152 : Menton
     [-43.3,  32.7,  -26.0],  # 33  : Coin œil gauche (ext.)
     [ 43.3,  32.7,  -26.0],  # 362 : Coin œil droit (ext.)
@@ -35,13 +35,7 @@ _VIS_INDICES = frozenset(
     for idx in (a, b)
 )
 
-
 class ExtracteurSignaux:
-    """
-    Calcule les signaux faciaux depuis un résultat FaceMesh MediaPipe.
-    Reçoit un seul landmark-set (une frame), retourne un dict de signaux.
-    """
-
     def __init__(self, frame_width: int, frame_height: int):
         self.w = frame_width
         self.h = frame_height
@@ -111,7 +105,6 @@ class ExtracteurSignaux:
         return abs(lm[13].y - lm[14].y) / (face_height + 1e-6)
 
     def _calc_ear(self, lm, gauche: bool) -> float:
-        # Eye Aspect Ratio (Soukupová & Čech, 2016)
         if gauche:
             v = abs(lm[159].y - lm[145].y)
             h = abs(lm[33].x  - lm[133].x)
@@ -121,9 +114,9 @@ class ExtracteurSignaux:
         return v / (h + 1e-6)
 
     def _calc_smile_index(self, lm) -> float:
-        mouth_w = abs(lm[291].x - lm[61].x)
-        iod     = abs(lm[362].x - lm[33].x)
-        return mouth_w / (iod + 1e-6)
+        mouth_w = abs(lm[291].x - lm[61].x) # Largeur bouche
+        iod = abs(lm[362].x - lm[33].x) # Ecartement des yeux (reference stable)
+        return mouth_w / (iod + 1e-6) # 0.55 = neutre / 0.80 = grand sourire
 
     def _collect_vis_landmarks(self, lm) -> dict:
         return {
@@ -135,11 +128,6 @@ class ExtracteurSignaux:
         left  = abs(lm[70].y  - lm[33].y)
         right = abs(lm[300].y - lm[362].y)
         return ((left + right) / 2.0) / (face_height + 1e-6)
-
-
-# ---------------------------------------------------------------------------
-# Pipeline principal : charge la vidéo, extrait les signaux, sauvegarde JSON
-# ---------------------------------------------------------------------------
 
 def analyser_video(video_path: str) -> str | None:
     """
@@ -181,7 +169,7 @@ def analyser_video(video_path: str) -> str | None:
             break
 
         timestamp = round(frame_idx / fps, 3)
-        results   = mp_face.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+        results   = mp_face.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)) # BGR -> RGB
 
         if results.multi_face_landmarks:
             signaux = extracteur.extraire(results.multi_face_landmarks[0])
