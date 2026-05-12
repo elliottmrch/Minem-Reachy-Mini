@@ -96,12 +96,10 @@ except ImportError as e:
 try:
     from mapper import lancer_mapping
     from rejoueur import lancer_rejeu
-    from webcam_direct import lancer_webcam_direct
 except ImportError as e:
     print(f"[INFO] Impossible d'importer les modules Jalon 3 : {e}")
     lancer_mapping = None
     lancer_rejeu = None
-    lancer_webcam_direct = None
 
 def menu_principal():
     while True:
@@ -114,7 +112,6 @@ def menu_principal():
         print("4. Analyse de vidéo - extraction de signaux (Jalon 2)")
         print("5. Générer un mouvement robot depuis les signaux (Jalon 3)")
         print("6. Rejouer un mouvement en simulation (Jalon 3)")
-        print("7. Mode webcam direct (webcam → robot en temps réel)")
         print("q. Quitter")
 
         choix = input("\nVotre choix : ").lower()
@@ -165,12 +162,6 @@ def menu_principal():
                 lancer_rejeu()
             else:
                 print("\n[ERREUR] Le module rejoueur n'a pas pu être chargé.")
-
-        elif choix == '7':
-            if lancer_webcam_direct:
-                lancer_webcam_direct()
-            else:
-                print("\n[ERREUR] Le module webcam_direct n'a pas pu être chargé.")
 
         elif choix == 'q':
             print("Fermeture du hub. À bientôt !")
