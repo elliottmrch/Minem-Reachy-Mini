@@ -32,8 +32,8 @@ def visualiser_video(video_path: str, json_path: str) -> None:
         data = json.load(f)
 
     frames_data = data["frames"]
-    video_name  = os.path.splitext(os.path.basename(video_path))[0]
-    annot_path  = os.path.join(DATA_DIR, f"{video_name}_annote.mp4")
+    video_name = os.path.splitext(os.path.basename(video_path))[0]
+    annot_path = os.path.join(DATA_DIR, f"{video_name}_annote.mp4")
 
     pitches = [r["head_orientation"]["pitch"]
                for r in frames_data if r.get("face_detected") and r.get("head_orientation")]
@@ -41,8 +41,8 @@ def visualiser_video(video_path: str, json_path: str) -> None:
 
     cap = cv2.VideoCapture(video_path)
     fps = data["metadata"]["fps"]
-    w   = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    h   = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     total = data["metadata"]["total_frames"]
 
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
@@ -86,9 +86,9 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int,
     ho = record["head_orientation"]
 
     # Rectangle englobant tête
-    x1 = int((fp["cx"] - fp["width"]  / 2) * w) # haut gauche
-    y1 = int((fp["cy"] - fp["height"] / 2) * h) 
-    x2 = int((fp["cx"] + fp["width"]  / 2) * w) # bas droit
+    x1 = int((fp["cx"] - fp["width"] / 2) * w) # haut gauche
+    y1 = int((fp["cy"] - fp["height"] / 2) * h)
+    x2 = int((fp["cx"] + fp["width"] / 2) * w) # bas droit
     y2 = int((fp["cy"] + fp["height"] / 2) * h)
     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 200, 0), 2)
 
@@ -98,9 +98,9 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int,
 
     # Flèche d'orientation 2D (yaw + pitch)
     pitch_cal = ho["pitch"] - pitch_offset
-    cx_px    = int(fp["cx"] * w)
-    cy_px    = int(fp["cy"] * h)
-    arrow_r  = int(fp["height"] * h * 0.35) #taille fleche
+    cx_px = int(fp["cx"] * w)
+    cy_px = int(fp["cy"] * h)
+    arrow_r = int(fp["height"] * h * 0.35) #taille fleche
     dx = int(arrow_r * math.sin(math.radians(ho["yaw"])))
     dy = int(arrow_r * math.sin(math.radians(pitch_cal)))
     cv2.arrowedLine(frame, (cx_px, cy_px), (cx_px + dx, cy_px + dy),
@@ -115,7 +115,8 @@ def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int,
         f"OeilG  : {record['left_eye_opening']:.3f}",
         f"OeilD  : {record['right_eye_opening']:.3f}",
         f"Sourire: {record['smile_index']:.3f}",
-        f"Sourcil: {record['eyebrow_raise']:.3f}",
+        f"SourcilG: {record['eyebrow_raise_left']:.3f}",
+        f"SourcilD: {record['eyebrow_raise_right']:.3f}",
     ]
     _draw_overlay(frame, lines, h)
 
@@ -128,13 +129,13 @@ def _draw_timestamp(frame: np.ndarray, timestamp: float) -> None:
 
 
 def _draw_overlay(frame: np.ndarray, lines: list[str], h: int) -> None:
-    font   = cv2.FONT_HERSHEY_SIMPLEX
-    scale  = 0.45
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    scale = 0.45
     line_h = 18
-    pad    = 6
-    box_h  = len(lines) * line_h + pad * 2
-    box_w  = 185
-    y0     = h - box_h - 8
+    pad = 6
+    box_h = len(lines) * line_h + pad * 2
+    box_w = 185
+    y0 = h - box_h - 8
     overlay = frame.copy()
     cv2.rectangle(overlay, (6, y0), (6 + box_w, y0 + box_h), (20, 20, 20), -1)
     cv2.addWeighted(overlay, 0.55, frame, 0.45, 0, frame)

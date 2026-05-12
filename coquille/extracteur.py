@@ -7,7 +7,6 @@ import mediapipe as mp
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
-# Connexions MediaPipe pour les features visuelles (yeux, sourcils, bouche)
 _VIS_CONNECTIONS = {
     "lips": mp.solutions.face_mesh.FACEMESH_LIPS,
     "left_eye": mp.solutions.face_mesh.FACEMESH_LEFT_EYE,
@@ -15,7 +14,7 @@ _VIS_CONNECTIONS = {
     "left_eyebrow": mp.solutions.face_mesh.FACEMESH_LEFT_EYEBROW,
     "right_eyebrow": mp.solutions.face_mesh.FACEMESH_RIGHT_EYEBROW,
 }
-# Ensemble de tous les indices landmarks nécessaires pour tracer ces connexions
+
 _VIS_INDICES = frozenset(
     idx
     for conns in _VIS_CONNECTIONS.values()
@@ -32,6 +31,7 @@ class ExtracteurSignaux:
         lm = face_landmarks.landmark
         face_pos = self._calc_face_position(lm)
         face_h = face_pos["height"]
+        eb = self._calc_eyebrow_raise(lm)
         return {
             "face_position": face_pos,
             "head_orientation": self._calc_head_orientation(lm),
@@ -39,7 +39,8 @@ class ExtracteurSignaux:
             "left_eye_opening": round(self._calc_ear(lm, gauche=True), 4),
             "right_eye_opening": round(self._calc_ear(lm, gauche=False), 4),
             "smile_index": round(self._calc_smile_index(lm), 4),
-            "eyebrow_raise": round(self._calc_eyebrow_raise(lm, face_h), 4),
+            "eyebrow_raise_left": round(eb["left"], 4),
+            "eyebrow_raise_right": round(eb["right"], 4),
             "landmarks_vis": self._collect_vis_landmarks(lm),
         }
 
@@ -110,7 +111,7 @@ class ExtracteurSignaux:
     def _calc_ear(self, lm, gauche: bool) -> float:
         if gauche:
             v = abs(lm[159].y - lm[145].y)
-            h = abs(lm[33].x  - lm[133].x)
+            h = abs(lm[33].x - lm[133].x)
         else:
             v = abs(lm[386].y - lm[374].y)
             h = abs(lm[362].x - lm[263].x)
@@ -127,10 +128,15 @@ class ExtracteurSignaux:
             for i in _VIS_INDICES
         }
 
-    def _calc_eyebrow_raise(self, lm, face_height: float) -> float:
-        left  = abs(lm[70].y  - lm[33].y)
-        right = abs(lm[300].y - lm[362].y)
-        return ((left + right) / 2.0) / (face_height + 1e-6)
+    def _calc_eyebrow_raise(self, lm) -> dict:
+        ex = lm[263].x - lm[33].x
+        ey = lm[263].y - lm[33].y
+        eye_dist_sq = ex * ex + ey * ey + 1e-12
+        def _proj(brow, eye):
+            dx = brow.x - eye.x
+            dy = brow.y - eye.y
+            return (dx * ey - dy * ex) / eye_dist_sq
+        return {"left": _proj(lm[70], lm[33]), "right": _proj(lm[300], lm[362])}
 
 def analyser_video(video_path: str) -> str | None:
     if not os.path.exists(video_path):
@@ -158,7 +164,7 @@ def analyser_video(video_path: str) -> str | None:
         min_tracking_confidence=0.5,
     )
 
-    frames_data    = []
+    frames_data = []
     faces_detected = 0
 
     for frame_idx in range(total_frames):
@@ -167,11 +173,11 @@ def analyser_video(video_path: str) -> str | None:
             break
 
         timestamp = round(frame_idx / fps, 3)
-        results   = mp_face.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)) # BGR -> RGB
+        results = mp_face.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 
         if results.multi_face_landmarks:
             signaux = extracteur.extraire(results.multi_face_landmarks[0])
-            record  = {"timestamp": timestamp, "face_detected": True, **signaux}
+            record = {"timestamp": timestamp, "face_detected": True, **signaux}
             faces_detected += 1
         else:
             record = {
@@ -179,7 +185,8 @@ def analyser_video(video_path: str) -> str | None:
                 "face_position": None, "head_orientation": None,
                 "mouth_opening": None, "left_eye_opening": None,
                 "right_eye_opening": None, "smile_index": None,
-                "eyebrow_raise": None, "landmarks_vis": None,
+                "eyebrow_raise_left": None,
+                "eyebrow_raise_right": None, "landmarks_vis": None,
             }
 
         frames_data.append(record)

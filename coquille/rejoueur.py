@@ -8,26 +8,12 @@ from reachy_mini import ReachyMini, ReachyMiniApp
 from reachy_mini.utils import create_head_pose
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR   = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
-
+DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
 class Rejoueur(ReachyMiniApp):
-    """
-    Rejoue un fichier de mouvement JSON sur Reachy Mini (simulation ou robot réel).
-
-    Utilisation :
-        app = Rejoueur(movement_json="data/exemple_mouvement.json")
-        app.wrapped_run()
-
-    Le fichier JSON doit être au format généré par mapper.py :
-        { "metadata": {...}, "frames": [{"timestamp", "antennas", "body_yaw", "head"}, ...] }
-    """
-
-    # Pas d'interface web pour le rejeu
     custom_app_url: str | None = None
     request_media_backend: str | None = "no_media"
 
-    # Chemin vers le fichier de mouvement à rejouer
     movement_json: str = ""
 
     def run(self, reachy_mini: ReachyMini, stop_event: threading.Event):
@@ -42,14 +28,19 @@ class Rejoueur(ReachyMiniApp):
         with open(self.movement_json, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        frames   = data["frames"]
+        frames = data["frames"]
         metadata = data.get("metadata", {})
         duration = metadata.get("duration_s", "?")
-        total    = len(frames)
+        total = len(frames)
 
         print(f"\n[INFO] Fichier : {os.path.basename(self.movement_json)}")
         print(f"[INFO] Durée   : {duration}s | {total} frames")
         print(f"[INFO] Début du rejeu...\n")
+
+        ALPHA = 0.15
+        smoothed = {"yaw": 0.0, "pitch": 0.0, "roll": 0.0,
+                    "x": 0.0, "y": 0.0, "z": 0.0,
+                    "ant_l": 0.0, "ant_r": 0.0, "body_yaw": 0.0}
 
         for i, frame in enumerate(frames):
             if stop_event.is_set():
@@ -57,32 +48,37 @@ class Rejoueur(ReachyMiniApp):
                 break
 
             head_data = frame["head"]
-            antennas  = frame["antennas"]
+            antennas = frame["antennas"]
 
-            # Envoi des consignes au robot
+            for k in ("yaw", "pitch", "roll", "x", "y", "z"):
+                smoothed[k] = ALPHA * head_data[k] + (1 - ALPHA) * smoothed[k]
+            smoothed["ant_l"] = ALPHA * antennas[0] + (1 - ALPHA) * smoothed["ant_l"]
+            smoothed["ant_r"] = ALPHA * antennas[1] + (1 - ALPHA) * smoothed["ant_r"]
+            smoothed["body_yaw"] = ALPHA * float(frame.get("body_yaw", 0.0)) + (1 - ALPHA) * smoothed["body_yaw"]
+
             head_pose = create_head_pose(
-                yaw=head_data["yaw"],
-                pitch=head_data["pitch"],
-                roll=head_data["roll"],
+                yaw=smoothed["yaw"],
+                pitch=smoothed["pitch"],
+                roll=smoothed["roll"],
+                x=smoothed["x"],
+                y=smoothed["y"],
+                z=smoothed["z"],
                 degrees=True,
             )
             reachy_mini.set_target(
                 head=head_pose,
-                antennas=np.array(antennas, dtype=float),
-                body_yaw=float(frame.get("body_yaw", 0.0)),
+                antennas=np.array([smoothed["ant_l"], smoothed["ant_r"]], dtype=float),
+                body_yaw=smoothed["body_yaw"],
             )
 
-            # Affichage de la progression toutes les 100 frames
             if i % 100 == 0:
                 pct = int(i / total * 100)
                 print(f"  [{pct:3d}%] t={frame['timestamp']:.2f}s", end="\r", flush=True)
 
-            # Attendre jusqu'à la prochaine frame
             if i < total - 1:
                 dt = frames[i + 1]["timestamp"] - frame["timestamp"]
                 time.sleep(max(0.0, dt))
 
-        # Retour à la position neutre
         print(f"\n[OK] Rejeu terminé. Retour à la position neutre.")
         head_neutre = create_head_pose(yaw=0.0, pitch=0.0, roll=0.0, degrees=True)
         reachy_mini.set_target(
@@ -90,7 +86,6 @@ class Rejoueur(ReachyMiniApp):
             antennas=np.array([0.0, 0.0]),
         )
 
-# Lancement direct
 def lancer_rejeu(movement_json: str | None = None):
     if movement_json is None:
         fichiers = [f for f in os.listdir(DATA_DIR) if f.endswith("_mouvement.json")]
@@ -116,7 +111,6 @@ def lancer_rejeu(movement_json: str | None = None):
         app.wrapped_run()
     except KeyboardInterrupt:
         app.stop()
-
 
 if __name__ == "__main__":
     import sys

@@ -35,15 +35,13 @@ def sinusoides_une_dimension_a_la_fois():
                 pose_head = {'roll': 0, 'pitch': 0, 'yaw': 0, 'x': 0, 'y': 0, 'z': 0}
                 pose_head[dim] = valeur
                 
-                mini.goto_target(
-                    head=create_head_pose(**pose_head, degrees=True, mm=True),
-                    duration=0.1
-                )
+                mini.set_target(
+                    head=create_head_pose(**pose_head, degrees=True, mm=True))
                 
                 time.sleep(dt)
 
         print("\n Retour position neutre...")
-        mini.goto_target(head=create_head_pose(z=0, degrees=True, mm=True), duration=1.0)
+        mini.set_target(head=create_head_pose(z=0, degrees=True, mm=True))
         time.sleep(1)
         print("Terminé !")
 
@@ -83,10 +81,8 @@ def mouvements_combines():
             
             pose_head = {'roll': 0, 'pitch': val_pitch, 'yaw': 0, 'x': 0, 'y': val_y, 'z': 0}
             
-            mini.goto_target(
-                head=create_head_pose(**pose_head, degrees=True, mm=True),
-                duration=0.1
-            )
+            mini.set_target(
+                head=create_head_pose(**pose_head, degrees=True, mm=True))
             time.sleep(dt)
 
         print(" Transition...\n")
@@ -105,14 +101,12 @@ def mouvements_combines():
             
             pose_head = {'roll': 0, 'pitch': 0, 'yaw': 0, 'x': val_x, 'y': val_y, 'z': z_constant}
             
-            mini.goto_target(
-                head=create_head_pose(**pose_head, degrees=True, mm=True),
-                duration=0.1
-            )
+            mini.set_target(
+                head=create_head_pose(**pose_head, degrees=True, mm=True))
             time.sleep(dt)
             
         print(" Retour position neutre...")
-        mini.goto_target(head=create_head_pose(z=0, degrees=True, mm=True), duration=1.0)
+        mini.set_target(head=create_head_pose(z=0, degrees=True, mm=True))
         time.sleep(1)
         print("Terminé !")
         

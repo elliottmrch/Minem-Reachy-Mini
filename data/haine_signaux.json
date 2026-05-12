@@ -25,7 +25,8 @@
       "left_eye_opening": 0.6032,
       "right_eye_opening": 0.622,
       "smile_index": 0.4621,
-      "eyebrow_raise": 0.1162,
+      "eyebrow_raise_left": 0.2542,
+      "eyebrow_raise_right": 0.2993,
       "landmarks_vis": {
         "0": [
           0.4878,
@@ -415,7 +416,8 @@
       "left_eye_opening": 0.6639,
       "right_eye_opening": 0.6584,
       "smile_index": 0.4717,
-      "eyebrow_raise": 0.115,
+      "eyebrow_raise_left": 0.2548,
+      "eyebrow_raise_right": 0.3128,
       "landmarks_vis": {
         "0": [
           0.4901,
@@ -805,7 +807,8 @@
       "left_eye_opening": 0.6173,
       "right_eye_opening": 0.6886,
       "smile_index": 0.5106,
-      "eyebrow_raise": 0.1058,
+      "eyebrow_raise_left": 0.2473,
+      "eyebrow_raise_right": 0.3079,
       "landmarks_vis": {
         "0": [
           0.4843,
@@ -1195,7 +1198,8 @@
       "left_eye_opening": 0.601,
       "right_eye_opening": 0.6589,
       "smile_index": 0.6427,
-      "eyebrow_raise": 0.0943,
+      "eyebrow_raise_left": 0.244,
+      "eyebrow_raise_right": 0.287,
       "landmarks_vis": {
         "0": [
           0.4855,
@@ -1585,7 +1589,8 @@
       "left_eye_opening": 0.6162,
       "right_eye_opening": 0.6626,
       "smile_index": 0.6804,
-      "eyebrow_raise": 0.0955,
+      "eyebrow_raise_left": 0.2611,
+      "eyebrow_raise_right": 0.3012,
       "landmarks_vis": {
         "0": [
           0.4861,
@@ -1975,7 +1980,8 @@
       "left_eye_opening": 0.602,
       "right_eye_opening": 0.6811,
       "smile_index": 0.6869,
-      "eyebrow_raise": 0.093,
+      "eyebrow_raise_left": 0.2473,
+      "eyebrow_raise_right": 0.3004,
       "landmarks_vis": {
         "0": [
           0.4856,
@@ -2365,7 +2371,8 @@
       "left_eye_opening": 0.5845,
       "right_eye_opening": 0.6793,
       "smile_index": 0.7006,
-      "eyebrow_raise": 0.0944,
+      "eyebrow_raise_left": 0.2554,
+      "eyebrow_raise_right": 0.2942,
       "landmarks_vis": {
         "0": [
           0.4839,
@@ -2755,7 +2762,8 @@
       "left_eye_opening": 0.5701,
       "right_eye_opening": 0.6031,
       "smile_index": 0.7307,
-      "eyebrow_raise": 0.0898,
+      "eyebrow_raise_left": 0.2421,
+      "eyebrow_raise_right": 0.285,
       "landmarks_vis": {
         "0": [
           0.4829,
@@ -3145,7 +3153,8 @@
       "left_eye_opening": 0.6152,
       "right_eye_opening": 0.6269,
       "smile_index": 0.7283,
-      "eyebrow_raise": 0.0903,
+      "eyebrow_raise_left": 0.2364,
+      "eyebrow_raise_right": 0.2835,
       "landmarks_vis": {
         "0": [
           0.4844,
@@ -3535,7 +3544,8 @@
       "left_eye_opening": 0.5642,
       "right_eye_opening": 0.6409,
       "smile_index": 0.7334,
-      "eyebrow_raise": 0.0902,
+      "eyebrow_raise_left": 0.2328,
+      "eyebrow_raise_right": 0.28,
       "landmarks_vis": {
         "0": [
           0.4861,
@@ -3925,7 +3935,8 @@
       "left_eye_opening": 0.537,
       "right_eye_opening": 0.6434,
       "smile_index": 0.7176,
-      "eyebrow_raise": 0.0911,
+      "eyebrow_raise_left": 0.2376,
+      "eyebrow_raise_right": 0.2795,
       "landmarks_vis": {
         "0": [
           0.4886,
@@ -4315,7 +4326,8 @@
       "left_eye_opening": 0.5264,
       "right_eye_opening": 0.5925,
       "smile_index": 0.7178,
-      "eyebrow_raise": 0.0915,
+      "eyebrow_raise_left": 0.2309,
+      "eyebrow_raise_right": 0.2882,
       "landmarks_vis": {
         "0": [
           0.4908,
@@ -4705,7 +4717,8 @@
       "left_eye_opening": 0.5416,
       "right_eye_opening": 0.6366,
       "smile_index": 0.7107,
-      "eyebrow_raise": 0.0929,
+      "eyebrow_raise_left": 0.24,
+      "eyebrow_raise_right": 0.2881,
       "landmarks_vis": {
         "0": [
           0.4929,
@@ -5095,7 +5108,8 @@
       "left_eye_opening": 0.5729,
       "right_eye_opening": 0.6421,
       "smile_index": 0.7139,
-      "eyebrow_raise": 0.0956,
+      "eyebrow_raise_left": 0.256,
+      "eyebrow_raise_right": 0.292,
       "landmarks_vis": {
         "0": [
           0.498,
@@ -5485,7 +5499,8 @@
       "left_eye_opening": 0.5938,
       "right_eye_opening": 0.6453,
       "smile_index": 0.7239,
-      "eyebrow_raise": 0.0952,
+      "eyebrow_raise_left": 0.2502,
+      "eyebrow_raise_right": 0.2905,
       "landmarks_vis": {
         "0": [
           0.5057,
@@ -5875,7 +5890,8 @@
       "left_eye_opening": 0.5684,
       "right_eye_opening": 0.584,
       "smile_index": 0.7389,
-      "eyebrow_raise": 0.0899,
+      "eyebrow_raise_left": 0.2335,
+      "eyebrow_raise_right": 0.2761,
       "landmarks_vis": {
         "0": [
           0.5141,
@@ -6265,7 +6281,8 @@
       "left_eye_opening": 0.5652,
       "right_eye_opening": 0.5767,
       "smile_index": 0.7512,
-      "eyebrow_raise": 0.0884,
+      "eyebrow_raise_left": 0.2281,
+      "eyebrow_raise_right": 0.2758,
       "landmarks_vis": {
         "0": [
           0.5213,
@@ -6655,7 +6672,8 @@
       "left_eye_opening": 0.5408,
       "right_eye_opening": 0.5744,
       "smile_index": 0.7397,
-      "eyebrow_raise": 0.0881,
+      "eyebrow_raise_left": 0.2251,
+      "eyebrow_raise_right": 0.2837,
       "landmarks_vis": {
         "0": [
           0.53,
@@ -7045,7 +7063,8 @@
       "left_eye_opening": 0.5682,
       "right_eye_opening": 0.5932,
       "smile_index": 0.7358,
-      "eyebrow_raise": 0.0891,
+      "eyebrow_raise_left": 0.2354,
+      "eyebrow_raise_right": 0.2845,
       "landmarks_vis": {
         "0": [
           0.5382,
@@ -7435,7 +7454,8 @@
       "left_eye_opening": 0.5631,
       "right_eye_opening": 0.5704,
       "smile_index": 0.7524,
-      "eyebrow_raise": 0.0886,
+      "eyebrow_raise_left": 0.2342,
+      "eyebrow_raise_right": 0.2738,
       "landmarks_vis": {
         "0": [
           0.5483,
@@ -7825,7 +7845,8 @@
       "left_eye_opening": 0.5901,
       "right_eye_opening": 0.5865,
       "smile_index": 0.7508,
-      "eyebrow_raise": 0.0906,
+      "eyebrow_raise_left": 0.2404,
+      "eyebrow_raise_right": 0.2753,
       "landmarks_vis": {
         "0": [
           0.561,
@@ -8215,7 +8236,8 @@
       "left_eye_opening": 0.5896,
       "right_eye_opening": 0.5857,
       "smile_index": 0.7535,
-      "eyebrow_raise": 0.0917,
+      "eyebrow_raise_left": 0.2437,
+      "eyebrow_raise_right": 0.2712,
       "landmarks_vis": {
         "0": [
           0.5737,
@@ -8605,7 +8627,8 @@
       "left_eye_opening": 0.586,
       "right_eye_opening": 0.5838,
       "smile_index": 0.762,
-      "eyebrow_raise": 0.0926,
+      "eyebrow_raise_left": 0.2412,
+      "eyebrow_raise_right": 0.2735,
       "landmarks_vis": {
         "0": [
           0.5834,
@@ -8995,7 +9018,8 @@
       "left_eye_opening": 0.5918,
       "right_eye_opening": 0.5898,
       "smile_index": 0.7209,
-      "eyebrow_raise": 0.097,
+      "eyebrow_raise_left": 0.2413,
+      "eyebrow_raise_right": 0.2822,
       "landmarks_vis": {
         "0": [
           0.5979,
@@ -9385,7 +9409,8 @@
       "left_eye_opening": 0.5868,
       "right_eye_opening": 0.5378,
       "smile_index": 0.7113,
-      "eyebrow_raise": 0.0978,
+      "eyebrow_raise_left": 0.2373,
+      "eyebrow_raise_right": 0.2844,
       "landmarks_vis": {
         "0": [
           0.606,
@@ -9775,7 +9800,8 @@
       "left_eye_opening": 0.6115,
       "right_eye_opening": 0.5824,
       "smile_index": 0.7525,
-      "eyebrow_raise": 0.0994,
+      "eyebrow_raise_left": 0.2424,
+      "eyebrow_raise_right": 0.2944,
       "landmarks_vis": {
         "0": [
           0.6166,
@@ -10165,7 +10191,8 @@
       "left_eye_opening": 0.6263,
       "right_eye_opening": 0.6018,
       "smile_index": 0.7954,
-      "eyebrow_raise": 0.1007,
+      "eyebrow_raise_left": 0.2319,
+      "eyebrow_raise_right": 0.2968,
       "landmarks_vis": {
         "0": [
           0.6148,
@@ -10555,7 +10582,8 @@
       "left_eye_opening": 0.5498,
       "right_eye_opening": 0.6018,
       "smile_index": 0.7116,
-      "eyebrow_raise": 0.0914,
+      "eyebrow_raise_left": 0.2113,
+      "eyebrow_raise_right": 0.2928,
       "landmarks_vis": {
         "0": [
           0.6145,
@@ -10945,7 +10973,8 @@
       "left_eye_opening": 0.4502,
       "right_eye_opening": 0.6182,
       "smile_index": 0.6685,
-      "eyebrow_raise": 0.0844,
+      "eyebrow_raise_left": 0.1952,
+      "eyebrow_raise_right": 0.2623,
       "landmarks_vis": {
         "0": [
           0.6214,
@@ -11335,7 +11364,8 @@
       "left_eye_opening": 0.4742,
       "right_eye_opening": 0.6858,
       "smile_index": 0.6713,
-      "eyebrow_raise": 0.0817,
+      "eyebrow_raise_left": 0.1868,
+      "eyebrow_raise_right": 0.2397,
       "landmarks_vis": {
         "0": [
           0.6322,
@@ -11725,7 +11755,8 @@
       "left_eye_opening": 0.4573,
       "right_eye_opening": 0.6159,
       "smile_index": 0.6531,
-      "eyebrow_raise": 0.0824,
+      "eyebrow_raise_left": 0.2006,
+      "eyebrow_raise_right": 0.23,
       "landmarks_vis": {
         "0": [
           0.6367,
@@ -12115,7 +12146,8 @@
       "left_eye_opening": 0.4282,
       "right_eye_opening": 0.6537,
       "smile_index": 0.686,
-      "eyebrow_raise": 0.0852,
+      "eyebrow_raise_left": 0.2039,
+      "eyebrow_raise_right": 0.2499,
       "landmarks_vis": {
         "0": [
           0.6354,
@@ -12505,7 +12537,8 @@
       "left_eye_opening": 0.4273,
       "right_eye_opening": 0.5661,
       "smile_index": 0.6759,
-      "eyebrow_raise": 0.0873,
+      "eyebrow_raise_left": 0.2144,
+      "eyebrow_raise_right": 0.2624,
       "landmarks_vis": {
         "0": [
           0.6354,
@@ -12895,7 +12928,8 @@
       "left_eye_opening": 0.4459,
       "right_eye_opening": 0.5754,
       "smile_index": 0.7317,
-      "eyebrow_raise": 0.089,
+      "eyebrow_raise_left": 0.2172,
+      "eyebrow_raise_right": 0.2721,
       "landmarks_vis": {
         "0": [
           0.6297,
@@ -13285,7 +13319,8 @@
       "left_eye_opening": 0.4044,
       "right_eye_opening": 0.5279,
       "smile_index": 0.6664,
-      "eyebrow_raise": 0.0848,
+      "eyebrow_raise_left": 0.235,
+      "eyebrow_raise_right": 0.2326,
       "landmarks_vis": {
         "0": [
           0.6102,
@@ -13675,7 +13710,8 @@
       "left_eye_opening": 0.3462,
       "right_eye_opening": 0.541,
       "smile_index": 0.7218,
-      "eyebrow_raise": 0.0782,
+      "eyebrow_raise_left": 0.2172,
+      "eyebrow_raise_right": 0.2213,
       "landmarks_vis": {
         "0": [
           0.5874,
@@ -14065,7 +14101,8 @@
       "left_eye_opening": 0.3799,
       "right_eye_opening": 0.5386,
       "smile_index": 0.6896,
-      "eyebrow_raise": 0.0829,
+      "eyebrow_raise_left": 0.1998,
+      "eyebrow_raise_right": 0.2518,
       "landmarks_vis": {
         "0": [
           0.5618,
@@ -14455,7 +14492,8 @@
       "left_eye_opening": 0.4631,
       "right_eye_opening": 0.5972,
       "smile_index": 0.6334,
-      "eyebrow_raise": 0.0944,
+      "eyebrow_raise_left": 0.2038,
+      "eyebrow_raise_right": 0.3165,
       "landmarks_vis": {
         "0": [
           0.5543,
@@ -14845,7 +14883,8 @@
       "left_eye_opening": 0.4192,
       "right_eye_opening": 0.607,
       "smile_index": 0.6821,
-      "eyebrow_raise": 0.1015,
+      "eyebrow_raise_left": 0.2352,
+      "eyebrow_raise_right": 0.3286,
       "landmarks_vis": {
         "0": [
           0.534,
@@ -15235,7 +15274,8 @@
       "left_eye_opening": 0.5462,
       "right_eye_opening": 0.5855,
       "smile_index": 0.7243,
-      "eyebrow_raise": 0.0971,
+      "eyebrow_raise_left": 0.2478,
+      "eyebrow_raise_right": 0.2909,
       "landmarks_vis": {
         "0": [
           0.5132,
@@ -15625,7 +15665,8 @@
       "left_eye_opening": 0.5228,
       "right_eye_opening": 0.5776,
       "smile_index": 0.7392,
-      "eyebrow_raise": 0.092,
+      "eyebrow_raise_left": 0.2621,
+      "eyebrow_raise_right": 0.2696,
       "landmarks_vis": {
         "0": [
           0.4951,
@@ -16015,7 +16056,8 @@
       "left_eye_opening": 0.561,
       "right_eye_opening": 0.6503,
       "smile_index": 0.7259,
-      "eyebrow_raise": 0.0891,
+      "eyebrow_raise_left": 0.2488,
+      "eyebrow_raise_right": 0.267,
       "landmarks_vis": {
         "0": [
           0.4829,
@@ -16405,7 +16447,8 @@
       "left_eye_opening": 0.4797,
       "right_eye_opening": 0.6358,
       "smile_index": 0.6777,
-      "eyebrow_raise": 0.0922,
+      "eyebrow_raise_left": 0.2257,
+      "eyebrow_raise_right": 0.287,
       "landmarks_vis": {
         "0": [
           0.4738,
@@ -16795,7 +16838,8 @@
       "left_eye_opening": 0.4801,
       "right_eye_opening": 0.6208,
       "smile_index": 0.7285,
-      "eyebrow_raise": 0.0978,
+      "eyebrow_raise_left": 0.2451,
+      "eyebrow_raise_right": 0.2867,
       "landmarks_vis": {
         "0": [
           0.4653,
@@ -17185,7 +17229,8 @@
       "left_eye_opening": 0.5018,
       "right_eye_opening": 0.6288,
       "smile_index": 0.7087,
-      "eyebrow_raise": 0.1007,
+      "eyebrow_raise_left": 0.2615,
+      "eyebrow_raise_right": 0.2875,
       "landmarks_vis": {
         "0": [
           0.4549,
@@ -17575,7 +17620,8 @@
       "left_eye_opening": 0.5552,
       "right_eye_opening": 0.7185,
       "smile_index": 0.7228,
-      "eyebrow_raise": 0.0939,
+      "eyebrow_raise_left": 0.2274,
+      "eyebrow_raise_right": 0.2861,
       "landmarks_vis": {
         "0": [
           0.4461,
@@ -17965,7 +18011,8 @@
       "left_eye_opening": 0.5782,
       "right_eye_opening": 0.656,
       "smile_index": 0.7424,
-      "eyebrow_raise": 0.0968,
+      "eyebrow_raise_left": 0.2563,
+      "eyebrow_raise_right": 0.2808,
       "landmarks_vis": {
         "0": [
           0.441,
@@ -18355,7 +18402,8 @@
       "left_eye_opening": 0.5408,
       "right_eye_opening": 0.6878,
       "smile_index": 0.7422,
-      "eyebrow_raise": 0.0907,
+      "eyebrow_raise_left": 0.2185,
+      "eyebrow_raise_right": 0.2867,
       "landmarks_vis": {
         "0": [
           0.4439,
@@ -18745,7 +18793,8 @@
       "left_eye_opening": 0.5451,
       "right_eye_opening": 0.6705,
       "smile_index": 0.7403,
-      "eyebrow_raise": 0.0948,
+      "eyebrow_raise_left": 0.2324,
+      "eyebrow_raise_right": 0.2894,
       "landmarks_vis": {
         "0": [
           0.4472,
@@ -19135,7 +19184,8 @@
       "left_eye_opening": 0.5139,
       "right_eye_opening": 0.7097,
       "smile_index": 0.7316,
-      "eyebrow_raise": 0.0906,
+      "eyebrow_raise_left": 0.2276,
+      "eyebrow_raise_right": 0.2733,
       "landmarks_vis": {
         "0": [
           0.4492,
@@ -19525,7 +19575,8 @@
       "left_eye_opening": 0.5611,
       "right_eye_opening": 0.7092,
       "smile_index": 0.711,
-      "eyebrow_raise": 0.0942,
+      "eyebrow_raise_left": 0.2282,
+      "eyebrow_raise_right": 0.2903,
       "landmarks_vis": {
         "0": [
           0.4512,
@@ -19915,7 +19966,8 @@
       "left_eye_opening": 0.5222,
       "right_eye_opening": 0.6777,
       "smile_index": 0.7377,
-      "eyebrow_raise": 0.0911,
+      "eyebrow_raise_left": 0.2304,
+      "eyebrow_raise_right": 0.2742,
       "landmarks_vis": {
         "0": [
           0.4512,
@@ -20305,7 +20357,8 @@
       "left_eye_opening": 0.5277,
       "right_eye_opening": 0.6677,
       "smile_index": 0.7132,
-      "eyebrow_raise": 0.092,
+      "eyebrow_raise_left": 0.237,
+      "eyebrow_raise_right": 0.2765,
       "landmarks_vis": {
         "0": [
           0.4545,
@@ -20695,7 +20748,8 @@
       "left_eye_opening": 0.5242,
       "right_eye_opening": 0.6678,
       "smile_index": 0.7079,
-      "eyebrow_raise": 0.0913,
+      "eyebrow_raise_left": 0.2312,
+      "eyebrow_raise_right": 0.2712,
       "landmarks_vis": {
         "0": [
           0.4555,
@@ -21085,7 +21139,8 @@
       "left_eye_opening": 0.5252,
       "right_eye_opening": 0.657,
       "smile_index": 0.6949,
-      "eyebrow_raise": 0.0938,
+      "eyebrow_raise_left": 0.2323,
+      "eyebrow_raise_right": 0.281,
       "landmarks_vis": {
         "0": [
           0.456,
@@ -21475,7 +21530,8 @@
       "left_eye_opening": 0.5126,
       "right_eye_opening": 0.6727,
       "smile_index": 0.6846,
-      "eyebrow_raise": 0.095,
+      "eyebrow_raise_left": 0.2391,
+      "eyebrow_raise_right": 0.2801,
       "landmarks_vis": {
         "0": [
           0.4561,
@@ -21865,7 +21921,8 @@
       "left_eye_opening": 0.4993,
       "right_eye_opening": 0.6709,
       "smile_index": 0.6945,
-      "eyebrow_raise": 0.0957,
+      "eyebrow_raise_left": 0.2462,
+      "eyebrow_raise_right": 0.2837,
       "landmarks_vis": {
         "0": [
           0.4583,
@@ -22255,7 +22312,8 @@
       "left_eye_opening": 0.4642,
       "right_eye_opening": 0.66,
       "smile_index": 0.6479,
-      "eyebrow_raise": 0.0911,
+      "eyebrow_raise_left": 0.2359,
+      "eyebrow_raise_right": 0.269,
       "landmarks_vis": {
         "0": [
           0.4578,
@@ -22645,7 +22703,8 @@
       "left_eye_opening": 0.4412,
       "right_eye_opening": 0.5976,
       "smile_index": 0.6004,
-      "eyebrow_raise": 0.0884,
+      "eyebrow_raise_left": 0.2435,
+      "eyebrow_raise_right": 0.2563,
       "landmarks_vis": {
         "0": [
           0.4612,
@@ -23035,7 +23094,8 @@
       "left_eye_opening": 0.4169,
       "right_eye_opening": 0.6196,
       "smile_index": 0.5993,
-      "eyebrow_raise": 0.0886,
+      "eyebrow_raise_left": 0.2619,
+      "eyebrow_raise_right": 0.2602,
       "landmarks_vis": {
         "0": [
           0.466,
@@ -23425,7 +23485,8 @@
       "left_eye_opening": 0.388,
       "right_eye_opening": 0.6122,
       "smile_index": 0.5855,
-      "eyebrow_raise": 0.0879,
+      "eyebrow_raise_left": 0.2508,
+      "eyebrow_raise_right": 0.2711,
       "landmarks_vis": {
         "0": [
           0.4696,
@@ -23815,7 +23876,8 @@
       "left_eye_opening": 0.485,
       "right_eye_opening": 0.6199,
       "smile_index": 0.5537,
-      "eyebrow_raise": 0.0975,
+      "eyebrow_raise_left": 0.2857,
+      "eyebrow_raise_right": 0.2994,
       "landmarks_vis": {
         "0": [
           0.4718,
@@ -24205,7 +24267,8 @@
       "left_eye_opening": 0.5309,
       "right_eye_opening": 0.628,
       "smile_index": 0.5425,
-      "eyebrow_raise": 0.1019,
+      "eyebrow_raise_left": 0.2988,
+      "eyebrow_raise_right": 0.3205,
       "landmarks_vis": {
         "0": [
           0.4766,
@@ -24595,7 +24658,8 @@
       "left_eye_opening": 0.4844,
       "right_eye_opening": 0.6214,
       "smile_index": 0.5667,
-      "eyebrow_raise": 0.0986,
+      "eyebrow_raise_left": 0.3099,
+      "eyebrow_raise_right": 0.2952,
       "landmarks_vis": {
         "0": [
           0.4777,
@@ -24985,7 +25049,8 @@
       "left_eye_opening": 0.4942,
       "right_eye_opening": 0.6201,
       "smile_index": 0.598,
-      "eyebrow_raise": 0.0989,
+      "eyebrow_raise_left": 0.2933,
+      "eyebrow_raise_right": 0.2973,
       "landmarks_vis": {
         "0": [
           0.4776,
@@ -25375,7 +25440,8 @@
       "left_eye_opening": 0.4657,
       "right_eye_opening": 0.6234,
       "smile_index": 0.6028,
-      "eyebrow_raise": 0.0945,
+      "eyebrow_raise_left": 0.2746,
+      "eyebrow_raise_right": 0.2884,
       "landmarks_vis": {
         "0": [
           0.4764,
@@ -25765,7 +25831,8 @@
       "left_eye_opening": 0.4966,
       "right_eye_opening": 0.6016,
       "smile_index": 0.5581,
-      "eyebrow_raise": 0.0941,
+      "eyebrow_raise_left": 0.2778,
+      "eyebrow_raise_right": 0.2867,
       "landmarks_vis": {
         "0": [
           0.4793,
@@ -26155,7 +26222,8 @@
       "left_eye_opening": 0.4693,
       "right_eye_opening": 0.617,
       "smile_index": 0.5583,
-      "eyebrow_raise": 0.0952,
+      "eyebrow_raise_left": 0.2736,
+      "eyebrow_raise_right": 0.2971,
       "landmarks_vis": {
         "0": [
           0.4819,
@@ -26545,7 +26613,8 @@
       "left_eye_opening": 0.4692,
       "right_eye_opening": 0.5989,
       "smile_index": 0.5713,
-      "eyebrow_raise": 0.0938,
+      "eyebrow_raise_left": 0.2747,
+      "eyebrow_raise_right": 0.2904,
       "landmarks_vis": {
         "0": [
           0.4827,
@@ -26935,7 +27004,8 @@
       "left_eye_opening": 0.5116,
       "right_eye_opening": 0.6399,
       "smile_index": 0.5408,
-      "eyebrow_raise": 0.0959,
+      "eyebrow_raise_left": 0.2703,
+      "eyebrow_raise_right": 0.3077,
       "landmarks_vis": {
         "0": [
           0.4818,
@@ -27325,7 +27395,8 @@
       "left_eye_opening": 0.4769,
       "right_eye_opening": 0.6126,
       "smile_index": 0.5609,
-      "eyebrow_raise": 0.0952,
+      "eyebrow_raise_left": 0.2713,
+      "eyebrow_raise_right": 0.2954,
       "landmarks_vis": {
         "0": [
           0.4836,
@@ -27715,7 +27786,8 @@
       "left_eye_opening": 0.4472,
       "right_eye_opening": 0.6693,
       "smile_index": 0.5969,
-      "eyebrow_raise": 0.0982,
+      "eyebrow_raise_left": 0.2745,
+      "eyebrow_raise_right": 0.305,
       "landmarks_vis": {
         "0": [
           0.4842,
@@ -28105,7 +28177,8 @@
       "left_eye_opening": 0.4284,
       "right_eye_opening": 0.6925,
       "smile_index": 0.5909,
-      "eyebrow_raise": 0.0959,
+      "eyebrow_raise_left": 0.2692,
+      "eyebrow_raise_right": 0.2986,
       "landmarks_vis": {
         "0": [
           0.4818,
@@ -28495,7 +28568,8 @@
       "left_eye_opening": 0.4211,
       "right_eye_opening": 0.6896,
       "smile_index": 0.5246,
-      "eyebrow_raise": 0.0897,
+      "eyebrow_raise_left": 0.2533,
+      "eyebrow_raise_right": 0.284,
       "landmarks_vis": {
         "0": [
           0.4808,
@@ -28885,7 +28959,8 @@
       "left_eye_opening": 0.4687,
       "right_eye_opening": 0.6129,
       "smile_index": 0.5166,
-      "eyebrow_raise": 0.091,
+      "eyebrow_raise_left": 0.2735,
+      "eyebrow_raise_right": 0.2667,
       "landmarks_vis": {
         "0": [
           0.4788,
@@ -29275,7 +29350,8 @@
       "left_eye_opening": 0.4579,
       "right_eye_opening": 0.6408,
       "smile_index": 0.6342,
-      "eyebrow_raise": 0.0893,
+      "eyebrow_raise_left": 0.2341,
+      "eyebrow_raise_right": 0.2651,
       "landmarks_vis": {
         "0": [
           0.4797,
@@ -29665,7 +29741,8 @@
       "left_eye_opening": 0.4534,
       "right_eye_opening": 0.6081,
       "smile_index": 0.6841,
-      "eyebrow_raise": 0.0831,
+      "eyebrow_raise_left": 0.2132,
+      "eyebrow_raise_right": 0.2395,
       "landmarks_vis": {
         "0": [
           0.4855,
@@ -30055,7 +30132,8 @@
       "left_eye_opening": 0.3884,
       "right_eye_opening": 0.551,
       "smile_index": 0.7379,
-      "eyebrow_raise": 0.0859,
+      "eyebrow_raise_left": 0.2084,
+      "eyebrow_raise_right": 0.2367,
       "landmarks_vis": {
         "0": [
           0.5037,
@@ -30445,7 +30523,8 @@
       "left_eye_opening": 0.3492,
       "right_eye_opening": 0.595,
       "smile_index": 0.7078,
-      "eyebrow_raise": 0.0924,
+      "eyebrow_raise_left": 0.2366,
+      "eyebrow_raise_right": 0.2614,
       "landmarks_vis": {
         "0": [
           0.5136,
@@ -30835,7 +30914,8 @@
       "left_eye_opening": 0.4015,
       "right_eye_opening": 0.6208,
       "smile_index": 0.701,
-      "eyebrow_raise": 0.0959,
+      "eyebrow_raise_left": 0.2388,
+      "eyebrow_raise_right": 0.2732,
       "landmarks_vis": {
         "0": [
           0.5249,
@@ -31225,7 +31305,8 @@
       "left_eye_opening": 0.3451,
       "right_eye_opening": 0.592,
       "smile_index": 0.6738,
-      "eyebrow_raise": 0.0937,
+      "eyebrow_raise_left": 0.2346,
+      "eyebrow_raise_right": 0.2577,
       "landmarks_vis": {
         "0": [
           0.5387,
@@ -31615,7 +31696,8 @@
       "left_eye_opening": 0.3331,
       "right_eye_opening": 0.6803,
       "smile_index": 0.6766,
-      "eyebrow_raise": 0.1047,
+      "eyebrow_raise_left": 0.2563,
+      "eyebrow_raise_right": 0.2622,
       "landmarks_vis": {
         "0": [
           0.5536,
@@ -32005,7 +32087,8 @@
       "left_eye_opening": 0.3549,
       "right_eye_opening": 0.6721,
       "smile_index": 0.7079,
-      "eyebrow_raise": 0.1074,
+      "eyebrow_raise_left": 0.2535,
+      "eyebrow_raise_right": 0.279,
       "landmarks_vis": {
         "0": [
           0.5597,
@@ -32395,7 +32478,8 @@
       "left_eye_opening": 0.318,
       "right_eye_opening": 0.6588,
       "smile_index": 0.7401,
-      "eyebrow_raise": 0.1056,
+      "eyebrow_raise_left": 0.2708,
+      "eyebrow_raise_right": 0.2708,
       "landmarks_vis": {
         "0": [
           0.5561,
@@ -32785,7 +32869,8 @@
       "left_eye_opening": 0.362,
       "right_eye_opening": 0.6168,
       "smile_index": 0.731,
-      "eyebrow_raise": 0.1016,
+      "eyebrow_raise_left": 0.2532,
+      "eyebrow_raise_right": 0.2568,
       "landmarks_vis": {
         "0": [
           0.5532,
@@ -33175,7 +33260,8 @@
       "left_eye_opening": 0.3298,
       "right_eye_opening": 0.6329,
       "smile_index": 0.7412,
-      "eyebrow_raise": 0.1003,
+      "eyebrow_raise_left": 0.2456,
+      "eyebrow_raise_right": 0.2689,
       "landmarks_vis": {
         "0": [
           0.5488,
@@ -33565,7 +33651,8 @@
       "left_eye_opening": 0.3218,
       "right_eye_opening": 0.6789,
       "smile_index": 0.7793,
-      "eyebrow_raise": 0.1002,
+      "eyebrow_raise_left": 0.2363,
+      "eyebrow_raise_right": 0.2798,
       "landmarks_vis": {
         "0": [
           0.5427,
@@ -33955,7 +34042,8 @@
       "left_eye_opening": 0.3542,
       "right_eye_opening": 0.6727,
       "smile_index": 0.7805,
-      "eyebrow_raise": 0.0999,
+      "eyebrow_raise_left": 0.2508,
+      "eyebrow_raise_right": 0.2807,
       "landmarks_vis": {
         "0": [
           0.536,
@@ -34345,7 +34433,8 @@
       "left_eye_opening": 0.4283,
       "right_eye_opening": 0.6839,
       "smile_index": 0.8469,
-      "eyebrow_raise": 0.0984,
+      "eyebrow_raise_left": 0.254,
+      "eyebrow_raise_right": 0.2859,
       "landmarks_vis": {
         "0": [
           0.5271,
@@ -34735,7 +34824,8 @@
       "left_eye_opening": 0.3822,
       "right_eye_opening": 0.6541,
       "smile_index": 0.8662,
-      "eyebrow_raise": 0.097,
+      "eyebrow_raise_left": 0.241,
+      "eyebrow_raise_right": 0.2805,
       "landmarks_vis": {
         "0": [
           0.5247,
@@ -35125,7 +35215,8 @@
       "left_eye_opening": 0.1863,
       "right_eye_opening": 0.5175,
       "smile_index": 0.8837,
-      "eyebrow_raise": 0.0891,
+      "eyebrow_raise_left": 0.2119,
+      "eyebrow_raise_right": 0.2532,
       "landmarks_vis": {
         "0": [
           0.5227,
@@ -35515,7 +35606,8 @@
       "left_eye_opening": 0.0151,
       "right_eye_opening": 0.3319,
       "smile_index": 0.8619,
-      "eyebrow_raise": 0.0889,
+      "eyebrow_raise_left": 0.2295,
+      "eyebrow_raise_right": 0.2459,
       "landmarks_vis": {
         "0": [
           0.5392,
@@ -35905,7 +35997,8 @@
       "left_eye_opening": 0.0082,
       "right_eye_opening": 0.291,
       "smile_index": 0.7987,
-      "eyebrow_raise": 0.0916,
+      "eyebrow_raise_left": 0.2733,
+      "eyebrow_raise_right": 0.2466,
       "landmarks_vis": {
         "0": [
           0.5853,
@@ -36295,7 +36388,8 @@
       "left_eye_opening": 0.0815,
       "right_eye_opening": 0.7286,
       "smile_index": 0.5666,
-      "eyebrow_raise": 0.101,
+      "eyebrow_raise_left": 0.3257,
+      "eyebrow_raise_right": 0.2385,
       "landmarks_vis": {
         "0": [
           0.6398,
@@ -36676,7 +36770,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36688,7 +36783,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36700,7 +36796,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36712,7 +36809,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36724,7 +36822,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36736,7 +36835,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36748,7 +36848,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36760,7 +36861,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36772,7 +36874,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36784,7 +36887,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36796,7 +36900,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -36817,7 +36922,8 @@
       "left_eye_opening": 0.4624,
       "right_eye_opening": 1.2297,
       "smile_index": 0.5401,
-      "eyebrow_raise": 0.0823,
+      "eyebrow_raise_left": 0.2693,
+      "eyebrow_raise_right": 0.4442,
       "landmarks_vis": {
         "0": [
           0.6239,
@@ -37207,7 +37313,8 @@
       "left_eye_opening": 0.3215,
       "right_eye_opening": 0.6652,
       "smile_index": 0.6159,
-      "eyebrow_raise": 0.0739,
+      "eyebrow_raise_left": 0.201,
+      "eyebrow_raise_right": 0.3343,
       "landmarks_vis": {
         "0": [
           0.5757,
@@ -37597,7 +37704,8 @@
       "left_eye_opening": 0.1574,
       "right_eye_opening": 0.3909,
       "smile_index": 0.7843,
-      "eyebrow_raise": 0.0715,
+      "eyebrow_raise_left": 0.2119,
+      "eyebrow_raise_right": 0.2318,
       "landmarks_vis": {
         "0": [
           0.4966,
@@ -37987,7 +38095,8 @@
       "left_eye_opening": 0.3847,
       "right_eye_opening": 0.2551,
       "smile_index": 0.8211,
-      "eyebrow_raise": 0.0722,
+      "eyebrow_raise_left": 0.2332,
+      "eyebrow_raise_right": 0.2758,
       "landmarks_vis": {
         "0": [
           0.4122,
@@ -38377,7 +38486,8 @@
       "left_eye_opening": 0.5434,
       "right_eye_opening": 0.4012,
       "smile_index": 0.7112,
-      "eyebrow_raise": 0.0707,
+      "eyebrow_raise_left": 0.2004,
+      "eyebrow_raise_right": 0.3173,
       "landmarks_vis": {
         "0": [
           0.3183,
@@ -38758,7 +38868,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -38779,7 +38890,8 @@
       "left_eye_opening": 1.2176,
       "right_eye_opening": 0.2524,
       "smile_index": 1.1262,
-      "eyebrow_raise": 0.048,
+      "eyebrow_raise_left": 0.2373,
+      "eyebrow_raise_right": 0.4602,
       "landmarks_vis": {
         "0": [
           0.2373,
@@ -39160,7 +39272,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -39181,7 +39294,8 @@
       "left_eye_opening": 0.9839,
       "right_eye_opening": 0.3381,
       "smile_index": 1.0784,
-      "eyebrow_raise": 0.068,
+      "eyebrow_raise_left": 0.3593,
+      "eyebrow_raise_right": 0.2021,
       "landmarks_vis": {
         "0": [
           0.2145,
@@ -39571,7 +39685,8 @@
       "left_eye_opening": 0.8857,
       "right_eye_opening": 0.3337,
       "smile_index": 1.0298,
-      "eyebrow_raise": 0.0612,
+      "eyebrow_raise_left": 0.3245,
+      "eyebrow_raise_right": 0.268,
       "landmarks_vis": {
         "0": [
           0.2197,
@@ -39961,7 +40076,8 @@
       "left_eye_opening": 0.7349,
       "right_eye_opening": 0.3463,
       "smile_index": 1.0135,
-      "eyebrow_raise": 0.0524,
+      "eyebrow_raise_left": 0.2745,
+      "eyebrow_raise_right": 0.2246,
       "landmarks_vis": {
         "0": [
           0.2172,
@@ -40342,7 +40458,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40354,7 +40471,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40366,7 +40484,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40378,7 +40497,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40390,7 +40510,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40402,7 +40523,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40414,7 +40536,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40426,7 +40549,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40438,7 +40562,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40450,7 +40575,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40462,7 +40588,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40474,7 +40601,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40486,7 +40614,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40498,7 +40627,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -40519,7 +40649,8 @@
       "left_eye_opening": 0.7421,
       "right_eye_opening": 0.3416,
       "smile_index": 0.7259,
-      "eyebrow_raise": 0.0693,
+      "eyebrow_raise_left": 0.2031,
+      "eyebrow_raise_right": 0.424,
       "landmarks_vis": {
         "0": [
           0.4529,
@@ -40909,7 +41040,8 @@
       "left_eye_opening": 0.5392,
       "right_eye_opening": 0.1707,
       "smile_index": 0.8351,
-      "eyebrow_raise": 0.0754,
+      "eyebrow_raise_left": 0.2624,
+      "eyebrow_raise_right": 0.2733,
       "landmarks_vis": {
         "0": [
           0.514,
@@ -41299,7 +41431,8 @@
       "left_eye_opening": 0.2059,
       "right_eye_opening": 0.4125,
       "smile_index": 0.8267,
-      "eyebrow_raise": 0.0932,
+      "eyebrow_raise_left": 0.2298,
+      "eyebrow_raise_right": 0.2728,
       "landmarks_vis": {
         "0": [
           0.6091,
@@ -41689,7 +41822,8 @@
       "left_eye_opening": 0.2766,
       "right_eye_opening": 0.4023,
       "smile_index": 0.8767,
-      "eyebrow_raise": 0.0836,
+      "eyebrow_raise_left": 0.2859,
+      "eyebrow_raise_right": 0.236,
       "landmarks_vis": {
         "0": [
           0.6801,
@@ -42070,7 +42204,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42091,7 +42226,8 @@
       "left_eye_opening": 0.0749,
       "right_eye_opening": 0.7829,
       "smile_index": 0.5647,
-      "eyebrow_raise": 0.0968,
+      "eyebrow_raise_left": 0.38,
+      "eyebrow_raise_right": 0.364,
       "landmarks_vis": {
         "0": [
           0.7609,
@@ -42472,7 +42608,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42484,7 +42621,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42496,7 +42634,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42508,7 +42647,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42520,7 +42660,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42532,7 +42673,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42544,7 +42686,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -42565,7 +42708,8 @@
       "left_eye_opening": 0.3554,
       "right_eye_opening": 0.4045,
       "smile_index": 0.4376,
-      "eyebrow_raise": 0.0981,
+      "eyebrow_raise_left": 0.2498,
+      "eyebrow_raise_right": 0.3595,
       "landmarks_vis": {
         "0": [
           0.6226,
@@ -42955,7 +43099,8 @@
       "left_eye_opening": 0.1558,
       "right_eye_opening": 2.1492,
       "smile_index": 0.6844,
-      "eyebrow_raise": 0.0868,
+      "eyebrow_raise_left": 0.4281,
+      "eyebrow_raise_right": 0.4596,
       "landmarks_vis": {
         "0": [
           0.609,
@@ -43345,7 +43490,8 @@
       "left_eye_opening": 0.1009,
       "right_eye_opening": 0.722,
       "smile_index": 0.7466,
-      "eyebrow_raise": 0.098,
+      "eyebrow_raise_left": 0.3128,
+      "eyebrow_raise_right": 0.3389,
       "landmarks_vis": {
         "0": [
           0.572,
@@ -43735,7 +43881,8 @@
       "left_eye_opening": 0.4075,
       "right_eye_opening": 0.5035,
       "smile_index": 0.7934,
-      "eyebrow_raise": 0.0727,
+      "eyebrow_raise_left": 0.3022,
+      "eyebrow_raise_right": 0.2267,
       "landmarks_vis": {
         "0": [
           0.5049,
@@ -44125,7 +44272,8 @@
       "left_eye_opening": 0.4279,
       "right_eye_opening": 0.1812,
       "smile_index": 0.8128,
-      "eyebrow_raise": 0.0486,
+      "eyebrow_raise_left": 0.2176,
+      "eyebrow_raise_right": 0.176,
       "landmarks_vis": {
         "0": [
           0.4417,
@@ -44515,7 +44663,8 @@
       "left_eye_opening": 0.2661,
       "right_eye_opening": 0.1916,
       "smile_index": 0.8862,
-      "eyebrow_raise": 0.0445,
+      "eyebrow_raise_left": 0.2034,
+      "eyebrow_raise_right": 0.2125,
       "landmarks_vis": {
         "0": [
           0.4016,
@@ -44905,7 +45054,8 @@
       "left_eye_opening": 0.2969,
       "right_eye_opening": 0.3258,
       "smile_index": 0.8693,
-      "eyebrow_raise": 0.0472,
+      "eyebrow_raise_left": 0.2197,
+      "eyebrow_raise_right": 0.201,
       "landmarks_vis": {
         "0": [
           0.3815,
@@ -45295,7 +45445,8 @@
       "left_eye_opening": 0.216,
       "right_eye_opening": 0.2543,
       "smile_index": 0.8416,
-      "eyebrow_raise": 0.0427,
+      "eyebrow_raise_left": 0.1993,
+      "eyebrow_raise_right": 0.185,
       "landmarks_vis": {
         "0": [
           0.3697,
@@ -45685,7 +45836,8 @@
       "left_eye_opening": 0.2899,
       "right_eye_opening": 0.256,
       "smile_index": 0.8851,
-      "eyebrow_raise": 0.0554,
+      "eyebrow_raise_left": 0.222,
+      "eyebrow_raise_right": 0.2244,
       "landmarks_vis": {
         "0": [
           0.3653,
@@ -46075,7 +46227,8 @@
       "left_eye_opening": 0.3358,
       "right_eye_opening": 0.2469,
       "smile_index": 0.8498,
-      "eyebrow_raise": 0.06,
+      "eyebrow_raise_left": 0.2153,
+      "eyebrow_raise_right": 0.2357,
       "landmarks_vis": {
         "0": [
           0.3647,
@@ -46465,7 +46618,8 @@
       "left_eye_opening": 0.2887,
       "right_eye_opening": 0.3253,
       "smile_index": 0.8896,
-      "eyebrow_raise": 0.0635,
+      "eyebrow_raise_left": 0.2146,
+      "eyebrow_raise_right": 0.2408,
       "landmarks_vis": {
         "0": [
           0.3687,
@@ -46855,7 +47009,8 @@
       "left_eye_opening": 0.2193,
       "right_eye_opening": 0.3038,
       "smile_index": 0.8592,
-      "eyebrow_raise": 0.066,
+      "eyebrow_raise_left": 0.2333,
+      "eyebrow_raise_right": 0.2113,
       "landmarks_vis": {
         "0": [
           0.3807,
@@ -47245,7 +47400,8 @@
       "left_eye_opening": 0.3311,
       "right_eye_opening": 0.3189,
       "smile_index": 0.8922,
-      "eyebrow_raise": 0.0673,
+      "eyebrow_raise_left": 0.2184,
+      "eyebrow_raise_right": 0.225,
       "landmarks_vis": {
         "0": [
           0.3934,
@@ -47635,7 +47791,8 @@
       "left_eye_opening": 0.3074,
       "right_eye_opening": 0.3198,
       "smile_index": 0.9007,
-      "eyebrow_raise": 0.0685,
+      "eyebrow_raise_left": 0.2224,
+      "eyebrow_raise_right": 0.2114,
       "landmarks_vis": {
         "0": [
           0.4074,
@@ -48025,7 +48182,8 @@
       "left_eye_opening": 0.2586,
       "right_eye_opening": 0.3628,
       "smile_index": 0.9393,
-      "eyebrow_raise": 0.072,
+      "eyebrow_raise_left": 0.2278,
+      "eyebrow_raise_right": 0.2073,
       "landmarks_vis": {
         "0": [
           0.4214,
@@ -48415,7 +48573,8 @@
       "left_eye_opening": 0.2428,
       "right_eye_opening": 0.2968,
       "smile_index": 0.9855,
-      "eyebrow_raise": 0.073,
+      "eyebrow_raise_left": 0.2337,
+      "eyebrow_raise_right": 0.2099,
       "landmarks_vis": {
         "0": [
           0.4349,
@@ -48805,7 +48964,8 @@
       "left_eye_opening": 0.2123,
       "right_eye_opening": 0.2767,
       "smile_index": 0.9734,
-      "eyebrow_raise": 0.0781,
+      "eyebrow_raise_left": 0.237,
+      "eyebrow_raise_right": 0.2194,
       "landmarks_vis": {
         "0": [
           0.4466,
@@ -49195,7 +49355,8 @@
       "left_eye_opening": 0.1726,
       "right_eye_opening": 0.3437,
       "smile_index": 0.9569,
-      "eyebrow_raise": 0.0775,
+      "eyebrow_raise_left": 0.2173,
+      "eyebrow_raise_right": 0.216,
       "landmarks_vis": {
         "0": [
           0.464,
@@ -49585,7 +49746,8 @@
       "left_eye_opening": 0.2955,
       "right_eye_opening": 0.4939,
       "smile_index": 0.813,
-      "eyebrow_raise": 0.0783,
+      "eyebrow_raise_left": 0.1996,
+      "eyebrow_raise_right": 0.2131,
       "landmarks_vis": {
         "0": [
           0.486,
@@ -49975,7 +50137,8 @@
       "left_eye_opening": 0.3056,
       "right_eye_opening": 0.5101,
       "smile_index": 0.7586,
-      "eyebrow_raise": 0.0784,
+      "eyebrow_raise_left": 0.1904,
+      "eyebrow_raise_right": 0.2418,
       "landmarks_vis": {
         "0": [
           0.5072,
@@ -50365,7 +50528,8 @@
       "left_eye_opening": 0.3184,
       "right_eye_opening": 0.5113,
       "smile_index": 0.7622,
-      "eyebrow_raise": 0.077,
+      "eyebrow_raise_left": 0.2011,
+      "eyebrow_raise_right": 0.2359,
       "landmarks_vis": {
         "0": [
           0.5286,
@@ -50755,7 +50919,8 @@
       "left_eye_opening": 0.288,
       "right_eye_opening": 0.4802,
       "smile_index": 0.7383,
-      "eyebrow_raise": 0.0751,
+      "eyebrow_raise_left": 0.1967,
+      "eyebrow_raise_right": 0.2437,
       "landmarks_vis": {
         "0": [
           0.5595,
@@ -51145,7 +51310,8 @@
       "left_eye_opening": 0.327,
       "right_eye_opening": 0.4916,
       "smile_index": 0.7232,
-      "eyebrow_raise": 0.0694,
+      "eyebrow_raise_left": 0.2068,
+      "eyebrow_raise_right": 0.2154,
       "landmarks_vis": {
         "0": [
           0.5819,
@@ -51535,7 +51701,8 @@
       "left_eye_opening": 0.2416,
       "right_eye_opening": 0.4662,
       "smile_index": 0.7631,
-      "eyebrow_raise": 0.0656,
+      "eyebrow_raise_left": 0.2098,
+      "eyebrow_raise_right": 0.2002,
       "landmarks_vis": {
         "0": [
           0.6034,
@@ -51925,7 +52092,8 @@
       "left_eye_opening": 0.2868,
       "right_eye_opening": 0.4322,
       "smile_index": 0.7884,
-      "eyebrow_raise": 0.0614,
+      "eyebrow_raise_left": 0.2014,
+      "eyebrow_raise_right": 0.19,
       "landmarks_vis": {
         "0": [
           0.6268,
@@ -52315,7 +52483,8 @@
       "left_eye_opening": 0.2651,
       "right_eye_opening": 0.4233,
       "smile_index": 0.7855,
-      "eyebrow_raise": 0.0622,
+      "eyebrow_raise_left": 0.1912,
+      "eyebrow_raise_right": 0.1951,
       "landmarks_vis": {
         "0": [
           0.6484,
@@ -52705,7 +52874,8 @@
       "left_eye_opening": 0.2045,
       "right_eye_opening": 0.4292,
       "smile_index": 0.7544,
-      "eyebrow_raise": 0.0651,
+      "eyebrow_raise_left": 0.1895,
+      "eyebrow_raise_right": 0.1936,
       "landmarks_vis": {
         "0": [
           0.6556,
@@ -53095,7 +53265,8 @@
       "left_eye_opening": 0.1307,
       "right_eye_opening": 0.3981,
       "smile_index": 0.7862,
-      "eyebrow_raise": 0.0734,
+      "eyebrow_raise_left": 0.2167,
+      "eyebrow_raise_right": 0.1855,
       "landmarks_vis": {
         "0": [
           0.6398,
@@ -53485,7 +53656,8 @@
       "left_eye_opening": 0.2423,
       "right_eye_opening": 0.3088,
       "smile_index": 0.8906,
-      "eyebrow_raise": 0.0765,
+      "eyebrow_raise_left": 0.1763,
+      "eyebrow_raise_right": 0.1789,
       "landmarks_vis": {
         "0": [
           0.5958,
@@ -53875,7 +54047,8 @@
       "left_eye_opening": 0.168,
       "right_eye_opening": 0.3396,
       "smile_index": 0.9475,
-      "eyebrow_raise": 0.0827,
+      "eyebrow_raise_left": 0.1558,
+      "eyebrow_raise_right": 0.2074,
       "landmarks_vis": {
         "0": [
           0.5397,
@@ -54265,7 +54438,8 @@
       "left_eye_opening": 0.3567,
       "right_eye_opening": 0.4136,
       "smile_index": 0.576,
-      "eyebrow_raise": 0.0864,
+      "eyebrow_raise_left": 0.1914,
+      "eyebrow_raise_right": 0.3251,
       "landmarks_vis": {
         "0": [
           0.4831,
@@ -54655,7 +54829,8 @@
       "left_eye_opening": 0.6344,
       "right_eye_opening": 0.1547,
       "smile_index": 0.7152,
-      "eyebrow_raise": 0.072,
+      "eyebrow_raise_left": 0.2442,
+      "eyebrow_raise_right": 0.3168,
       "landmarks_vis": {
         "0": [
           0.4731,
@@ -55036,7 +55211,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -55057,7 +55233,8 @@
       "left_eye_opening": 0.0703,
       "right_eye_opening": 0.4616,
       "smile_index": 0.6345,
-      "eyebrow_raise": 0.0915,
+      "eyebrow_raise_left": 0.2418,
+      "eyebrow_raise_right": 0.2716,
       "landmarks_vis": {
         "0": [
           0.6435,
@@ -55447,7 +55624,8 @@
       "left_eye_opening": 0.4213,
       "right_eye_opening": 0.2526,
       "smile_index": 0.8764,
-      "eyebrow_raise": 0.0763,
+      "eyebrow_raise_left": 0.2291,
+      "eyebrow_raise_right": 0.2258,
       "landmarks_vis": {
         "0": [
           0.54,
@@ -55837,7 +56015,8 @@
       "left_eye_opening": 0.3221,
       "right_eye_opening": 0.3432,
       "smile_index": 0.7849,
-      "eyebrow_raise": 0.0778,
+      "eyebrow_raise_left": 0.1911,
+      "eyebrow_raise_right": 0.2539,
       "landmarks_vis": {
         "0": [
           0.5131,
@@ -56227,7 +56406,8 @@
       "left_eye_opening": 0.3357,
       "right_eye_opening": 0.3544,
       "smile_index": 0.7033,
-      "eyebrow_raise": 0.0871,
+      "eyebrow_raise_left": 0.2138,
+      "eyebrow_raise_right": 0.26,
       "landmarks_vis": {
         "0": [
           0.5417,
@@ -56617,7 +56797,8 @@
       "left_eye_opening": 0.3245,
       "right_eye_opening": 0.3723,
       "smile_index": 0.7536,
-      "eyebrow_raise": 0.0863,
+      "eyebrow_raise_left": 0.2265,
+      "eyebrow_raise_right": 0.2654,
       "landmarks_vis": {
         "0": [
           0.5147,
@@ -57007,7 +57188,8 @@
       "left_eye_opening": 0.335,
       "right_eye_opening": 0.3934,
       "smile_index": 0.785,
-      "eyebrow_raise": 0.0806,
+      "eyebrow_raise_left": 0.1984,
+      "eyebrow_raise_right": 0.2569,
       "landmarks_vis": {
         "0": [
           0.5019,
@@ -57397,7 +57579,8 @@
       "left_eye_opening": 0.1991,
       "right_eye_opening": 0.4467,
       "smile_index": 0.6941,
-      "eyebrow_raise": 0.0932,
+      "eyebrow_raise_left": 0.2063,
+      "eyebrow_raise_right": 0.275,
       "landmarks_vis": {
         "0": [
           0.5642,
@@ -57787,7 +57970,8 @@
       "left_eye_opening": 0.1893,
       "right_eye_opening": 0.4612,
       "smile_index": 0.8117,
-      "eyebrow_raise": 0.0847,
+      "eyebrow_raise_left": 0.2424,
+      "eyebrow_raise_right": 0.2459,
       "landmarks_vis": {
         "0": [
           0.5633,
@@ -58177,7 +58361,8 @@
       "left_eye_opening": 0.5562,
       "right_eye_opening": 0.3276,
       "smile_index": 0.6961,
-      "eyebrow_raise": 0.0615,
+      "eyebrow_raise_left": 0.2331,
+      "eyebrow_raise_right": 0.1942,
       "landmarks_vis": {
         "0": [
           0.4907,
@@ -58567,7 +58752,8 @@
       "left_eye_opening": 0.5694,
       "right_eye_opening": 0.5076,
       "smile_index": 0.6752,
-      "eyebrow_raise": 0.0543,
+      "eyebrow_raise_left": 0.196,
+      "eyebrow_raise_right": 0.2295,
       "landmarks_vis": {
         "0": [
           0.4497,
@@ -58957,7 +59143,8 @@
       "left_eye_opening": 0.1922,
       "right_eye_opening": 0.4969,
       "smile_index": 0.6565,
-      "eyebrow_raise": 0.0714,
+      "eyebrow_raise_left": 0.2612,
+      "eyebrow_raise_right": 0.1267,
       "landmarks_vis": {
         "0": [
           0.5455,
@@ -59347,7 +59534,8 @@
       "left_eye_opening": 0.3763,
       "right_eye_opening": 0.563,
       "smile_index": 0.7208,
-      "eyebrow_raise": 0.0562,
+      "eyebrow_raise_left": 0.1702,
+      "eyebrow_raise_right": 0.1701,
       "landmarks_vis": {
         "0": [
           0.5752,
@@ -59737,7 +59925,8 @@
       "left_eye_opening": 0.4336,
       "right_eye_opening": 0.3245,
       "smile_index": 0.7809,
-      "eyebrow_raise": 0.0523,
+      "eyebrow_raise_left": 0.1955,
+      "eyebrow_raise_right": 0.1423,
       "landmarks_vis": {
         "0": [
           0.5283,
@@ -60127,7 +60316,8 @@
       "left_eye_opening": 0.4767,
       "right_eye_opening": 0.3801,
       "smile_index": 0.6999,
-      "eyebrow_raise": 0.053,
+      "eyebrow_raise_left": 0.1762,
+      "eyebrow_raise_right": 0.1942,
       "landmarks_vis": {
         "0": [
           0.4956,
@@ -60517,7 +60707,8 @@
       "left_eye_opening": 0.5071,
       "right_eye_opening": 0.3165,
       "smile_index": 0.5024,
-      "eyebrow_raise": 0.0851,
+      "eyebrow_raise_left": 0.2438,
+      "eyebrow_raise_right": 0.2818,
       "landmarks_vis": {
         "0": [
           0.5027,
@@ -60898,7 +61089,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -60919,7 +61111,8 @@
       "left_eye_opening": 0.507,
       "right_eye_opening": 0.3892,
       "smile_index": 0.7397,
-      "eyebrow_raise": 0.0943,
+      "eyebrow_raise_left": 0.2239,
+      "eyebrow_raise_right": 0.2975,
       "landmarks_vis": {
         "0": [
           0.5118,
@@ -61300,7 +61493,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -61321,7 +61515,8 @@
       "left_eye_opening": 0.4647,
       "right_eye_opening": 0.4442,
       "smile_index": 0.6916,
-      "eyebrow_raise": 0.0869,
+      "eyebrow_raise_left": 0.2253,
+      "eyebrow_raise_right": 0.34,
       "landmarks_vis": {
         "0": [
           0.513,
@@ -61711,7 +61906,8 @@
       "left_eye_opening": 0.4247,
       "right_eye_opening": 0.4634,
       "smile_index": 0.7482,
-      "eyebrow_raise": 0.0749,
+      "eyebrow_raise_left": 0.2082,
+      "eyebrow_raise_right": 0.2522,
       "landmarks_vis": {
         "0": [
           0.5087,
@@ -62101,7 +62297,8 @@
       "left_eye_opening": 0.4997,
       "right_eye_opening": 0.4808,
       "smile_index": 0.7517,
-      "eyebrow_raise": 0.0795,
+      "eyebrow_raise_left": 0.2104,
+      "eyebrow_raise_right": 0.279,
       "landmarks_vis": {
         "0": [
           0.5063,
@@ -62491,7 +62688,8 @@
       "left_eye_opening": 0.4684,
       "right_eye_opening": 0.444,
       "smile_index": 0.774,
-      "eyebrow_raise": 0.0761,
+      "eyebrow_raise_left": 0.2077,
+      "eyebrow_raise_right": 0.2612,
       "landmarks_vis": {
         "0": [
           0.5074,
@@ -62881,7 +63079,8 @@
       "left_eye_opening": 0.3801,
       "right_eye_opening": 0.5468,
       "smile_index": 0.7416,
-      "eyebrow_raise": 0.0696,
+      "eyebrow_raise_left": 0.2051,
+      "eyebrow_raise_right": 0.2322,
       "landmarks_vis": {
         "0": [
           0.5129,
@@ -63271,7 +63470,8 @@
       "left_eye_opening": 0.415,
       "right_eye_opening": 0.5846,
       "smile_index": 0.6019,
-      "eyebrow_raise": 0.0551,
+      "eyebrow_raise_left": 0.1801,
+      "eyebrow_raise_right": 0.1485,
       "landmarks_vis": {
         "0": [
           0.5284,
@@ -63661,7 +63861,8 @@
       "left_eye_opening": 0.3188,
       "right_eye_opening": 0.4419,
       "smile_index": 0.7705,
-      "eyebrow_raise": 0.048,
+      "eyebrow_raise_left": 0.149,
+      "eyebrow_raise_right": 0.134,
       "landmarks_vis": {
         "0": [
           0.5377,
@@ -64051,7 +64252,8 @@
       "left_eye_opening": 0.3677,
       "right_eye_opening": 0.5009,
       "smile_index": 0.7593,
-      "eyebrow_raise": 0.0541,
+      "eyebrow_raise_left": 0.1653,
+      "eyebrow_raise_right": 0.1545,
       "landmarks_vis": {
         "0": [
           0.5327,
@@ -64441,7 +64643,8 @@
       "left_eye_opening": 0.3119,
       "right_eye_opening": 0.4164,
       "smile_index": 0.8387,
-      "eyebrow_raise": 0.0594,
+      "eyebrow_raise_left": 0.1968,
+      "eyebrow_raise_right": 0.1623,
       "landmarks_vis": {
         "0": [
           0.518,
@@ -64831,7 +65034,8 @@
       "left_eye_opening": 0.4105,
       "right_eye_opening": 0.3766,
       "smile_index": 0.748,
-      "eyebrow_raise": 0.068,
+      "eyebrow_raise_left": 0.1987,
+      "eyebrow_raise_right": 0.2236,
       "landmarks_vis": {
         "0": [
           0.5039,
@@ -65221,7 +65425,8 @@
       "left_eye_opening": 0.2661,
       "right_eye_opening": 0.3628,
       "smile_index": 0.6315,
-      "eyebrow_raise": 0.0984,
+      "eyebrow_raise_left": 0.2138,
+      "eyebrow_raise_right": 0.3138,
       "landmarks_vis": {
         "0": [
           0.4915,
@@ -65611,7 +65816,8 @@
       "left_eye_opening": 0.4101,
       "right_eye_opening": 0.218,
       "smile_index": 0.7573,
-      "eyebrow_raise": 0.077,
+      "eyebrow_raise_left": 0.2247,
+      "eyebrow_raise_right": 0.2502,
       "landmarks_vis": {
         "0": [
           0.4868,
@@ -65992,7 +66198,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -66004,7 +66211,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -66016,7 +66224,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -66037,7 +66246,8 @@
       "left_eye_opening": 0.4616,
       "right_eye_opening": 0.4206,
       "smile_index": 0.7165,
-      "eyebrow_raise": 0.0936,
+      "eyebrow_raise_left": 0.2451,
+      "eyebrow_raise_right": 0.3357,
       "landmarks_vis": {
         "0": [
           0.5159,
@@ -66427,7 +66637,8 @@
       "left_eye_opening": 0.4195,
       "right_eye_opening": 0.5352,
       "smile_index": 1.0065,
-      "eyebrow_raise": 0.056,
+      "eyebrow_raise_left": 0.2061,
+      "eyebrow_raise_right": 0.1391,
       "landmarks_vis": {
         "0": [
           0.5122,
@@ -66817,7 +67028,8 @@
       "left_eye_opening": 0.438,
       "right_eye_opening": 0.5011,
       "smile_index": 0.925,
-      "eyebrow_raise": 0.0727,
+      "eyebrow_raise_left": 0.2083,
+      "eyebrow_raise_right": 0.2652,
       "landmarks_vis": {
         "0": [
           0.509,
@@ -67207,7 +67419,8 @@
       "left_eye_opening": 0.4393,
       "right_eye_opening": 0.5008,
       "smile_index": 0.9204,
-      "eyebrow_raise": 0.0753,
+      "eyebrow_raise_left": 0.2083,
+      "eyebrow_raise_right": 0.2575,
       "landmarks_vis": {
         "0": [
           0.5055,
@@ -67597,7 +67810,8 @@
       "left_eye_opening": 0.4564,
       "right_eye_opening": 0.4863,
       "smile_index": 0.8628,
-      "eyebrow_raise": 0.0768,
+      "eyebrow_raise_left": 0.2079,
+      "eyebrow_raise_right": 0.2437,
       "landmarks_vis": {
         "0": [
           0.5121,
@@ -67987,7 +68201,8 @@
       "left_eye_opening": 0.3882,
       "right_eye_opening": 0.5156,
       "smile_index": 0.8216,
-      "eyebrow_raise": 0.07,
+      "eyebrow_raise_left": 0.1886,
+      "eyebrow_raise_right": 0.2311,
       "landmarks_vis": {
         "0": [
           0.5176,
@@ -68377,7 +68592,8 @@
       "left_eye_opening": 0.3862,
       "right_eye_opening": 0.4932,
       "smile_index": 0.8747,
-      "eyebrow_raise": 0.0695,
+      "eyebrow_raise_left": 0.1862,
+      "eyebrow_raise_right": 0.2423,
       "landmarks_vis": {
         "0": [
           0.5174,
@@ -68767,7 +68983,8 @@
       "left_eye_opening": 0.4445,
       "right_eye_opening": 0.4915,
       "smile_index": 0.8498,
-      "eyebrow_raise": 0.0711,
+      "eyebrow_raise_left": 0.191,
+      "eyebrow_raise_right": 0.2427,
       "landmarks_vis": {
         "0": [
           0.5151,
@@ -69157,7 +69374,8 @@
       "left_eye_opening": 0.3985,
       "right_eye_opening": 0.4839,
       "smile_index": 0.8575,
-      "eyebrow_raise": 0.0716,
+      "eyebrow_raise_left": 0.1893,
+      "eyebrow_raise_right": 0.2504,
       "landmarks_vis": {
         "0": [
           0.5165,
@@ -69547,7 +69765,8 @@
       "left_eye_opening": 0.4426,
       "right_eye_opening": 0.4915,
       "smile_index": 0.8465,
-      "eyebrow_raise": 0.0725,
+      "eyebrow_raise_left": 0.1971,
+      "eyebrow_raise_right": 0.2486,
       "landmarks_vis": {
         "0": [
           0.5165,
@@ -69937,7 +70156,8 @@
       "left_eye_opening": 0.4467,
       "right_eye_opening": 0.4987,
       "smile_index": 0.8084,
-      "eyebrow_raise": 0.071,
+      "eyebrow_raise_left": 0.1978,
+      "eyebrow_raise_right": 0.2282,
       "landmarks_vis": {
         "0": [
           0.5167,
@@ -70327,7 +70547,8 @@
       "left_eye_opening": 0.4113,
       "right_eye_opening": 0.4923,
       "smile_index": 0.828,
-      "eyebrow_raise": 0.0723,
+      "eyebrow_raise_left": 0.191,
+      "eyebrow_raise_right": 0.2309,
       "landmarks_vis": {
         "0": [
           0.5145,
@@ -70717,7 +70938,8 @@
       "left_eye_opening": 0.4,
       "right_eye_opening": 0.5298,
       "smile_index": 0.8296,
-      "eyebrow_raise": 0.0735,
+      "eyebrow_raise_left": 0.192,
+      "eyebrow_raise_right": 0.2398,
       "landmarks_vis": {
         "0": [
           0.5127,
@@ -71107,7 +71329,8 @@
       "left_eye_opening": 0.407,
       "right_eye_opening": 0.5581,
       "smile_index": 0.8259,
-      "eyebrow_raise": 0.0739,
+      "eyebrow_raise_left": 0.1883,
+      "eyebrow_raise_right": 0.2377,
       "landmarks_vis": {
         "0": [
           0.5091,
@@ -71497,7 +71720,8 @@
       "left_eye_opening": 0.4125,
       "right_eye_opening": 0.5544,
       "smile_index": 0.8348,
-      "eyebrow_raise": 0.075,
+      "eyebrow_raise_left": 0.1918,
+      "eyebrow_raise_right": 0.2355,
       "landmarks_vis": {
         "0": [
           0.5048,
@@ -71887,7 +72111,8 @@
       "left_eye_opening": 0.3878,
       "right_eye_opening": 0.5291,
       "smile_index": 0.808,
-      "eyebrow_raise": 0.0722,
+      "eyebrow_raise_left": 0.1799,
+      "eyebrow_raise_right": 0.2309,
       "landmarks_vis": {
         "0": [
           0.4986,
@@ -72277,7 +72502,8 @@
       "left_eye_opening": 0.4083,
       "right_eye_opening": 0.5675,
       "smile_index": 0.8191,
-      "eyebrow_raise": 0.0745,
+      "eyebrow_raise_left": 0.1915,
+      "eyebrow_raise_right": 0.2301,
       "landmarks_vis": {
         "0": [
           0.495,
@@ -72667,7 +72893,8 @@
       "left_eye_opening": 0.4101,
       "right_eye_opening": 0.5649,
       "smile_index": 0.8224,
-      "eyebrow_raise": 0.0728,
+      "eyebrow_raise_left": 0.1878,
+      "eyebrow_raise_right": 0.2248,
       "landmarks_vis": {
         "0": [
           0.4935,
@@ -73057,7 +73284,8 @@
       "left_eye_opening": 0.4301,
       "right_eye_opening": 0.5774,
       "smile_index": 0.8432,
-      "eyebrow_raise": 0.0746,
+      "eyebrow_raise_left": 0.1907,
+      "eyebrow_raise_right": 0.2354,
       "landmarks_vis": {
         "0": [
           0.49,
@@ -73447,7 +73675,8 @@
       "left_eye_opening": 0.4388,
       "right_eye_opening": 0.5827,
       "smile_index": 0.8004,
-      "eyebrow_raise": 0.0725,
+      "eyebrow_raise_left": 0.1884,
+      "eyebrow_raise_right": 0.2246,
       "landmarks_vis": {
         "0": [
           0.4857,
@@ -73837,7 +74066,8 @@
       "left_eye_opening": 0.4606,
       "right_eye_opening": 0.622,
       "smile_index": 0.8294,
-      "eyebrow_raise": 0.0728,
+      "eyebrow_raise_left": 0.1909,
+      "eyebrow_raise_right": 0.2257,
       "landmarks_vis": {
         "0": [
           0.481,
@@ -74227,7 +74457,8 @@
       "left_eye_opening": 0.4663,
       "right_eye_opening": 0.5974,
       "smile_index": 0.8176,
-      "eyebrow_raise": 0.0711,
+      "eyebrow_raise_left": 0.1886,
+      "eyebrow_raise_right": 0.22,
       "landmarks_vis": {
         "0": [
           0.4778,
@@ -74617,7 +74848,8 @@
       "left_eye_opening": 0.4259,
       "right_eye_opening": 0.5591,
       "smile_index": 0.8268,
-      "eyebrow_raise": 0.0683,
+      "eyebrow_raise_left": 0.1789,
+      "eyebrow_raise_right": 0.2206,
       "landmarks_vis": {
         "0": [
           0.4788,
@@ -75007,7 +75239,8 @@
       "left_eye_opening": 0.4167,
       "right_eye_opening": 0.582,
       "smile_index": 0.8193,
-      "eyebrow_raise": 0.068,
+      "eyebrow_raise_left": 0.1744,
+      "eyebrow_raise_right": 0.2239,
       "landmarks_vis": {
         "0": [
           0.4796,
@@ -75397,7 +75630,8 @@
       "left_eye_opening": 0.4611,
       "right_eye_opening": 0.5844,
       "smile_index": 0.816,
-      "eyebrow_raise": 0.0681,
+      "eyebrow_raise_left": 0.1745,
+      "eyebrow_raise_right": 0.2295,
       "landmarks_vis": {
         "0": [
           0.4771,
@@ -75787,7 +76021,8 @@
       "left_eye_opening": 0.4616,
       "right_eye_opening": 0.595,
       "smile_index": 0.7957,
-      "eyebrow_raise": 0.0693,
+      "eyebrow_raise_left": 0.1766,
+      "eyebrow_raise_right": 0.2345,
       "landmarks_vis": {
         "0": [
           0.4791,
@@ -76177,7 +76412,8 @@
       "left_eye_opening": 0.4602,
       "right_eye_opening": 0.616,
       "smile_index": 0.7929,
-      "eyebrow_raise": 0.0685,
+      "eyebrow_raise_left": 0.1838,
+      "eyebrow_raise_right": 0.227,
       "landmarks_vis": {
         "0": [
           0.4771,
@@ -76567,7 +76803,8 @@
       "left_eye_opening": 0.4734,
       "right_eye_opening": 0.6069,
       "smile_index": 0.7999,
-      "eyebrow_raise": 0.0681,
+      "eyebrow_raise_left": 0.1805,
+      "eyebrow_raise_right": 0.229,
       "landmarks_vis": {
         "0": [
           0.4761,
@@ -76957,7 +77194,8 @@
       "left_eye_opening": 0.4665,
       "right_eye_opening": 0.6082,
       "smile_index": 0.7921,
-      "eyebrow_raise": 0.069,
+      "eyebrow_raise_left": 0.1896,
+      "eyebrow_raise_right": 0.2244,
       "landmarks_vis": {
         "0": [
           0.4751,
@@ -77347,7 +77585,8 @@
       "left_eye_opening": 0.4687,
       "right_eye_opening": 0.5996,
       "smile_index": 0.7915,
-      "eyebrow_raise": 0.068,
+      "eyebrow_raise_left": 0.1786,
+      "eyebrow_raise_right": 0.2291,
       "landmarks_vis": {
         "0": [
           0.4742,
@@ -77737,7 +77976,8 @@
       "left_eye_opening": 0.459,
       "right_eye_opening": 0.5999,
       "smile_index": 0.7674,
-      "eyebrow_raise": 0.0687,
+      "eyebrow_raise_left": 0.1929,
+      "eyebrow_raise_right": 0.2216,
       "landmarks_vis": {
         "0": [
           0.4731,
@@ -78127,7 +78367,8 @@
       "left_eye_opening": 0.4671,
       "right_eye_opening": 0.5812,
       "smile_index": 0.7673,
-      "eyebrow_raise": 0.068,
+      "eyebrow_raise_left": 0.1864,
+      "eyebrow_raise_right": 0.2142,
       "landmarks_vis": {
         "0": [
           0.4748,
@@ -78517,7 +78758,8 @@
       "left_eye_opening": 0.4725,
       "right_eye_opening": 0.5806,
       "smile_index": 0.792,
-      "eyebrow_raise": 0.0672,
+      "eyebrow_raise_left": 0.1791,
+      "eyebrow_raise_right": 0.2164,
       "landmarks_vis": {
         "0": [
           0.4758,
@@ -78907,7 +79149,8 @@
       "left_eye_opening": 0.4791,
       "right_eye_opening": 0.5803,
       "smile_index": 0.7869,
-      "eyebrow_raise": 0.0654,
+      "eyebrow_raise_left": 0.166,
+      "eyebrow_raise_right": 0.2204,
       "landmarks_vis": {
         "0": [
           0.4762,
@@ -79297,7 +79540,8 @@
       "left_eye_opening": 0.4542,
       "right_eye_opening": 0.5695,
       "smile_index": 0.7866,
-      "eyebrow_raise": 0.0672,
+      "eyebrow_raise_left": 0.1729,
+      "eyebrow_raise_right": 0.2264,
       "landmarks_vis": {
         "0": [
           0.4777,
@@ -79687,7 +79931,8 @@
       "left_eye_opening": 0.4424,
       "right_eye_opening": 0.599,
       "smile_index": 0.7909,
-      "eyebrow_raise": 0.0691,
+      "eyebrow_raise_left": 0.1749,
+      "eyebrow_raise_right": 0.2335,
       "landmarks_vis": {
         "0": [
           0.4809,
@@ -80077,7 +80322,8 @@
       "left_eye_opening": 0.4709,
       "right_eye_opening": 0.6057,
       "smile_index": 0.8219,
-      "eyebrow_raise": 0.0702,
+      "eyebrow_raise_left": 0.1867,
+      "eyebrow_raise_right": 0.2331,
       "landmarks_vis": {
         "0": [
           0.4784,
@@ -80467,7 +80713,8 @@
       "left_eye_opening": 0.4836,
       "right_eye_opening": 0.5786,
       "smile_index": 0.8145,
-      "eyebrow_raise": 0.07,
+      "eyebrow_raise_left": 0.183,
+      "eyebrow_raise_right": 0.2331,
       "landmarks_vis": {
         "0": [
           0.4784,
@@ -80857,7 +81104,8 @@
       "left_eye_opening": 0.4789,
       "right_eye_opening": 0.5909,
       "smile_index": 0.7913,
-      "eyebrow_raise": 0.0698,
+      "eyebrow_raise_left": 0.1854,
+      "eyebrow_raise_right": 0.2345,
       "landmarks_vis": {
         "0": [
           0.4798,
@@ -81247,7 +81495,8 @@
       "left_eye_opening": 0.4812,
       "right_eye_opening": 0.6015,
       "smile_index": 0.781,
-      "eyebrow_raise": 0.0704,
+      "eyebrow_raise_left": 0.1837,
+      "eyebrow_raise_right": 0.2363,
       "landmarks_vis": {
         "0": [
           0.4788,
@@ -81637,7 +81886,8 @@
       "left_eye_opening": 0.4889,
       "right_eye_opening": 0.5925,
       "smile_index": 0.7702,
-      "eyebrow_raise": 0.0703,
+      "eyebrow_raise_left": 0.1803,
+      "eyebrow_raise_right": 0.2397,
       "landmarks_vis": {
         "0": [
           0.4808,
@@ -82027,7 +82277,8 @@
       "left_eye_opening": 0.4891,
       "right_eye_opening": 0.5788,
       "smile_index": 0.7871,
-      "eyebrow_raise": 0.0706,
+      "eyebrow_raise_left": 0.1825,
+      "eyebrow_raise_right": 0.2364,
       "landmarks_vis": {
         "0": [
           0.4805,
@@ -82417,7 +82668,8 @@
       "left_eye_opening": 0.4973,
       "right_eye_opening": 0.5803,
       "smile_index": 0.7826,
-      "eyebrow_raise": 0.0709,
+      "eyebrow_raise_left": 0.1874,
+      "eyebrow_raise_right": 0.235,
       "landmarks_vis": {
         "0": [
           0.4809,
@@ -82807,7 +83059,8 @@
       "left_eye_opening": 0.4837,
       "right_eye_opening": 0.5947,
       "smile_index": 0.7815,
-      "eyebrow_raise": 0.0711,
+      "eyebrow_raise_left": 0.1832,
+      "eyebrow_raise_right": 0.2393,
       "landmarks_vis": {
         "0": [
           0.4827,
@@ -83197,7 +83450,8 @@
       "left_eye_opening": 0.4899,
       "right_eye_opening": 0.5986,
       "smile_index": 0.7786,
-      "eyebrow_raise": 0.0712,
+      "eyebrow_raise_left": 0.1868,
+      "eyebrow_raise_right": 0.2385,
       "landmarks_vis": {
         "0": [
           0.4819,
@@ -83587,7 +83841,8 @@
       "left_eye_opening": 0.495,
       "right_eye_opening": 0.5909,
       "smile_index": 0.7775,
-      "eyebrow_raise": 0.071,
+      "eyebrow_raise_left": 0.1874,
+      "eyebrow_raise_right": 0.2344,
       "landmarks_vis": {
         "0": [
           0.4819,
@@ -83977,7 +84232,8 @@
       "left_eye_opening": 0.4936,
       "right_eye_opening": 0.5922,
       "smile_index": 0.7774,
-      "eyebrow_raise": 0.0712,
+      "eyebrow_raise_left": 0.1871,
+      "eyebrow_raise_right": 0.2348,
       "landmarks_vis": {
         "0": [
           0.4822,
@@ -84367,7 +84623,8 @@
       "left_eye_opening": 0.4905,
       "right_eye_opening": 0.5789,
       "smile_index": 0.7859,
-      "eyebrow_raise": 0.0707,
+      "eyebrow_raise_left": 0.1836,
+      "eyebrow_raise_right": 0.2354,
       "landmarks_vis": {
         "0": [
           0.4824,
@@ -84757,7 +85014,8 @@
       "left_eye_opening": 0.4849,
       "right_eye_opening": 0.5957,
       "smile_index": 0.7718,
-      "eyebrow_raise": 0.072,
+      "eyebrow_raise_left": 0.1854,
+      "eyebrow_raise_right": 0.2408,
       "landmarks_vis": {
         "0": [
           0.4841,
@@ -85147,7 +85405,8 @@
       "left_eye_opening": 0.4878,
       "right_eye_opening": 0.5981,
       "smile_index": 0.764,
-      "eyebrow_raise": 0.0732,
+      "eyebrow_raise_left": 0.1889,
+      "eyebrow_raise_right": 0.2425,
       "landmarks_vis": {
         "0": [
           0.4857,
@@ -85537,7 +85796,8 @@
       "left_eye_opening": 0.4892,
       "right_eye_opening": 0.586,
       "smile_index": 0.7688,
-      "eyebrow_raise": 0.0741,
+      "eyebrow_raise_left": 0.1949,
+      "eyebrow_raise_right": 0.2412,
       "landmarks_vis": {
         "0": [
           0.4849,
@@ -85927,7 +86187,8 @@
       "left_eye_opening": 0.4921,
       "right_eye_opening": 0.593,
       "smile_index": 0.7729,
-      "eyebrow_raise": 0.0759,
+      "eyebrow_raise_left": 0.2015,
+      "eyebrow_raise_right": 0.2446,
       "landmarks_vis": {
         "0": [
           0.4803,
@@ -86317,7 +86578,8 @@
       "left_eye_opening": 0.4985,
       "right_eye_opening": 0.5808,
       "smile_index": 0.7751,
-      "eyebrow_raise": 0.0753,
+      "eyebrow_raise_left": 0.1996,
+      "eyebrow_raise_right": 0.2432,
       "landmarks_vis": {
         "0": [
           0.4782,
@@ -86707,7 +86969,8 @@
       "left_eye_opening": 0.4796,
       "right_eye_opening": 0.5705,
       "smile_index": 0.7779,
-      "eyebrow_raise": 0.0733,
+      "eyebrow_raise_left": 0.1904,
+      "eyebrow_raise_right": 0.2398,
       "landmarks_vis": {
         "0": [
           0.4788,
@@ -87097,7 +87360,8 @@
       "left_eye_opening": 0.446,
       "right_eye_opening": 0.5696,
       "smile_index": 0.7798,
-      "eyebrow_raise": 0.0717,
+      "eyebrow_raise_left": 0.1848,
+      "eyebrow_raise_right": 0.233,
       "landmarks_vis": {
         "0": [
           0.4816,
@@ -87487,7 +87751,8 @@
       "left_eye_opening": 0.4797,
       "right_eye_opening": 0.5758,
       "smile_index": 0.7782,
-      "eyebrow_raise": 0.0711,
+      "eyebrow_raise_left": 0.1937,
+      "eyebrow_raise_right": 0.2263,
       "landmarks_vis": {
         "0": [
           0.4895,
@@ -87877,7 +88142,8 @@
       "left_eye_opening": 0.4399,
       "right_eye_opening": 0.6065,
       "smile_index": 0.7434,
-      "eyebrow_raise": 0.0705,
+      "eyebrow_raise_left": 0.1852,
+      "eyebrow_raise_right": 0.2167,
       "landmarks_vis": {
         "0": [
           0.5054,
@@ -88267,7 +88533,8 @@
       "left_eye_opening": 0.4311,
       "right_eye_opening": 0.5912,
       "smile_index": 0.7255,
-      "eyebrow_raise": 0.0724,
+      "eyebrow_raise_left": 0.1949,
+      "eyebrow_raise_right": 0.2341,
       "landmarks_vis": {
         "0": [
           0.5149,
@@ -88657,7 +88924,8 @@
       "left_eye_opening": 0.4363,
       "right_eye_opening": 0.5951,
       "smile_index": 0.7037,
-      "eyebrow_raise": 0.0712,
+      "eyebrow_raise_left": 0.1995,
+      "eyebrow_raise_right": 0.2261,
       "landmarks_vis": {
         "0": [
           0.5295,
@@ -89047,7 +89315,8 @@
       "left_eye_opening": 0.4378,
       "right_eye_opening": 0.6155,
       "smile_index": 0.7039,
-      "eyebrow_raise": 0.0678,
+      "eyebrow_raise_left": 0.1839,
+      "eyebrow_raise_right": 0.2252,
       "landmarks_vis": {
         "0": [
           0.5448,
@@ -89437,7 +89706,8 @@
       "left_eye_opening": 0.4176,
       "right_eye_opening": 0.5535,
       "smile_index": 0.7814,
-      "eyebrow_raise": 0.0628,
+      "eyebrow_raise_left": 0.1876,
+      "eyebrow_raise_right": 0.1878,
       "landmarks_vis": {
         "0": [
           0.5632,
@@ -89827,7 +90097,8 @@
       "left_eye_opening": 0.4121,
       "right_eye_opening": 0.5488,
       "smile_index": 0.7611,
-      "eyebrow_raise": 0.0655,
+      "eyebrow_raise_left": 0.2,
+      "eyebrow_raise_right": 0.1985,
       "landmarks_vis": {
         "0": [
           0.5789,
@@ -90217,7 +90488,8 @@
       "left_eye_opening": 0.4486,
       "right_eye_opening": 0.5493,
       "smile_index": 0.7533,
-      "eyebrow_raise": 0.0636,
+      "eyebrow_raise_left": 0.1964,
+      "eyebrow_raise_right": 0.1957,
       "landmarks_vis": {
         "0": [
           0.5982,
@@ -90607,7 +90879,8 @@
       "left_eye_opening": 0.4492,
       "right_eye_opening": 0.5185,
       "smile_index": 0.6962,
-      "eyebrow_raise": 0.0586,
+      "eyebrow_raise_left": 0.1901,
+      "eyebrow_raise_right": 0.189,
       "landmarks_vis": {
         "0": [
           0.6247,
@@ -90997,7 +91270,8 @@
       "left_eye_opening": 0.4761,
       "right_eye_opening": 0.5896,
       "smile_index": 0.7393,
-      "eyebrow_raise": 0.0596,
+      "eyebrow_raise_left": 0.197,
+      "eyebrow_raise_right": 0.2111,
       "landmarks_vis": {
         "0": [
           0.6331,
@@ -91387,7 +91661,8 @@
       "left_eye_opening": 0.4641,
       "right_eye_opening": 0.5745,
       "smile_index": 0.7575,
-      "eyebrow_raise": 0.0594,
+      "eyebrow_raise_left": 0.1846,
+      "eyebrow_raise_right": 0.218,
       "landmarks_vis": {
         "0": [
           0.647,
@@ -91777,7 +92052,8 @@
       "left_eye_opening": 0.4393,
       "right_eye_opening": 0.5454,
       "smile_index": 0.8015,
-      "eyebrow_raise": 0.0591,
+      "eyebrow_raise_left": 0.204,
+      "eyebrow_raise_right": 0.1993,
       "landmarks_vis": {
         "0": [
           0.6462,
@@ -92167,7 +92443,8 @@
       "left_eye_opening": 0.4722,
       "right_eye_opening": 0.5237,
       "smile_index": 0.8216,
-      "eyebrow_raise": 0.0559,
+      "eyebrow_raise_left": 0.196,
+      "eyebrow_raise_right": 0.1964,
       "landmarks_vis": {
         "0": [
           0.635,
@@ -92557,7 +92834,8 @@
       "left_eye_opening": 0.4465,
       "right_eye_opening": 0.5095,
       "smile_index": 0.7824,
-      "eyebrow_raise": 0.0546,
+      "eyebrow_raise_left": 0.2051,
+      "eyebrow_raise_right": 0.1799,
       "landmarks_vis": {
         "0": [
           0.6141,
@@ -92947,7 +93225,8 @@
       "left_eye_opening": 0.3954,
       "right_eye_opening": 0.5326,
       "smile_index": 0.7511,
-      "eyebrow_raise": 0.0569,
+      "eyebrow_raise_left": 0.2004,
+      "eyebrow_raise_right": 0.1948,
       "landmarks_vis": {
         "0": [
           0.5929,
@@ -93337,7 +93616,8 @@
       "left_eye_opening": 0.3734,
       "right_eye_opening": 0.5085,
       "smile_index": 0.7587,
-      "eyebrow_raise": 0.0603,
+      "eyebrow_raise_left": 0.2018,
+      "eyebrow_raise_right": 0.2224,
       "landmarks_vis": {
         "0": [
           0.5718,
@@ -93727,7 +94007,8 @@
       "left_eye_opening": 0.406,
       "right_eye_opening": 0.4525,
       "smile_index": 0.7285,
-      "eyebrow_raise": 0.0543,
+      "eyebrow_raise_left": 0.1912,
+      "eyebrow_raise_right": 0.1979,
       "landmarks_vis": {
         "0": [
           0.5451,
@@ -94117,7 +94398,8 @@
       "left_eye_opening": 0.3746,
       "right_eye_opening": 0.4941,
       "smile_index": 0.6638,
-      "eyebrow_raise": 0.0561,
+      "eyebrow_raise_left": 0.2048,
+      "eyebrow_raise_right": 0.1915,
       "landmarks_vis": {
         "0": [
           0.5181,
@@ -94507,7 +94789,8 @@
       "left_eye_opening": 0.3811,
       "right_eye_opening": 0.5189,
       "smile_index": 0.6413,
-      "eyebrow_raise": 0.0578,
+      "eyebrow_raise_left": 0.2026,
+      "eyebrow_raise_right": 0.187,
       "landmarks_vis": {
         "0": [
           0.4953,
@@ -94897,7 +95180,8 @@
       "left_eye_opening": 0.4192,
       "right_eye_opening": 0.4473,
       "smile_index": 0.6846,
-      "eyebrow_raise": 0.0576,
+      "eyebrow_raise_left": 0.1988,
+      "eyebrow_raise_right": 0.1795,
       "landmarks_vis": {
         "0": [
           0.4813,
@@ -95287,7 +95571,8 @@
       "left_eye_opening": 0.3636,
       "right_eye_opening": 0.4514,
       "smile_index": 0.683,
-      "eyebrow_raise": 0.0583,
+      "eyebrow_raise_left": 0.1905,
+      "eyebrow_raise_right": 0.1673,
       "landmarks_vis": {
         "0": [
           0.4699,
@@ -95677,7 +95962,8 @@
       "left_eye_opening": 0.4019,
       "right_eye_opening": 0.4969,
       "smile_index": 0.6992,
-      "eyebrow_raise": 0.0638,
+      "eyebrow_raise_left": 0.1937,
+      "eyebrow_raise_right": 0.1556,
       "landmarks_vis": {
         "0": [
           0.4644,
@@ -96067,7 +96353,8 @@
       "left_eye_opening": 0.4,
       "right_eye_opening": 0.546,
       "smile_index": 0.6707,
-      "eyebrow_raise": 0.0651,
+      "eyebrow_raise_left": 0.1863,
+      "eyebrow_raise_right": 0.1784,
       "landmarks_vis": {
         "0": [
           0.4575,
@@ -96457,7 +96744,8 @@
       "left_eye_opening": 0.4037,
       "right_eye_opening": 0.6095,
       "smile_index": 0.704,
-      "eyebrow_raise": 0.0675,
+      "eyebrow_raise_left": 0.1746,
+      "eyebrow_raise_right": 0.1958,
       "landmarks_vis": {
         "0": [
           0.4569,
@@ -96847,7 +97135,8 @@
       "left_eye_opening": 0.4267,
       "right_eye_opening": 0.6321,
       "smile_index": 0.6929,
-      "eyebrow_raise": 0.0721,
+      "eyebrow_raise_left": 0.1682,
+      "eyebrow_raise_right": 0.2132,
       "landmarks_vis": {
         "0": [
           0.4564,
@@ -97237,7 +97526,8 @@
       "left_eye_opening": 0.4319,
       "right_eye_opening": 0.5932,
       "smile_index": 0.7141,
-      "eyebrow_raise": 0.0757,
+      "eyebrow_raise_left": 0.185,
+      "eyebrow_raise_right": 0.2183,
       "landmarks_vis": {
         "0": [
           0.4583,
@@ -97627,7 +97917,8 @@
       "left_eye_opening": 0.4339,
       "right_eye_opening": 0.6035,
       "smile_index": 0.6831,
-      "eyebrow_raise": 0.0774,
+      "eyebrow_raise_left": 0.1833,
+      "eyebrow_raise_right": 0.1994,
       "landmarks_vis": {
         "0": [
           0.4643,
@@ -98017,7 +98308,8 @@
       "left_eye_opening": 0.4408,
       "right_eye_opening": 0.6132,
       "smile_index": 0.6621,
-      "eyebrow_raise": 0.0775,
+      "eyebrow_raise_left": 0.1765,
+      "eyebrow_raise_right": 0.2011,
       "landmarks_vis": {
         "0": [
           0.4708,
@@ -98407,7 +98699,8 @@
       "left_eye_opening": 0.4138,
       "right_eye_opening": 0.6065,
       "smile_index": 0.6581,
-      "eyebrow_raise": 0.0789,
+      "eyebrow_raise_left": 0.1821,
+      "eyebrow_raise_right": 0.2005,
       "landmarks_vis": {
         "0": [
           0.4754,
@@ -98797,7 +99090,8 @@
       "left_eye_opening": 0.4186,
       "right_eye_opening": 0.6093,
       "smile_index": 0.6781,
-      "eyebrow_raise": 0.0767,
+      "eyebrow_raise_left": 0.172,
+      "eyebrow_raise_right": 0.2005,
       "landmarks_vis": {
         "0": [
           0.4753,
@@ -99187,7 +99481,8 @@
       "left_eye_opening": 0.3816,
       "right_eye_opening": 0.5849,
       "smile_index": 0.6697,
-      "eyebrow_raise": 0.0723,
+      "eyebrow_raise_left": 0.1744,
+      "eyebrow_raise_right": 0.1889,
       "landmarks_vis": {
         "0": [
           0.4735,
@@ -99577,7 +99872,8 @@
       "left_eye_opening": 0.423,
       "right_eye_opening": 0.616,
       "smile_index": 0.7149,
-      "eyebrow_raise": 0.0721,
+      "eyebrow_raise_left": 0.1675,
+      "eyebrow_raise_right": 0.2037,
       "landmarks_vis": {
         "0": [
           0.469,
@@ -99967,7 +100263,8 @@
       "left_eye_opening": 0.4057,
       "right_eye_opening": 0.5934,
       "smile_index": 0.7264,
-      "eyebrow_raise": 0.0737,
+      "eyebrow_raise_left": 0.1765,
+      "eyebrow_raise_right": 0.1931,
       "landmarks_vis": {
         "0": [
           0.4691,
@@ -100357,7 +100654,8 @@
       "left_eye_opening": 0.4151,
       "right_eye_opening": 0.6006,
       "smile_index": 0.7045,
-      "eyebrow_raise": 0.0758,
+      "eyebrow_raise_left": 0.1811,
+      "eyebrow_raise_right": 0.201,
       "landmarks_vis": {
         "0": [
           0.4683,
@@ -100747,7 +101045,8 @@
       "left_eye_opening": 0.4253,
       "right_eye_opening": 0.5742,
       "smile_index": 0.7193,
-      "eyebrow_raise": 0.0761,
+      "eyebrow_raise_left": 0.1777,
+      "eyebrow_raise_right": 0.2002,
       "landmarks_vis": {
         "0": [
           0.4671,
@@ -101137,7 +101436,8 @@
       "left_eye_opening": 0.3989,
       "right_eye_opening": 0.568,
       "smile_index": 0.7393,
-      "eyebrow_raise": 0.0771,
+      "eyebrow_raise_left": 0.1831,
+      "eyebrow_raise_right": 0.2,
       "landmarks_vis": {
         "0": [
           0.4669,
@@ -101527,7 +101827,8 @@
       "left_eye_opening": 0.3931,
       "right_eye_opening": 0.5904,
       "smile_index": 0.7516,
-      "eyebrow_raise": 0.0773,
+      "eyebrow_raise_left": 0.181,
+      "eyebrow_raise_right": 0.1892,
       "landmarks_vis": {
         "0": [
           0.4679,
@@ -101917,7 +102218,8 @@
       "left_eye_opening": 0.4101,
       "right_eye_opening": 0.6355,
       "smile_index": 0.7956,
-      "eyebrow_raise": 0.0769,
+      "eyebrow_raise_left": 0.1789,
+      "eyebrow_raise_right": 0.1902,
       "landmarks_vis": {
         "0": [
           0.4668,
@@ -102307,7 +102609,8 @@
       "left_eye_opening": 0.4102,
       "right_eye_opening": 0.6272,
       "smile_index": 0.7928,
-      "eyebrow_raise": 0.079,
+      "eyebrow_raise_left": 0.1758,
+      "eyebrow_raise_right": 0.1988,
       "landmarks_vis": {
         "0": [
           0.4617,
@@ -102697,7 +103000,8 @@
       "left_eye_opening": 0.4233,
       "right_eye_opening": 0.6116,
       "smile_index": 0.7703,
-      "eyebrow_raise": 0.0821,
+      "eyebrow_raise_left": 0.1863,
+      "eyebrow_raise_right": 0.2029,
       "landmarks_vis": {
         "0": [
           0.4616,
@@ -103087,7 +103391,8 @@
       "left_eye_opening": 0.4096,
       "right_eye_opening": 0.5856,
       "smile_index": 0.7488,
-      "eyebrow_raise": 0.0837,
+      "eyebrow_raise_left": 0.1865,
+      "eyebrow_raise_right": 0.2001,
       "landmarks_vis": {
         "0": [
           0.4602,
@@ -103477,7 +103782,8 @@
       "left_eye_opening": 0.4149,
       "right_eye_opening": 0.5675,
       "smile_index": 0.7398,
-      "eyebrow_raise": 0.0844,
+      "eyebrow_raise_left": 0.1891,
+      "eyebrow_raise_right": 0.207,
       "landmarks_vis": {
         "0": [
           0.4621,
@@ -103867,7 +104173,8 @@
       "left_eye_opening": 0.4287,
       "right_eye_opening": 0.5513,
       "smile_index": 0.7548,
-      "eyebrow_raise": 0.0849,
+      "eyebrow_raise_left": 0.1888,
+      "eyebrow_raise_right": 0.2057,
       "landmarks_vis": {
         "0": [
           0.4603,
@@ -104257,7 +104564,8 @@
       "left_eye_opening": 0.4084,
       "right_eye_opening": 0.5732,
       "smile_index": 0.7423,
-      "eyebrow_raise": 0.0861,
+      "eyebrow_raise_left": 0.1862,
+      "eyebrow_raise_right": 0.2097,
       "landmarks_vis": {
         "0": [
           0.4598,
@@ -104647,7 +104955,8 @@
       "left_eye_opening": 0.422,
       "right_eye_opening": 0.5597,
       "smile_index": 0.7483,
-      "eyebrow_raise": 0.0876,
+      "eyebrow_raise_left": 0.192,
+      "eyebrow_raise_right": 0.2121,
       "landmarks_vis": {
         "0": [
           0.4591,
@@ -105037,7 +105346,8 @@
       "left_eye_opening": 0.4105,
       "right_eye_opening": 0.5768,
       "smile_index": 0.7879,
-      "eyebrow_raise": 0.0861,
+      "eyebrow_raise_left": 0.1933,
+      "eyebrow_raise_right": 0.2122,
       "landmarks_vis": {
         "0": [
           0.4583,
@@ -105427,7 +105737,8 @@
       "left_eye_opening": 0.4293,
       "right_eye_opening": 0.576,
       "smile_index": 0.7462,
-      "eyebrow_raise": 0.0863,
+      "eyebrow_raise_left": 0.1868,
+      "eyebrow_raise_right": 0.2226,
       "landmarks_vis": {
         "0": [
           0.4594,
@@ -105817,7 +106128,8 @@
       "left_eye_opening": 0.4375,
       "right_eye_opening": 0.5729,
       "smile_index": 0.7813,
-      "eyebrow_raise": 0.0868,
+      "eyebrow_raise_left": 0.1911,
+      "eyebrow_raise_right": 0.2284,
       "landmarks_vis": {
         "0": [
           0.4588,
@@ -106207,7 +106519,8 @@
       "left_eye_opening": 0.4207,
       "right_eye_opening": 0.5552,
       "smile_index": 0.7539,
-      "eyebrow_raise": 0.0858,
+      "eyebrow_raise_left": 0.1823,
+      "eyebrow_raise_right": 0.2244,
       "landmarks_vis": {
         "0": [
           0.4607,
@@ -106597,7 +106910,8 @@
       "left_eye_opening": 0.427,
       "right_eye_opening": 0.5634,
       "smile_index": 0.7607,
-      "eyebrow_raise": 0.0855,
+      "eyebrow_raise_left": 0.1865,
+      "eyebrow_raise_right": 0.224,
       "landmarks_vis": {
         "0": [
           0.4608,
@@ -106987,7 +107301,8 @@
       "left_eye_opening": 0.4124,
       "right_eye_opening": 0.5367,
       "smile_index": 0.7633,
-      "eyebrow_raise": 0.0839,
+      "eyebrow_raise_left": 0.1816,
+      "eyebrow_raise_right": 0.2204,
       "landmarks_vis": {
         "0": [
           0.4608,
@@ -107377,7 +107692,8 @@
       "left_eye_opening": 0.3869,
       "right_eye_opening": 0.506,
       "smile_index": 0.7617,
-      "eyebrow_raise": 0.0828,
+      "eyebrow_raise_left": 0.1793,
+      "eyebrow_raise_right": 0.2185,
       "landmarks_vis": {
         "0": [
           0.4626,
@@ -107767,7 +108083,8 @@
       "left_eye_opening": 0.3778,
       "right_eye_opening": 0.5177,
       "smile_index": 0.7655,
-      "eyebrow_raise": 0.0835,
+      "eyebrow_raise_left": 0.185,
+      "eyebrow_raise_right": 0.2178,
       "landmarks_vis": {
         "0": [
           0.4639,
@@ -108157,7 +108474,8 @@
       "left_eye_opening": 0.3577,
       "right_eye_opening": 0.4954,
       "smile_index": 0.7816,
-      "eyebrow_raise": 0.081,
+      "eyebrow_raise_left": 0.1853,
+      "eyebrow_raise_right": 0.2091,
       "landmarks_vis": {
         "0": [
           0.4661,
@@ -108547,7 +108865,8 @@
       "left_eye_opening": 0.347,
       "right_eye_opening": 0.5309,
       "smile_index": 0.7919,
-      "eyebrow_raise": 0.0812,
+      "eyebrow_raise_left": 0.1877,
+      "eyebrow_raise_right": 0.2152,
       "landmarks_vis": {
         "0": [
           0.469,
@@ -108937,7 +109256,8 @@
       "left_eye_opening": 0.3612,
       "right_eye_opening": 0.5341,
       "smile_index": 0.7774,
-      "eyebrow_raise": 0.0803,
+      "eyebrow_raise_left": 0.1883,
+      "eyebrow_raise_right": 0.2167,
       "landmarks_vis": {
         "0": [
           0.4732,
@@ -109327,7 +109647,8 @@
       "left_eye_opening": 0.3276,
       "right_eye_opening": 0.4883,
       "smile_index": 0.7866,
-      "eyebrow_raise": 0.0779,
+      "eyebrow_raise_left": 0.1832,
+      "eyebrow_raise_right": 0.2129,
       "landmarks_vis": {
         "0": [
           0.4786,
@@ -109717,7 +110038,8 @@
       "left_eye_opening": 0.3133,
       "right_eye_opening": 0.478,
       "smile_index": 0.7858,
-      "eyebrow_raise": 0.0772,
+      "eyebrow_raise_left": 0.1783,
+      "eyebrow_raise_right": 0.2145,
       "landmarks_vis": {
         "0": [
           0.4817,
@@ -110107,7 +110429,8 @@
       "left_eye_opening": 0.3001,
       "right_eye_opening": 0.4443,
       "smile_index": 0.7917,
-      "eyebrow_raise": 0.0755,
+      "eyebrow_raise_left": 0.1793,
+      "eyebrow_raise_right": 0.2135,
       "landmarks_vis": {
         "0": [
           0.4858,
@@ -110497,7 +110820,8 @@
       "left_eye_opening": 0.3046,
       "right_eye_opening": 0.4499,
       "smile_index": 0.7976,
-      "eyebrow_raise": 0.0746,
+      "eyebrow_raise_left": 0.1777,
+      "eyebrow_raise_right": 0.2092,
       "landmarks_vis": {
         "0": [
           0.4884,
@@ -110887,7 +111211,8 @@
       "left_eye_opening": 0.2874,
       "right_eye_opening": 0.463,
       "smile_index": 0.7888,
-      "eyebrow_raise": 0.0741,
+      "eyebrow_raise_left": 0.179,
+      "eyebrow_raise_right": 0.2106,
       "landmarks_vis": {
         "0": [
           0.4914,
@@ -111277,7 +111602,8 @@
       "left_eye_opening": 0.2719,
       "right_eye_opening": 0.4545,
       "smile_index": 0.7984,
-      "eyebrow_raise": 0.0731,
+      "eyebrow_raise_left": 0.182,
+      "eyebrow_raise_right": 0.2078,
       "landmarks_vis": {
         "0": [
           0.4933,
@@ -111667,7 +111993,8 @@
       "left_eye_opening": 0.2708,
       "right_eye_opening": 0.4756,
       "smile_index": 0.786,
-      "eyebrow_raise": 0.0744,
+      "eyebrow_raise_left": 0.1904,
+      "eyebrow_raise_right": 0.2054,
       "landmarks_vis": {
         "0": [
           0.4923,
@@ -112057,7 +112384,8 @@
       "left_eye_opening": 0.2554,
       "right_eye_opening": 0.5057,
       "smile_index": 0.7909,
-      "eyebrow_raise": 0.0733,
+      "eyebrow_raise_left": 0.189,
+      "eyebrow_raise_right": 0.2023,
       "landmarks_vis": {
         "0": [
           0.4954,
@@ -112447,7 +112775,8 @@
       "left_eye_opening": 0.2556,
       "right_eye_opening": 0.4979,
       "smile_index": 0.8001,
-      "eyebrow_raise": 0.075,
+      "eyebrow_raise_left": 0.2018,
+      "eyebrow_raise_right": 0.2033,
       "landmarks_vis": {
         "0": [
           0.4975,
@@ -112837,7 +113166,8 @@
       "left_eye_opening": 0.258,
       "right_eye_opening": 0.5099,
       "smile_index": 0.7929,
-      "eyebrow_raise": 0.0748,
+      "eyebrow_raise_left": 0.1942,
+      "eyebrow_raise_right": 0.2131,
       "landmarks_vis": {
         "0": [
           0.4991,
@@ -113227,7 +113557,8 @@
       "left_eye_opening": 0.2636,
       "right_eye_opening": 0.5192,
       "smile_index": 0.7858,
-      "eyebrow_raise": 0.0761,
+      "eyebrow_raise_left": 0.1996,
+      "eyebrow_raise_right": 0.2201,
       "landmarks_vis": {
         "0": [
           0.5017,
@@ -113617,7 +113948,8 @@
       "left_eye_opening": 0.2695,
       "right_eye_opening": 0.5564,
       "smile_index": 0.7894,
-      "eyebrow_raise": 0.0753,
+      "eyebrow_raise_left": 0.1901,
+      "eyebrow_raise_right": 0.2269,
       "landmarks_vis": {
         "0": [
           0.5023,
@@ -114007,7 +114339,8 @@
       "left_eye_opening": 0.2829,
       "right_eye_opening": 0.548,
       "smile_index": 0.7916,
-      "eyebrow_raise": 0.0738,
+      "eyebrow_raise_left": 0.1917,
+      "eyebrow_raise_right": 0.2134,
       "landmarks_vis": {
         "0": [
           0.5039,
@@ -114397,7 +114730,8 @@
       "left_eye_opening": 0.3239,
       "right_eye_opening": 0.5865,
       "smile_index": 0.8082,
-      "eyebrow_raise": 0.0754,
+      "eyebrow_raise_left": 0.1944,
+      "eyebrow_raise_right": 0.2197,
       "landmarks_vis": {
         "0": [
           0.504,
@@ -114787,7 +115121,8 @@
       "left_eye_opening": 0.3238,
       "right_eye_opening": 0.619,
       "smile_index": 0.8083,
-      "eyebrow_raise": 0.0759,
+      "eyebrow_raise_left": 0.1944,
+      "eyebrow_raise_right": 0.2192,
       "landmarks_vis": {
         "0": [
           0.5045,
@@ -115177,7 +115512,8 @@
       "left_eye_opening": 0.3614,
       "right_eye_opening": 0.6557,
       "smile_index": 0.8298,
-      "eyebrow_raise": 0.0797,
+      "eyebrow_raise_left": 0.2056,
+      "eyebrow_raise_right": 0.2267,
       "landmarks_vis": {
         "0": [
           0.5036,
@@ -115567,7 +115903,8 @@
       "left_eye_opening": 0.4187,
       "right_eye_opening": 0.6609,
       "smile_index": 0.8139,
-      "eyebrow_raise": 0.0809,
+      "eyebrow_raise_left": 0.2069,
+      "eyebrow_raise_right": 0.2321,
       "landmarks_vis": {
         "0": [
           0.5033,
@@ -115957,7 +116294,8 @@
       "left_eye_opening": 0.4105,
       "right_eye_opening": 0.6847,
       "smile_index": 0.818,
-      "eyebrow_raise": 0.0833,
+      "eyebrow_raise_left": 0.2063,
+      "eyebrow_raise_right": 0.2468,
       "landmarks_vis": {
         "0": [
           0.4999,
@@ -116347,7 +116685,8 @@
       "left_eye_opening": 0.4335,
       "right_eye_opening": 0.6981,
       "smile_index": 0.7744,
-      "eyebrow_raise": 0.0847,
+      "eyebrow_raise_left": 0.2114,
+      "eyebrow_raise_right": 0.2506,
       "landmarks_vis": {
         "0": [
           0.4994,
@@ -116737,7 +117076,8 @@
       "left_eye_opening": 0.4399,
       "right_eye_opening": 0.7258,
       "smile_index": 0.8018,
-      "eyebrow_raise": 0.0864,
+      "eyebrow_raise_left": 0.2063,
+      "eyebrow_raise_right": 0.2592,
       "landmarks_vis": {
         "0": [
           0.4994,
@@ -117127,7 +117467,8 @@
       "left_eye_opening": 0.4636,
       "right_eye_opening": 0.7212,
       "smile_index": 0.7878,
-      "eyebrow_raise": 0.0857,
+      "eyebrow_raise_left": 0.2103,
+      "eyebrow_raise_right": 0.2553,
       "landmarks_vis": {
         "0": [
           0.4991,
@@ -117517,7 +117858,8 @@
       "left_eye_opening": 0.4825,
       "right_eye_opening": 0.7211,
       "smile_index": 0.7651,
-      "eyebrow_raise": 0.0876,
+      "eyebrow_raise_left": 0.2136,
+      "eyebrow_raise_right": 0.2547,
       "landmarks_vis": {
         "0": [
           0.4978,
@@ -117907,7 +118249,8 @@
       "left_eye_opening": 0.4872,
       "right_eye_opening": 0.7452,
       "smile_index": 0.747,
-      "eyebrow_raise": 0.0876,
+      "eyebrow_raise_left": 0.2091,
+      "eyebrow_raise_right": 0.2568,
       "landmarks_vis": {
         "0": [
           0.4962,
@@ -118297,7 +118640,8 @@
       "left_eye_opening": 0.4731,
       "right_eye_opening": 0.7435,
       "smile_index": 0.7607,
-      "eyebrow_raise": 0.0883,
+      "eyebrow_raise_left": 0.2156,
+      "eyebrow_raise_right": 0.2479,
       "landmarks_vis": {
         "0": [
           0.497,
@@ -118687,7 +119031,8 @@
       "left_eye_opening": 0.491,
       "right_eye_opening": 0.7598,
       "smile_index": 0.7506,
-      "eyebrow_raise": 0.0888,
+      "eyebrow_raise_left": 0.2159,
+      "eyebrow_raise_right": 0.2503,
       "landmarks_vis": {
         "0": [
           0.4968,
@@ -119077,7 +119422,8 @@
       "left_eye_opening": 0.5032,
       "right_eye_opening": 0.7516,
       "smile_index": 0.7283,
-      "eyebrow_raise": 0.0911,
+      "eyebrow_raise_left": 0.2229,
+      "eyebrow_raise_right": 0.2566,
       "landmarks_vis": {
         "0": [
           0.497,
@@ -119467,7 +119813,8 @@
       "left_eye_opening": 0.5085,
       "right_eye_opening": 0.7608,
       "smile_index": 0.7573,
-      "eyebrow_raise": 0.094,
+      "eyebrow_raise_left": 0.2279,
+      "eyebrow_raise_right": 0.2757,
       "landmarks_vis": {
         "0": [
           0.4982,
@@ -119857,7 +120204,8 @@
       "left_eye_opening": 0.5075,
       "right_eye_opening": 0.7094,
       "smile_index": 0.7415,
-      "eyebrow_raise": 0.093,
+      "eyebrow_raise_left": 0.2253,
+      "eyebrow_raise_right": 0.269,
       "landmarks_vis": {
         "0": [
           0.4978,
@@ -120247,7 +120595,8 @@
       "left_eye_opening": 0.499,
       "right_eye_opening": 0.7345,
       "smile_index": 0.7755,
-      "eyebrow_raise": 0.0941,
+      "eyebrow_raise_left": 0.2234,
+      "eyebrow_raise_right": 0.2785,
       "landmarks_vis": {
         "0": [
           0.4987,
@@ -120637,7 +120986,8 @@
       "left_eye_opening": 0.4861,
       "right_eye_opening": 0.7523,
       "smile_index": 0.7681,
-      "eyebrow_raise": 0.0945,
+      "eyebrow_raise_left": 0.2299,
+      "eyebrow_raise_right": 0.2766,
       "landmarks_vis": {
         "0": [
           0.4985,
@@ -121027,7 +121377,8 @@
       "left_eye_opening": 0.49,
       "right_eye_opening": 0.7614,
       "smile_index": 0.8086,
-      "eyebrow_raise": 0.0929,
+      "eyebrow_raise_left": 0.2245,
+      "eyebrow_raise_right": 0.2757,
       "landmarks_vis": {
         "0": [
           0.4991,
@@ -121417,7 +121768,8 @@
       "left_eye_opening": 0.5111,
       "right_eye_opening": 0.7589,
       "smile_index": 0.8188,
-      "eyebrow_raise": 0.0922,
+      "eyebrow_raise_left": 0.2307,
+      "eyebrow_raise_right": 0.27,
       "landmarks_vis": {
         "0": [
           0.4997,
@@ -121807,7 +122159,8 @@
       "left_eye_opening": 0.482,
       "right_eye_opening": 0.7467,
       "smile_index": 0.8225,
-      "eyebrow_raise": 0.0899,
+      "eyebrow_raise_left": 0.2225,
+      "eyebrow_raise_right": 0.2595,
       "landmarks_vis": {
         "0": [
           0.5016,
@@ -122197,7 +122550,8 @@
       "left_eye_opening": 0.4823,
       "right_eye_opening": 0.7603,
       "smile_index": 0.8177,
-      "eyebrow_raise": 0.0917,
+      "eyebrow_raise_left": 0.2197,
+      "eyebrow_raise_right": 0.2726,
       "landmarks_vis": {
         "0": [
           0.4991,
@@ -122587,7 +122941,8 @@
       "left_eye_opening": 0.4973,
       "right_eye_opening": 0.763,
       "smile_index": 0.78,
-      "eyebrow_raise": 0.0939,
+      "eyebrow_raise_left": 0.2239,
+      "eyebrow_raise_right": 0.2793,
       "landmarks_vis": {
         "0": [
           0.4982,
@@ -122977,7 +123332,8 @@
       "left_eye_opening": 0.4954,
       "right_eye_opening": 0.7603,
       "smile_index": 0.7683,
-      "eyebrow_raise": 0.0912,
+      "eyebrow_raise_left": 0.2154,
+      "eyebrow_raise_right": 0.2678,
       "landmarks_vis": {
         "0": [
           0.4952,
@@ -123367,7 +123723,8 @@
       "left_eye_opening": 0.4739,
       "right_eye_opening": 0.7112,
       "smile_index": 0.7584,
-      "eyebrow_raise": 0.0921,
+      "eyebrow_raise_left": 0.2229,
+      "eyebrow_raise_right": 0.258,
       "landmarks_vis": {
         "0": [
           0.4947,
@@ -123757,7 +124114,8 @@
       "left_eye_opening": 0.4955,
       "right_eye_opening": 0.7374,
       "smile_index": 0.763,
-      "eyebrow_raise": 0.0928,
+      "eyebrow_raise_left": 0.2329,
+      "eyebrow_raise_right": 0.2587,
       "landmarks_vis": {
         "0": [
           0.4979,
@@ -124147,7 +124505,8 @@
       "left_eye_opening": 0.5116,
       "right_eye_opening": 0.7609,
       "smile_index": 0.7823,
-      "eyebrow_raise": 0.0925,
+      "eyebrow_raise_left": 0.2404,
+      "eyebrow_raise_right": 0.261,
       "landmarks_vis": {
         "0": [
           0.5055,
@@ -124537,7 +124896,8 @@
       "left_eye_opening": 0.4912,
       "right_eye_opening": 0.7308,
       "smile_index": 0.7342,
-      "eyebrow_raise": 0.093,
+      "eyebrow_raise_left": 0.2375,
+      "eyebrow_raise_right": 0.2568,
       "landmarks_vis": {
         "0": [
           0.5041,
@@ -124927,7 +125287,8 @@
       "left_eye_opening": 0.4738,
       "right_eye_opening": 0.6694,
       "smile_index": 0.7702,
-      "eyebrow_raise": 0.0926,
+      "eyebrow_raise_left": 0.2382,
+      "eyebrow_raise_right": 0.2564,
       "landmarks_vis": {
         "0": [
           0.5097,
@@ -125317,7 +125678,8 @@
       "left_eye_opening": 0.4734,
       "right_eye_opening": 0.6545,
       "smile_index": 0.7533,
-      "eyebrow_raise": 0.0914,
+      "eyebrow_raise_left": 0.2349,
+      "eyebrow_raise_right": 0.2581,
       "landmarks_vis": {
         "0": [
           0.5128,
@@ -125707,7 +126069,8 @@
       "left_eye_opening": 0.4679,
       "right_eye_opening": 0.6676,
       "smile_index": 0.7441,
-      "eyebrow_raise": 0.0927,
+      "eyebrow_raise_left": 0.2235,
+      "eyebrow_raise_right": 0.2655,
       "landmarks_vis": {
         "0": [
           0.5136,
@@ -126097,7 +126460,8 @@
       "left_eye_opening": 0.4733,
       "right_eye_opening": 0.759,
       "smile_index": 0.7523,
-      "eyebrow_raise": 0.0936,
+      "eyebrow_raise_left": 0.2248,
+      "eyebrow_raise_right": 0.266,
       "landmarks_vis": {
         "0": [
           0.5137,
@@ -126487,7 +126851,8 @@
       "left_eye_opening": 0.481,
       "right_eye_opening": 0.7655,
       "smile_index": 0.7557,
-      "eyebrow_raise": 0.0976,
+      "eyebrow_raise_left": 0.2214,
+      "eyebrow_raise_right": 0.2836,
       "landmarks_vis": {
         "0": [
           0.5119,
@@ -126877,7 +127242,8 @@
       "left_eye_opening": 0.4602,
       "right_eye_opening": 0.7608,
       "smile_index": 0.74,
-      "eyebrow_raise": 0.0949,
+      "eyebrow_raise_left": 0.2186,
+      "eyebrow_raise_right": 0.2754,
       "landmarks_vis": {
         "0": [
           0.5128,
@@ -127267,7 +127633,8 @@
       "left_eye_opening": 0.4157,
       "right_eye_opening": 0.7255,
       "smile_index": 0.7134,
-      "eyebrow_raise": 0.093,
+      "eyebrow_raise_left": 0.2185,
+      "eyebrow_raise_right": 0.2655,
       "landmarks_vis": {
         "0": [
           0.5145,
@@ -127657,7 +128024,8 @@
       "left_eye_opening": 0.3975,
       "right_eye_opening": 0.7072,
       "smile_index": 0.7109,
-      "eyebrow_raise": 0.0904,
+      "eyebrow_raise_left": 0.2187,
+      "eyebrow_raise_right": 0.2578,
       "landmarks_vis": {
         "0": [
           0.5186,
@@ -128047,7 +128415,8 @@
       "left_eye_opening": 0.4127,
       "right_eye_opening": 0.7125,
       "smile_index": 0.6772,
-      "eyebrow_raise": 0.092,
+      "eyebrow_raise_left": 0.2247,
+      "eyebrow_raise_right": 0.2572,
       "landmarks_vis": {
         "0": [
           0.5197,
@@ -128437,7 +128806,8 @@
       "left_eye_opening": 0.3968,
       "right_eye_opening": 0.6703,
       "smile_index": 0.6801,
-      "eyebrow_raise": 0.0916,
+      "eyebrow_raise_left": 0.2158,
+      "eyebrow_raise_right": 0.2582,
       "landmarks_vis": {
         "0": [
           0.5213,
@@ -128827,7 +129197,8 @@
       "left_eye_opening": 0.3394,
       "right_eye_opening": 0.7148,
       "smile_index": 0.7004,
-      "eyebrow_raise": 0.0943,
+      "eyebrow_raise_left": 0.2278,
+      "eyebrow_raise_right": 0.2693,
       "landmarks_vis": {
         "0": [
           0.519,
@@ -129217,7 +129588,8 @@
       "left_eye_opening": 0.3636,
       "right_eye_opening": 0.7122,
       "smile_index": 0.6757,
-      "eyebrow_raise": 0.0941,
+      "eyebrow_raise_left": 0.2218,
+      "eyebrow_raise_right": 0.2732,
       "landmarks_vis": {
         "0": [
           0.5204,
@@ -129607,7 +129979,8 @@
       "left_eye_opening": 0.3328,
       "right_eye_opening": 0.7101,
       "smile_index": 0.662,
-      "eyebrow_raise": 0.0944,
+      "eyebrow_raise_left": 0.229,
+      "eyebrow_raise_right": 0.2705,
       "landmarks_vis": {
         "0": [
           0.5209,
@@ -129997,7 +130370,8 @@
       "left_eye_opening": 0.3554,
       "right_eye_opening": 0.7077,
       "smile_index": 0.6656,
-      "eyebrow_raise": 0.093,
+      "eyebrow_raise_left": 0.2282,
+      "eyebrow_raise_right": 0.2659,
       "landmarks_vis": {
         "0": [
           0.521,
@@ -130387,7 +130761,8 @@
       "left_eye_opening": 0.3905,
       "right_eye_opening": 0.7169,
       "smile_index": 0.6549,
-      "eyebrow_raise": 0.0926,
+      "eyebrow_raise_left": 0.2344,
+      "eyebrow_raise_right": 0.2616,
       "landmarks_vis": {
         "0": [
           0.5202,
@@ -130777,7 +131152,8 @@
       "left_eye_opening": 0.3924,
       "right_eye_opening": 0.7392,
       "smile_index": 0.6531,
-      "eyebrow_raise": 0.0943,
+      "eyebrow_raise_left": 0.2333,
+      "eyebrow_raise_right": 0.2709,
       "landmarks_vis": {
         "0": [
           0.5181,
@@ -131167,7 +131543,8 @@
       "left_eye_opening": 0.3765,
       "right_eye_opening": 0.7255,
       "smile_index": 0.653,
-      "eyebrow_raise": 0.0942,
+      "eyebrow_raise_left": 0.2387,
+      "eyebrow_raise_right": 0.269,
       "landmarks_vis": {
         "0": [
           0.5185,
@@ -131557,7 +131934,8 @@
       "left_eye_opening": 0.3544,
       "right_eye_opening": 0.7077,
       "smile_index": 0.6425,
-      "eyebrow_raise": 0.0943,
+      "eyebrow_raise_left": 0.2341,
+      "eyebrow_raise_right": 0.2719,
       "landmarks_vis": {
         "0": [
           0.5177,
@@ -131947,7 +132325,8 @@
       "left_eye_opening": 0.3564,
       "right_eye_opening": 0.7034,
       "smile_index": 0.6367,
-      "eyebrow_raise": 0.0947,
+      "eyebrow_raise_left": 0.2362,
+      "eyebrow_raise_right": 0.2698,
       "landmarks_vis": {
         "0": [
           0.5174,
@@ -132337,7 +132716,8 @@
       "left_eye_opening": 0.3794,
       "right_eye_opening": 0.7462,
       "smile_index": 0.6246,
-      "eyebrow_raise": 0.0942,
+      "eyebrow_raise_left": 0.2326,
+      "eyebrow_raise_right": 0.2684,
       "landmarks_vis": {
         "0": [
           0.5184,
@@ -132727,7 +133107,8 @@
       "left_eye_opening": 0.3645,
       "right_eye_opening": 0.7491,
       "smile_index": 0.623,
-      "eyebrow_raise": 0.0955,
+      "eyebrow_raise_left": 0.2305,
+      "eyebrow_raise_right": 0.2752,
       "landmarks_vis": {
         "0": [
           0.5206,
@@ -133117,7 +133498,8 @@
       "left_eye_opening": 0.3663,
       "right_eye_opening": 0.7792,
       "smile_index": 0.6465,
-      "eyebrow_raise": 0.0959,
+      "eyebrow_raise_left": 0.2254,
+      "eyebrow_raise_right": 0.2756,
       "landmarks_vis": {
         "0": [
           0.5176,
@@ -133507,7 +133889,8 @@
       "left_eye_opening": 0.3519,
       "right_eye_opening": 0.7733,
       "smile_index": 0.6437,
-      "eyebrow_raise": 0.0978,
+      "eyebrow_raise_left": 0.2304,
+      "eyebrow_raise_right": 0.2858,
       "landmarks_vis": {
         "0": [
           0.5182,
@@ -133897,7 +134280,8 @@
       "left_eye_opening": 0.3493,
       "right_eye_opening": 0.7811,
       "smile_index": 0.646,
-      "eyebrow_raise": 0.0953,
+      "eyebrow_raise_left": 0.2241,
+      "eyebrow_raise_right": 0.2742,
       "landmarks_vis": {
         "0": [
           0.5187,
@@ -134287,7 +134671,8 @@
       "left_eye_opening": 0.3666,
       "right_eye_opening": 0.7601,
       "smile_index": 0.67,
-      "eyebrow_raise": 0.0949,
+      "eyebrow_raise_left": 0.2298,
+      "eyebrow_raise_right": 0.2692,
       "landmarks_vis": {
         "0": [
           0.5156,
@@ -134677,7 +135062,8 @@
       "left_eye_opening": 0.384,
       "right_eye_opening": 0.7611,
       "smile_index": 0.6702,
-      "eyebrow_raise": 0.0937,
+      "eyebrow_raise_left": 0.2314,
+      "eyebrow_raise_right": 0.262,
       "landmarks_vis": {
         "0": [
           0.5151,
@@ -135067,7 +135453,8 @@
       "left_eye_opening": 0.3949,
       "right_eye_opening": 0.7693,
       "smile_index": 0.6529,
-      "eyebrow_raise": 0.096,
+      "eyebrow_raise_left": 0.2323,
+      "eyebrow_raise_right": 0.2743,
       "landmarks_vis": {
         "0": [
           0.5137,
@@ -135457,7 +135844,8 @@
       "left_eye_opening": 0.4282,
       "right_eye_opening": 0.7391,
       "smile_index": 0.7176,
-      "eyebrow_raise": 0.0972,
+      "eyebrow_raise_left": 0.2212,
+      "eyebrow_raise_right": 0.2839,
       "landmarks_vis": {
         "0": [
           0.5136,
@@ -135847,7 +136235,8 @@
       "left_eye_opening": 0.4361,
       "right_eye_opening": 0.6161,
       "smile_index": 0.5788,
-      "eyebrow_raise": 0.1028,
+      "eyebrow_raise_left": 0.2294,
+      "eyebrow_raise_right": 0.2858,
       "landmarks_vis": {
         "0": [
           0.5076,
@@ -136237,7 +136626,8 @@
       "left_eye_opening": 0.3994,
       "right_eye_opening": 0.684,
       "smile_index": 0.6247,
-      "eyebrow_raise": 0.1041,
+      "eyebrow_raise_left": 0.2151,
+      "eyebrow_raise_right": 0.2793,
       "landmarks_vis": {
         "0": [
           0.507,
@@ -136618,7 +137008,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136630,7 +137021,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136642,7 +137034,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136654,7 +137047,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136666,7 +137060,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136678,7 +137073,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136690,7 +137086,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136702,7 +137099,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136714,7 +137112,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136726,7 +137125,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136738,7 +137138,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136750,7 +137151,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136762,7 +137164,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136774,7 +137177,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136786,7 +137190,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136798,7 +137203,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136810,7 +137216,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136822,7 +137229,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136834,7 +137242,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136846,7 +137255,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136858,7 +137268,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136870,7 +137281,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136882,7 +137294,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136894,7 +137307,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136906,7 +137320,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136918,7 +137333,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     },
     {
@@ -136930,7 +137346,8 @@
       "left_eye_opening": null,
       "right_eye_opening": null,
       "smile_index": null,
-      "eyebrow_raise": null,
+      "eyebrow_raise_left": null,
+      "eyebrow_raise_right": null,
       "landmarks_vis": null
     }
   ]

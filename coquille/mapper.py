@@ -2,41 +2,35 @@ import json
 import os
 import numpy as np
 
-# Tête
-# Les angles viennent désormais de la géométrie MediaPipe (pas solvePnP) :
-# les valeurs sont cohérentes en degrés, ajuste les FACTOR selon le ressenti.
-# Si un axe est inversé sur le robot, passe son FACTOR en négatif.
-YAW_FACTOR     = 0.8
-YAW_MAX        = 30.0   # degrés
-PITCH_FACTOR   = 0.8
-PITCH_MAX      = 20.0   # degrés
-ROLL_FACTOR    = 0.5
-ROLL_MAX       = 15.0   # degrés
+YAW_FACTOR = 0.8
+YAW_MAX = 30.0
+PITCH_FACTOR = 0.8
+PITCH_MAX = 20.0
+ROLL_FACTOR = 0.5
+ROLL_MAX = 15.0
 
-# Antennes
-ANTENNA_MAX         = 2
-ANT_MOUTH_FACTOR    = 4.0
-ANT_SMILE_NEUTRAL   = 0.55
-ANT_SMILE_FACTOR    = 0.6
-ANT_EYEBROW_BASE    = 0.05
-ANT_EYEBROW_FACTOR  = 3.0
-ANT_EYE_DIFF_FACTOR = 0.20
+PITCH_MOUTH_FACTOR = -25.0
+ROLL_MOUTH_FACTOR = 15.0
 
-# Corps
+TRANS_MAX = 0.02
+HEAD_X_EYE_FACTOR = -0.2
+HEAD_Z_SMILE_FACTOR = 0.05
+
+ANTENNA_MAX = 1.2
+ANT_EYEBROW_FACTOR = 25.0
+
 BODY_YAW_FACTOR = 1.2
-BODY_YAW_DEAD   = 0.06
-BODY_YAW_MAX    = 0.35
+BODY_YAW_DEAD = 0.06
+BODY_YAW_MAX = 0.35
 
-ROBOT_FPS      = 100
+ROBOT_FPS = 100
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR   = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
+DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
-# Helpers
 def _clamp(val, lo, hi):
     return max(lo, min(hi, val))
 
-# Chargement + calibration automatique du pitch
 def _charger_signaux(json_path: str) -> list[dict]:
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -45,29 +39,29 @@ def _charger_signaux(json_path: str) -> list[dict]:
     for frame in data["frames"]:
         if frame["face_detected"]:
             ho = frame["head_orientation"]
+            eb_l = frame["eyebrow_raise_left"]
+            eb_r = frame["eyebrow_raise_right"]
             frames.append({
-                "timestamp":          frame["timestamp"],
-                "face_detected":      True,
-                "yaw_deg":            ho["yaw"],
-                "pitch_deg":          ho["pitch"],
-                "roll_deg":           ho["roll"],
-                "mouth_opening":      frame["mouth_opening"],
-                "smile_index":        frame["smile_index"],
-                "eyebrow_raise":      frame["eyebrow_raise"],
-                "left_eye_opening":   frame["left_eye_opening"],
-                "right_eye_opening":  frame["right_eye_opening"],
-                "face_cx":            frame["face_position"]["cx"],
+                "timestamp": frame["timestamp"],
+                "face_detected": True,
+                "yaw_deg": ho["yaw"],
+                "pitch_deg": ho["pitch"],
+                "roll_deg": ho["roll"],
+                "mouth_opening": frame["mouth_opening"],
+                "smile_index": frame["smile_index"],
+                "eyebrow_raise_left": eb_l,
+                "eyebrow_raise_right": eb_r,
+                "left_eye_opening": frame["left_eye_opening"],
+                "right_eye_opening": frame["right_eye_opening"],
+                "face_cx": frame["face_position"]["cx"],
             })
         else:
             frames.append({
-                "timestamp":     frame["timestamp"],
+                "timestamp": frame["timestamp"],
                 "face_detected": False,
             })
 
-    # Calibration du pitch : la géométrie MediaPipe introduit un biais constant
-    # (menton légèrement plus reculé que le nez → normale un peu inclinée vers le bas).
-    # On soustrait la médiane du pitch sur toute la vidéo pour que la pose "moyenne"
-    # corresponde à pitch = 0°. Ne touche pas au yaw ni au roll.
+    # Calibration meton nez
     pitches = [f["pitch_deg"] for f in frames if f.get("face_detected")]
     if pitches:
         pitch_offset = float(np.median(pitches))
@@ -76,24 +70,47 @@ def _charger_signaux(json_path: str) -> list[dict]:
             if f.get("face_detected"):
                 f["pitch_deg"] -= pitch_offset
 
+    # Calibration émotions neutres
+    signals = ("smile_index", "mouth_opening",
+               "left_eye_opening", "right_eye_opening",
+               "eyebrow_raise_left", "eyebrow_raise_right")
+    detected = [f for f in frames if f.get("face_detected")]
+    if detected:
+        offsets = {k: float(np.median([f[k] for f in detected])) for k in signals}
+        print(f"[INFO] Médianes : smile={offsets['smile_index']:.3f} "
+              f"mouth={offsets['mouth_opening']:.3f} "
+              f"eye_l={offsets['left_eye_opening']:.3f} "
+              f"eye_r={offsets['right_eye_opening']:.3f} "
+              f"brow_l={offsets['eyebrow_raise_left']:.3f} "
+              f"brow_r={offsets['eyebrow_raise_right']:.3f}")
+        for f in detected:
+            for k, v in offsets.items():
+                f[k] -= v
+
     return frames
 
-# Mapping
 def _appliquer_mapping(frames: list[dict]) -> list[dict]:
     result = []
-    # Position neutre maintenue tant que le visage n'est pas encore détecté
-    # puis gelée sur la dernière valeur connue si la détection se perd en cours de vidéo.
-    last = {"yaw": 0.0, "pitch": 0.0, "roll": 0.0, "ant_l": 0.0, "ant_r": 0.0, "body_yaw": 0.0}
+    last = {"yaw": 0.0, "pitch": 0.0, "roll": 0.0,
+            "x": 0.0, "y": 0.0, "z": 0.0,
+            "ant_l": 0.0, "ant_r": 0.0, "body_yaw": 0.0}
 
     for frame in frames:
         if frame["face_detected"]:
-            yaw   = _clamp(frame["yaw_deg"]   * YAW_FACTOR,   -YAW_MAX,   YAW_MAX)
-            pitch = _clamp(frame["pitch_deg"] * PITCH_FACTOR, -PITCH_MAX, PITCH_MAX)
-            roll  = _clamp(frame["roll_deg"]  * ROLL_FACTOR,  -ROLL_MAX,  ROLL_MAX)
+            mouth_c = frame["mouth_opening"]
+            yaw = _clamp(frame["yaw_deg"] * YAW_FACTOR, -YAW_MAX, YAW_MAX)
+            pitch = _clamp(frame["pitch_deg"] * PITCH_FACTOR + mouth_c * PITCH_MOUTH_FACTOR,
+                           -PITCH_MAX, PITCH_MAX)
+            roll = _clamp(frame["roll_deg"] * ROLL_FACTOR + mouth_c * ROLL_MOUTH_FACTOR,
+                          -ROLL_MAX, ROLL_MAX)
 
-            # Antennes en pause (focus tête uniquement)
-            ant_l = 0.0
-            ant_r = 0.0
+            eye_mean = (frame["left_eye_opening"] + frame["right_eye_opening"]) / 2.0
+            head_x = _clamp(eye_mean * HEAD_X_EYE_FACTOR, -TRANS_MAX, TRANS_MAX)
+            head_y = 0.0
+            head_z = _clamp(frame["smile_index"] * HEAD_Z_SMILE_FACTOR, -TRANS_MAX, TRANS_MAX)
+
+            ant_l = _clamp(-frame["eyebrow_raise_left"] * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
+            ant_r = _clamp(frame["eyebrow_raise_right"] * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
 
             cx_dev = frame["face_cx"] - 0.5
             if abs(cx_dev) < BODY_YAW_DEAD:
@@ -101,16 +118,16 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
             body_yaw = _clamp(cx_dev * BODY_YAW_FACTOR, -BODY_YAW_MAX, BODY_YAW_MAX)
 
             last = {"yaw": yaw, "pitch": pitch, "roll": roll,
+                    "x": head_x, "y": head_y, "z": head_z,
                     "ant_l": ant_l, "ant_r": ant_r, "body_yaw": body_yaw}
 
         result.append({"timestamp": frame["timestamp"], **last})
 
     return result
 
-# Interpolation
 def _interpoler(mapped: list[dict]) -> list[dict]:
-    ts   = np.array([f["timestamp"] for f in mapped])
-    keys = ["yaw", "pitch", "roll", "ant_l", "ant_r", "body_yaw"]
+    ts = np.array([f["timestamp"] for f in mapped])
+    keys = ["yaw", "pitch", "roll", "x", "y", "z", "ant_l", "ant_r", "body_yaw"]
     sigs = {k: np.array([f[k] for f in mapped]) for k in keys}
 
     t_interp = np.arange(ts[0], ts[-1], 1.0 / ROBOT_FPS)
@@ -124,26 +141,28 @@ def _interpoler(mapped: list[dict]) -> list[dict]:
 
     return result
 
-# Sauvegarde
 def _sauvegarder(frames: list[dict], source_path: str, output_path: str):
     duration = round(frames[-1]["timestamp"] - frames[0]["timestamp"], 3) if frames else 0.0
 
     output = {
         "metadata": {
-            "source_file":  os.path.basename(source_path),
-            "duration_s":   duration,
-            "fps_robot":    ROBOT_FPS,
+            "source_file": os.path.basename(source_path),
+            "duration_s": duration,
+            "fps_robot": ROBOT_FPS,
             "total_frames": len(frames),
         },
         "frames": [
             {
                 "timestamp": f["timestamp"],
-                "antennas":  [f["ant_l"], f["ant_r"]],
-                "body_yaw":  f["body_yaw"],
+                "antennas": [f["ant_l"], f["ant_r"]],
+                "body_yaw": f["body_yaw"],
                 "head": {
-                    "yaw":   f["yaw"],
+                    "yaw": f["yaw"],
                     "pitch": f["pitch"],
-                    "roll":  f["roll"],
+                    "roll": f["roll"],
+                    "x": f["x"],
+                    "y": f["y"],
+                    "z": f["z"],
                 },
             }
             for f in frames
@@ -156,7 +175,6 @@ def _sauvegarder(frames: list[dict], source_path: str, output_path: str):
 
     print(f"[OK] {len(frames)} frames sauvegardees -> {output_path}")
 
-# Point d'entrée principal
 def generer_mouvement(input_json: str, output_json: str | None = None) -> str:
     stem = os.path.splitext(os.path.basename(input_json))[0]
 
@@ -176,7 +194,6 @@ def generer_mouvement(input_json: str, output_json: str | None = None) -> str:
     _sauvegarder(interpolated, input_json, output_json)
     return output_json
 
-# Lancement interactif
 def lancer_mapping(input_json: str | None = None) -> str | None:
     if input_json is None:
         fichiers = sorted(f for f in os.listdir(DATA_DIR) if f.endswith("_signaux.json"))
@@ -198,7 +215,6 @@ def lancer_mapping(input_json: str | None = None) -> str | None:
 
     return generer_mouvement(input_json)
 
-# Lancement direct
 if __name__ == "__main__":
     import sys
 
