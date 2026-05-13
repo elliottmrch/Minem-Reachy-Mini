@@ -10,6 +10,17 @@ from reachy_mini.utils import create_head_pose
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "data"))
 
+
+def charger_mouvement(json_path: str) -> tuple[list[dict], dict]:
+    """Charge un fichier _mouvement.json et retourne (frames, metadata).
+
+    Utilisable depuis l'app web (Coquille) sans ouvrir une nouvelle connexion robot.
+    """
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data["frames"], data.get("metadata", {})
+
+
 class Rejoueur(ReachyMiniApp):
     custom_app_url: str | None = None
     request_media_backend: str | None = "no_media"

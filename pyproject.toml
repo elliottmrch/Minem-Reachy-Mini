@@ -10,7 +10,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "reachy-mini"
+    "reachy-mini",
+    "python-multipart",
+    "yt-dlp",
 ]
 keywords = ["reachy-mini-app"]
 

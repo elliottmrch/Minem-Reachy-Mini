@@ -1,26 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <title>Reachy Mini example app template</title>
+    <title>Coquille — Pipeline vidéo → robot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-    <h1>Reachy Mini – Control Panel</h1>
+    <h1>Coquille — Pipeline vidéo → robot</h1>
+    <p class="subtitle">Importez une vidéo, lancez le pipeline, puis rejouez le mouvement sur le robot en
+        synchronisation avec la vidéo.</p>
 
-    <div id="controls">
-        <label style="display:flex; align-items:center; gap:8px;">
-            <input type="checkbox" id="antenna-checkbox" checked>
-            Antennas
-        </label>
+    <section class="step">
+        <h2><span class="step-num">1</span> Choisir une vidéo</h2>
+        <div class="row">
+            <input type="file" id="file-input" accept="video/*">
+            <button id="upload-btn">Upload</button>
+        </div>
+        <div class="separator">ou</div>
+        <div class="row">
+            <input type="text" id="yt-input" placeholder="https://www.youtube.com/watch?v=...">
+            <button id="yt-btn">⬇ YouTube</button>
+        </div>
+        <p id="upload-info" class="info">Aucune vidéo chargée</p>
+    </section>
 
-        <button id="sound-btn">Play Sound</button>
-    </div>
+    <section class="step">
+        <h2><span class="step-num">2</span> Traiter la vidéo</h2>
+        <div class="row">
+            <button id="process-btn" disabled>Lancer le pipeline</button>
+            <progress id="process-progress" max="100" value="0" hidden></progress>
+        </div>
+        <p id="process-info" class="info">En attente d'une vidéo</p>
+    </section>
 
-    <div id="status">Antennas status: running</div>
+    <section class="step">
+        <h2><span class="step-num">3</span> Rejouer (robot + vidéo synchrones)</h2>
+        <video id="video-player" controls preload="metadata"></video>
+        <div class="row">
+            <button id="play-btn" disabled>▶ Play</button>
+            <button id="stop-btn" disabled>⏹ Stop</button>
+        </div>
+    </section>
+
+    <div id="status-bar">Statut : prêt</div>
+
     <script src="/static/main.js"></script>
 </body>
 
