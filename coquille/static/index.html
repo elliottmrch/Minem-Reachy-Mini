@@ -3,45 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Coquille — Pipeline vidéo → robot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Coquille - Pipeline vidéo -> robot</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Coquille — Pipeline vidéo → robot</h1>
+    <h1>Coquille — Pipeline vidéo -> robot</h1>
     <p class="subtitle">Importez une vidéo, lancez le pipeline, puis rejouez le mouvement sur le robot en
         synchronisation avec la vidéo.</p>
 
     <section class="step">
         <h2><span class="step-num">1</span> Choisir une vidéo</h2>
         <div class="row">
-            <input type="file" id="file-input" accept="video/*">
+            <input accept="video/mp4" id="file-input" type="file">
             <button id="upload-btn">Upload</button>
         </div>
         <div class="separator">ou</div>
         <div class="row">
-            <input type="text" id="yt-input" placeholder="https://www.youtube.com/watch?v=...">
+            <input id="yt-input" placeholder="https://www.youtube.com/watch?v=..." type="text">
             <button id="yt-btn">⬇ YouTube</button>
         </div>
-        <p id="upload-info" class="info">Aucune vidéo chargée</p>
+        <p class="info" id="upload-info">Aucune vidéo chargée</p>
     </section>
 
     <section class="step">
         <h2><span class="step-num">2</span> Traiter la vidéo</h2>
         <div class="row">
-            <button id="process-btn" disabled>Lancer le pipeline</button>
-            <progress id="process-progress" max="100" value="0" hidden></progress>
+            <button disabled id="process-btn">Lancer le pipeline</button>
+            <progress hidden id="process-progress" max="100" value="0"></progress>
         </div>
-        <p id="process-info" class="info">En attente d'une vidéo</p>
+        <p class="info" id="process-info">En attente d'une vidéo</p>
     </section>
 
     <section class="step">
         <h2><span class="step-num">3</span> Rejouer (robot + vidéo synchrones)</h2>
-        <video id="video-player" controls preload="metadata"></video>
+        <video controls id="video-player" preload="metadata"></video>
         <div class="row">
-            <button id="play-btn" disabled>▶ Play</button>
-            <button id="stop-btn" disabled>⏹ Stop</button>
+            <button disabled id="play-btn">▶ Play</button>
+            <button disabled id="stop-btn">⏹ Stop</button>
         </div>
     </section>
 
