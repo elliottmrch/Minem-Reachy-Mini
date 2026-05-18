@@ -1,6 +1,6 @@
 ---
-title: Coquille
-emoji: 👋
+title: REACHY-MINEM
+emoji: 🍱
 colorFrom: red
 colorTo: blue
 sdk: static
