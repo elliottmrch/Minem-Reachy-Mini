@@ -13,6 +13,9 @@ dependencies = [
     "reachy-mini",
     "python-multipart",
     "yt-dlp",
+    "mediapipe",
+    "opencv-python",
+    "numpy"
 ]
 keywords = ["reachy-mini-app"]
 
