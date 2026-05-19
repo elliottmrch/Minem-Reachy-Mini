@@ -53,6 +53,7 @@ async function uploadVideo() {
         playBtn.disabled = true;
         stopBtn.disabled = true;
         setStatus(`Vidéo "${currentVideo}" chargée`, "ok");
+        processVideo();   // lancement automatique du pipeline
     } catch (e) {
         uploadInfo.textContent = `Erreur : ${e.message}`;
         setStatus(e.message, "error");
@@ -152,6 +153,7 @@ async function pollStatus() {
             playBtn.disabled = true;
             stopBtn.disabled = true;
             setStatus(`Vidéo "${currentVideo}" prête`, "ok");
+            processVideo();   // lancement automatique du pipeline
         } else if (isDownloading && s.processing_status === "error") {
             isDownloading = false;
             stopPolling();
@@ -191,11 +193,11 @@ async function play() {
     setStatus("Démarrage du rejeu...");
 
     try {
-        // Vidéo d'abord : attend que le navigateur soit vraiment en train de jouer
+        // Vidéo d'abord
         videoPlayer.currentTime = 0;
         await videoPlayer.play();
 
-        // Robot ensuite : t0 est noté ici, quand la vidéo joue déjà
+        // Robot ensuite ! décalage
         const resp = await fetch("/play", { method: "POST" });
         if (!resp.ok) {
             const err = await resp.json().catch(() => ({ detail: resp.statusText }));
