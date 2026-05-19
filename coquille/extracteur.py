@@ -214,6 +214,6 @@ def analyser_video(video_path: str) -> str | None:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
     print(f"\n[OK] {faces_detected}/{total_frames} frames avec visage détecté")
-    print(f"[OK] JSON → {json_path}")
+    print(f"[OK] JSON -> {json_path}")
 
     return json_path

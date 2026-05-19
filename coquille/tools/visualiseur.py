@@ -70,7 +70,7 @@ def visualiser_video(video_path: str, json_path: str) -> None:
     writer.release()
     cv2.destroyAllWindows()
 
-    print(f"\n[OK] Vidéo annotée → {annot_path}")
+    print(f"\n[OK] Video annotee -> {annot_path}")
 
 
 def _annoter_frame(frame: np.ndarray, record: dict, w: int, h: int,
