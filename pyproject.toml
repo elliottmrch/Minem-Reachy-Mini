@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "coquille"
+name = "REACHY-MINEM"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "reachy-mini",
+    "fastapi",
+    "uvicorn[standard]",
     "python-multipart",
     "yt-dlp",
     "mediapipe",

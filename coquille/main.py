@@ -4,8 +4,10 @@ import threading
 import time
 
 import numpy as np
+import uvicorn
 from fastapi import File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from reachy_mini import ReachyMini, ReachyMiniApp
 from reachy_mini.utils import create_head_pose
@@ -59,6 +61,24 @@ class Coquille(ReachyMiniApp):
     request_media_backend: str | None = "no_media"
 
     def run(self, reachy_mini: ReachyMini, stop_event: threading.Event):
+        # === Montage des fichiers statiques et route racine ===
+        STATIC_DIR = os.path.join(current_dir, "static")
+        try:
+            self.settings_app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+        except RuntimeError:
+            pass  # Déjà monté (redémarrage à chaud)
+
+        @self.settings_app.get("/")
+        async def root():
+            return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+        # === Démarrage du serveur FastAPI sur le port 8042 ===
+        def _start_server():
+            uvicorn.run(self.settings_app, host="0.0.0.0", port=8042, log_level="warning")
+
+        server_thread = threading.Thread(target=_start_server, daemon=True, name="coquille-server")
+        server_thread.start()
+
         state = {
             "is_replaying": False,
             "replay_start_time": None,
