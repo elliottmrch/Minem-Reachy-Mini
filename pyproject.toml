@@ -22,7 +22,7 @@ dependencies = [
 keywords = ["reachy-mini-app"]
 
 [project.entry-points."reachy_mini_apps"]
-coquille = "coquille.main:Coquille"
+reachy_minem = "coquille.main:Coquille"
 
 [tool.setuptools]
 package-dir = { "" = "." }
