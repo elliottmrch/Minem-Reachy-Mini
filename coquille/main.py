@@ -79,8 +79,6 @@ class Coquille(ReachyMiniApp):
                 body_yaw=0.0,
             )
 
-        # === Endpoints FastAPI ===
-
         @self.settings_app.post("/upload_video")
         async def upload_video(file: UploadFile = File(...)):
             if not file.filename or not file.filename.lower().endswith(ALLOWED_VIDEO_EXT):
@@ -241,8 +239,6 @@ class Coquille(ReachyMiniApp):
             if not os.path.exists(path):
                 raise HTTPException(status_code=404, detail="Vidéo introuvable")
             return FileResponse(path)
-
-        # === Boucle de contrôle (100 Hz) ===
 
         period = 1.0 / ROBOT_FPS
         _set_neutral()
