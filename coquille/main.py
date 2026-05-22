@@ -192,6 +192,10 @@ class Coquille(ReachyMiniApp):
                             f"Mouvement prêt ({len(frames)} frames, "
                             f"{state['movement_duration']:.1f}s)"
                         )
+                except ValueError as e:
+                    with lock:
+                        state["processing_status"] = "error"
+                        state["status_message"] = str(e)
                 except Exception as e:
                     with lock:
                         state["processing_status"] = "error"

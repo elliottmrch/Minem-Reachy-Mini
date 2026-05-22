@@ -197,6 +197,10 @@ def analyser_video(video_path: str) -> str | None:
     cap.release()
     mp_face.close()
 
+    if faces_detected == 0:
+        print(f"[ERREUR] Aucun visage détecté dans la vidéo ({total_frames} frames analysées)")
+        raise ValueError("Aucun visage détecté dans la vidéo")
+
     output = {
         "metadata": {
             "video_file": os.path.basename(video_path),
