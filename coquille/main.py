@@ -353,12 +353,12 @@ class Coquille(ReachyMiniApp):
                 if state["audio_lecteur"] is not None:
                     state["audio_lecteur"].arreter()
                     state["audio_lecteur"] = None
+                state["replay_start_time"] = time.time()
+                state["is_replaying"] = True
                 if LecteurAudio is not None and state["audio_data"] is not None:
                     lecteur = LecteurAudio(reachy_mini, state["audio_data"])
                     lecteur.demarrer()
                     state["audio_lecteur"] = lecteur
-                state["is_replaying"] = True
-                state["replay_start_time"] = time.time()
                 state["processing_status"] = "playing"
                 state["status_message"] = "Rejeu en cours..."
             return {"started": True}
