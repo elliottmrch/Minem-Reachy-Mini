@@ -329,13 +329,16 @@ async function play() {
     setStatus("Démarrage du rejeu…");
     try {
         videoPlayer.currentTime = 0;
-        await videoPlayer.play();
+        const t0 = performance.now();
         const resp = await fetch("/play", { method: "POST" });
         if (!resp.ok) {
             const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-            videoPlayer.pause();
             throw new Error(err.detail || "Impossible de démarrer le rejeu");
         }
+        // Compense le délai réseau : le robot a déjà démarré depuis RTT/2 ms
+        const elapsed = (performance.now() - t0) / 1000;
+        videoPlayer.currentTime = elapsed / 2;
+        await videoPlayer.play();
         stopBtn.disabled = false;
         setStatus("Rejeu en cours (robot + vidéo)", "playing");
     } catch (e) {
