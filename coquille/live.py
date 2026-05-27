@@ -8,6 +8,7 @@ from reachy_mini.utils import create_head_pose
 
 from extracteur import ExtracteurSignaux
 from mapper import (
+    ANT_BROW_DEAD,
     ANT_EYEBROW_FACTOR,
     ANTENNA_MAX,
     BODY_YAW_DEAD,
@@ -169,6 +170,8 @@ class LiveProcessor:
         head_x = _clamp(eye_mean * HEAD_X_EYE_FACTOR, -TRANS_MAX, TRANS_MAX)
         head_z = _clamp(smile * HEAD_Z_SMILE_FACTOR, -TRANS_MAX, TRANS_MAX)
 
+        eb_l = eb_l if abs(eb_l) > ANT_BROW_DEAD else 0.0
+        eb_r = eb_r if abs(eb_r) > ANT_BROW_DEAD else 0.0
         ant_l = _clamp(-eb_l * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
         ant_r = _clamp(eb_r * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
 

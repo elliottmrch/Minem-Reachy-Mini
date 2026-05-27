@@ -17,7 +17,8 @@ HEAD_X_EYE_FACTOR = -0.2
 HEAD_Z_SMILE_FACTOR = 0.05
 
 ANTENNA_MAX = 1.2
-ANT_EYEBROW_FACTOR = 25.0
+ANT_EYEBROW_FACTOR = 18.0
+ANT_BROW_DEAD = 0.025
 
 BODY_YAW_FACTOR = 1.2
 BODY_YAW_DEAD = 0.06
@@ -109,8 +110,10 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
             head_y = 0.0
             head_z = _clamp(frame["smile_index"] * HEAD_Z_SMILE_FACTOR, -TRANS_MAX, TRANS_MAX)
 
-            ant_l = _clamp(-frame["eyebrow_raise_left"] * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
-            ant_r = _clamp(frame["eyebrow_raise_right"] * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
+            eb_l = frame["eyebrow_raise_left"] if abs(frame["eyebrow_raise_left"]) > ANT_BROW_DEAD else 0.0
+            eb_r = frame["eyebrow_raise_right"] if abs(frame["eyebrow_raise_right"]) > ANT_BROW_DEAD else 0.0
+            ant_l = _clamp(-eb_l * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
+            ant_r = _clamp(eb_r * ANT_EYEBROW_FACTOR, -ANTENNA_MAX, ANTENNA_MAX)
 
             cx_dev = frame["face_cx"] - 0.5
             if abs(cx_dev) < BODY_YAW_DEAD:

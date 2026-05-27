@@ -129,14 +129,23 @@ class ExtracteurSignaux:
         }
 
     def _calc_eyebrow_raise(self, lm) -> dict:
-        ex = lm[263].x - lm[33].x
-        ey = lm[263].y - lm[33].y
-        eye_dist_sq = ex * ex + ey * ey + 1e-12
-        def _proj(brow, eye):
-            dx = brow.x - eye.x
-            dy = brow.y - eye.y
-            return (dx * ey - dy * ex) / eye_dist_sq
-        return {"left": _proj(lm[70], lm[33]), "right": _proj(lm[300], lm[362])}
+        def pt(i):
+            return np.array([lm[i].x * self.w, lm[i].y * self.h, lm[i].z * self.w])
+
+        eye_l, eye_r = pt(33), pt(263)
+        E = eye_r - eye_l
+        eye_dist = np.linalg.norm(E) + 1e-6
+        E_n = E / eye_dist
+
+        # Direction "haut" du visage en 3D : vecteur nez→menton, perpendiculaire à l'axe des yeux
+        down = pt(152) - pt(1)
+        down -= np.dot(down, E_n) * E_n  # Gram-Schmidt
+        up_n = -down / (np.linalg.norm(down) + 1e-6)
+
+        def _raise(brow_idx, eye_idx):
+            return float(np.dot(pt(brow_idx) - pt(eye_idx), up_n)) / eye_dist
+
+        return {"left": _raise(70, 33), "right": _raise(300, 263)}
 
 def analyser_video(video_path: str) -> str | None:
     if not os.path.exists(video_path):
