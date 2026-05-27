@@ -55,7 +55,7 @@ ROBOT_FPS = 100
 
 
 class Coquille(ReachyMiniApp):
-    custom_app_url: str | None = "http://localhost:8042"
+    custom_app_url: str | None = "http://0.0.0.0:8042"
     request_media_backend: str | None = "no_media"
 
     def run(self, reachy_mini: ReachyMini, stop_event: threading.Event):

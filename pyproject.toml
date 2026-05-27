@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "REACHY-MINEM"
+name = "coquille"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -22,7 +22,7 @@ dependencies = [
 keywords = ["reachy-mini-app"]
 
 [project.entry-points."reachy_mini_apps"]
-reachy_minem = "coquille.main:Coquille"
+reachy_minem = "coquille.main:ReachyMinem"
 
 [tool.setuptools]
 package-dir = { "" = "." }
