@@ -1,28 +1,43 @@
 // Coquille — UI logic
-// Pipeline vidéo -> robot : upload, traitement, rejeu synchrone.
 
-const fileInput = document.getElementById("file-input");
-const uploadBtn = document.getElementById("upload-btn");
-const ytInput = document.getElementById("yt-input");
-const ytBtn = document.getElementById("yt-btn");
-const uploadInfo = document.getElementById("upload-info");
+const fileInput    = document.getElementById("file-input");
+const uploadBtn    = document.getElementById("upload-btn");
+const fileLabel    = document.querySelector(".file-label");
+const ytInput      = document.getElementById("yt-input");
+const ytBtn        = document.getElementById("yt-btn");
+const uploadInfo   = document.getElementById("upload-info");
 
-const processBtn = document.getElementById("process-btn");
-const processInfo = document.getElementById("process-info");
+const processBtn      = document.getElementById("process-btn");
+const processInfo     = document.getElementById("process-info");
 const processProgress = document.getElementById("process-progress");
 
 const videoPlayer = document.getElementById("video-player");
-const playBtn = document.getElementById("play-btn");
-const stopBtn = document.getElementById("stop-btn");
+const playBtn     = document.getElementById("play-btn");
+const stopBtn     = document.getElementById("stop-btn");
 
-const statusBar = document.getElementById("status-bar");
-const cachedSelect = document.getElementById("cached-select");
+const statusBar     = document.getElementById("status-bar");
+const cachedSelect  = document.getElementById("cached-select");
 const cachedLoadBtn = document.getElementById("cached-load-btn");
 
-let currentVideo = null;       // nom du fichier .mp4 chargé côté backend
-let pollTimer = null;          // setInterval pour /status pendant le traitement
-let isDownloading = false;     // true pendant un téléchargement YouTube
+let currentVideo  = null;
+let pollTimer     = null;
+let isDownloading = false;
 
+// ── Afficher le nom du fichier sélectionné ──
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (file) {
+        fileLabel.textContent = `✔ ${file.name}`;
+        fileLabel.style.borderColor = "#3b82f6";
+        fileLabel.style.color = "#dde1f0";
+    } else {
+        fileLabel.textContent = "📁 Fichier";
+        fileLabel.style.borderColor = "";
+        fileLabel.style.color = "";
+    }
+});
+
+// ── Vidéos en cache ──
 async function loadCachedVideos() {
     try {
         const resp = await fetch("/videos");
@@ -85,14 +100,15 @@ async function loadCachedVideo() {
 cachedSelect.addEventListener("change", () => {
     cachedLoadBtn.disabled = !cachedSelect.value;
 });
-
 cachedLoadBtn.addEventListener("click", loadCachedVideo);
 
+// ── Status bar ──
 function setStatus(msg, kind) {
     statusBar.textContent = `Statut : ${msg}`;
     statusBar.className = kind ? `status-${kind}` : "";
 }
 
+// ── Upload fichier ──
 async function uploadVideo() {
     const file = fileInput.files && fileInput.files[0];
     if (!file) {
@@ -100,8 +116,8 @@ async function uploadVideo() {
         return;
     }
     uploadBtn.disabled = true;
-    uploadInfo.textContent = `Upload de "${file.name}"...`;
-    setStatus("Upload en cours...");
+    uploadInfo.textContent = `Upload de "${file.name}"…`;
+    setStatus("Upload en cours…");
 
     try {
         const formData = new FormData();
@@ -120,7 +136,7 @@ async function uploadVideo() {
         playBtn.disabled = true;
         stopBtn.disabled = true;
         setStatus(`Vidéo "${currentVideo}" chargée`, "ok");
-        processVideo();   // lancement automatique du pipeline
+        processVideo();
     } catch (e) {
         uploadInfo.textContent = `Erreur : ${e.message}`;
         setStatus(e.message, "error");
@@ -129,6 +145,7 @@ async function uploadVideo() {
     }
 }
 
+// ── Pipeline ──
 async function processVideo() {
     if (!currentVideo) return;
     processBtn.disabled = true;
@@ -136,8 +153,8 @@ async function processVideo() {
     stopBtn.disabled = true;
     processProgress.hidden = false;
     processProgress.value = 0;
-    processInfo.textContent = "Démarrage...";
-    setStatus("Traitement de la vidéo...");
+    processInfo.textContent = "Démarrage…";
+    setStatus("Traitement de la vidéo…");
 
     try {
         const resp = await fetch("/process_video", {
@@ -158,26 +175,25 @@ async function processVideo() {
     }
 }
 
+// ── Polling ──
 function startPolling() {
     if (pollTimer) clearInterval(pollTimer);
     pollTimer = setInterval(pollStatus, 500);
 }
 
 function stopPolling() {
-    if (pollTimer) {
-        clearInterval(pollTimer);
-        pollTimer = null;
-    }
+    if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
 }
 
+// ── YouTube ──
 async function downloadYoutube() {
     const url = ytInput.value.trim();
     if (!url) return;
     ytBtn.disabled = true;
     uploadBtn.disabled = true;
     isDownloading = true;
-    uploadInfo.textContent = "Téléchargement en cours...";
-    setStatus("Téléchargement YouTube...");
+    uploadInfo.textContent = "Téléchargement en cours…";
+    setStatus("Téléchargement YouTube…");
 
     try {
         const resp = await fetch("/download_youtube", {
@@ -199,6 +215,7 @@ async function downloadYoutube() {
     }
 }
 
+// ── Poll status ──
 async function pollStatus() {
     try {
         const resp = await fetch("/status");
@@ -206,8 +223,9 @@ async function pollStatus() {
         const s = await resp.json();
 
         if (s.processing_status === "downloading") {
-            uploadInfo.textContent = s.status_message || "Téléchargement...";
-            setStatus(s.status_message || "Téléchargement YouTube...");
+            uploadInfo.textContent = s.status_message || "Téléchargement…";
+            setStatus(s.status_message || "Téléchargement YouTube…");
+
         } else if (isDownloading && s.processing_status === "idle") {
             isDownloading = false;
             stopPolling();
@@ -220,7 +238,8 @@ async function pollStatus() {
             playBtn.disabled = true;
             stopBtn.disabled = true;
             setStatus(`Vidéo "${currentVideo}" prête`, "ok");
-            processVideo();   // lancement automatique du pipeline
+            processVideo();
+
         } else if (isDownloading && s.processing_status === "error") {
             isDownloading = false;
             stopPolling();
@@ -228,12 +247,15 @@ async function pollStatus() {
             uploadBtn.disabled = false;
             uploadInfo.textContent = s.status_message || "Erreur téléchargement";
             setStatus(s.status_message || "Erreur téléchargement", "error");
+
         } else if (s.processing_status === "extracting") {
-            processInfo.textContent = s.status_message || "Extraction des signaux...";
+            processInfo.textContent = s.status_message || "Extraction des signaux…";
             processProgress.value = 33;
+
         } else if (s.processing_status === "mapping") {
-            processInfo.textContent = s.status_message || "Génération du mouvement...";
+            processInfo.textContent = s.status_message || "Génération du mouvement…";
             processProgress.value = 66;
+
         } else if (s.processing_status === "ready") {
             processInfo.textContent = s.status_message || "Mouvement prêt";
             processProgress.value = 100;
@@ -244,6 +266,7 @@ async function pollStatus() {
             setStatus("Mouvement prêt — vous pouvez lancer le rejeu", "ok");
             setTimeout(() => { processProgress.hidden = true; }, 1000);
             loadCachedVideos();
+
         } else if (s.processing_status === "error") {
             processInfo.textContent = s.status_message || "Erreur lors du traitement";
             stopPolling();
@@ -252,20 +275,17 @@ async function pollStatus() {
             setStatus(s.status_message || "Erreur de traitement", "error");
         }
     } catch (e) {
-        // backend momentanément indisponible — on continue le polling
+        // backend momentanément indisponible
     }
 }
 
+// ── Play / Stop ──
 async function play() {
     playBtn.disabled = true;
-    setStatus("Démarrage du rejeu...");
-
+    setStatus("Démarrage du rejeu…");
     try {
-        // Vidéo d'abord
         videoPlayer.currentTime = 0;
         await videoPlayer.play();
-
-        // Robot ensuite ! décalage
         const resp = await fetch("/play", { method: "POST" });
         if (!resp.ok) {
             const err = await resp.json().catch(() => ({ detail: resp.statusText }));
@@ -298,13 +318,14 @@ videoPlayer.addEventListener("ended", () => {
     playBtn.disabled = false;
 });
 
+// ── Listeners ──
 uploadBtn.addEventListener("click", uploadVideo);
 ytBtn.addEventListener("click", downloadYoutube);
 processBtn.addEventListener("click", processVideo);
 playBtn.addEventListener("click", play);
 stopBtn.addEventListener("click", stop);
 
-// État initial : synchronise l'UI avec ce que le backend pourrait déjà connaître
+// ── Init : synchronise l'UI avec le backend ──
 (async function init() {
     loadCachedVideos();
     try {
@@ -321,9 +342,7 @@ stopBtn.addEventListener("click", stop);
             playBtn.disabled = false;
             processInfo.textContent = `Mouvement prêt (${s.frame_count} frames, ${s.duration.toFixed(1)}s)`;
         }
-        if (s.status_message) {
-            setStatus(s.status_message);
-        }
+        if (s.status_message) setStatus(s.status_message);
     } catch (e) {
         setStatus("Backend non joignable", "error");
     }

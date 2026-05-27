@@ -9,48 +9,70 @@
 </head>
 
 <body>
-    <h1>MINEM</h1>
 
-    <section class="step">
-        <h2><span class="step-num">1</span> Choisir une vidéo</h2>
-        <div class="row">
-            <input accept="video/mp4" id="file-input" type="file">
-            <button id="upload-btn">Upload</button>
-        </div>
-        <div class="separator">ou</div>
-        <div class="row">
-            <input id="yt-input" placeholder="https://www.youtube.com/watch?v=..." type="text">
-            <button id="yt-btn">⬇ YouTube</button>
-        </div>
-        <div class="separator">ou</div>
-        <div class="row">
-            <select id="cached-select">
-                <option value="">— Vidéos déjà traitées —</option>
-            </select>
-            <button disabled id="cached-load-btn">Charger</button>
-        </div>
-        <p class="info" id="upload-info">Aucune vidéo chargée</p>
-    </section>
+    <!-- ── Header ── -->
+    <header>
+        <img alt="MINEM" id="logo" src="/static/logo.png">
+        <h1>MINEM</h1>
+        <div id="status-bar">Statut : prêt</div>
+    </header>
 
-    <section class="step">
-        <h2><span class="step-num">2</span> Traiter la vidéo</h2>
-        <div class="row">
-            <button disabled id="process-btn">Lancer le pipeline</button>
-            <progress hidden id="process-progress" max="100" value="0"></progress>
-        </div>
-        <p class="info" id="process-info">En attente d'une vidéo</p>
-    </section>
+    <main>
 
-    <section class="step">
-        <h2><span class="step-num">3</span> Rejouer (robot + vidéo synchrones)</h2>
-        <video controls id="video-player" preload="metadata"></video>
-        <div class="row">
-            <button disabled id="play-btn">▶ Play</button>
-            <button disabled id="stop-btn">⏹ Stop</button>
-        </div>
-    </section>
+        <!-- ── Player (vedette) ── -->
+        <section class="card card--player">
+            <video controls id="video-player" preload="metadata"></video>
+            <div class="player-controls">
+                <button class="btn-play" disabled id="play-btn">▶ Play</button>
+                <button class="btn-stop" disabled id="stop-btn">⏹ Stop</button>
+            </div>
+        </section>
 
-    <div id="status-bar">Statut : prêt</div>
+        <!-- ── Import + Pipeline (secondaire) ── -->
+        <section class="card card--setup">
+
+            <!-- Importer -->
+            <div class="setup-block">
+                <h2 class="setup-title"><span class="step-num">1</span> Choisir une vidéo</h2>
+
+                <div class="row">
+                    <label class="file-label" for="file-input">📁 Fichier</label>
+                    <input accept="video/mp4" id="file-input" type="file">
+                    <button id="upload-btn">Upload</button>
+                </div>
+
+                <div class="separator">ou</div>
+
+                <div class="row row--yt">
+                    <input id="yt-input" placeholder="https://www.youtube.com/watch?v=…" type="text">
+                    <button class="btn-yt" id="yt-btn">⬇ YouTube</button>
+                </div>
+
+                <div class="separator">ou</div>
+
+                <div class="row">
+                    <select id="cached-select">
+                        <option value="">— Vidéos déjà traitées —</option>
+                    </select>
+                    <button disabled id="cached-load-btn">Charger</button>
+                </div>
+
+                <p class="info" id="upload-info">Aucune vidéo chargée</p>
+            </div>
+
+            <div class="v-divider"></div>
+
+            <!-- Pipeline -->
+            <div class="setup-block setup-block--pipeline">
+                <h2 class="setup-title"><span class="step-num">2</span> Traiter</h2>
+                <button disabled id="process-btn">⚙ Lancer le pipeline</button>
+                <progress hidden id="process-progress" max="100" value="0"></progress>
+                <p class="info" id="process-info">En attente d'une vidéo</p>
+            </div>
+
+        </section>
+
+    </main>
 
     <script src="/static/main.js"></script>
 </body>
