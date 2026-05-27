@@ -15,14 +15,13 @@ dependencies = [
     "uvicorn[standard]",
     "python-multipart",
     "yt-dlp",
-    "mediapipe",
-    "opencv-python",
+    "mediapipe==0.10.14",
     "numpy"
 ]
 keywords = ["reachy-mini-app"]
 
 [project.entry-points."reachy_mini_apps"]
-reachy_minem = "coquille.main:ReachyMinem"
+reachy_minem = "coquille.main:Coquille"
 
 [tool.setuptools]
 package-dir = { "" = "." }
