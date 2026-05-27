@@ -10,7 +10,7 @@ import time
 import numpy as np
 import librosa
 
-CHUNK_SIZE = 2048   # Plus petit = moins d'impact par chunk tardif
+CHUNK_SIZE = 8192   # Plus grand = moins de sends, moins de coupures
 SAMPLE_RATE = 16000  # Hz attendu par Reachy Mini
 
 
