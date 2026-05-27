@@ -181,6 +181,34 @@ class Coquille(ReachyMiniApp):
         def list_videos():
             return {"videos": _get_processed_videos()}
 
+        @self.settings_app.delete("/videos/{filename}")
+        def delete_video(filename: str):
+            safe = os.path.basename(filename)
+            if not safe or not safe.lower().endswith(ALLOWED_VIDEO_EXT):
+                raise HTTPException(status_code=400, detail="Nom de fichier invalide")
+            video_path = os.path.join(DATA_DIR, safe)
+            if not os.path.exists(video_path):
+                raise HTTPException(status_code=404, detail="Vidéo introuvable")
+            stem = os.path.splitext(safe)[0]
+            for fname in [safe, f"{stem}_signaux.json", f"{stem}_signaux_mouvement.json", f"{stem}_audio.wav"]:
+                fpath = os.path.join(DATA_DIR, fname)
+                if os.path.exists(fpath):
+                    os.remove(fpath)
+            with lock:
+                if state["current_video"] == safe:
+                    state["is_replaying"] = False
+                    if state["audio_lecteur"] is not None:
+                        state["audio_lecteur"].arreter()
+                        state["audio_lecteur"] = None
+                    state["current_video"] = None
+                    state["movement_frames"] = []
+                    state["current_movement"] = None
+                    state["movement_duration"] = 0.0
+                    state["audio_data"] = None
+                    state["processing_status"] = "idle"
+                    state["status_message"] = "Prêt"
+            return {"deleted": safe}
+
         class SelectReq(BaseModel):
             filename: str
 

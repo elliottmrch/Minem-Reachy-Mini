@@ -15,9 +15,10 @@ const videoPlayer = document.getElementById("video-player");
 const playBtn     = document.getElementById("play-btn");
 const stopBtn     = document.getElementById("stop-btn");
 
-const statusBar     = document.getElementById("status-bar");
-const cachedSelect  = document.getElementById("cached-select");
-const cachedLoadBtn = document.getElementById("cached-load-btn");
+const statusBar       = document.getElementById("status-bar");
+const cachedSelect    = document.getElementById("cached-select");
+const cachedLoadBtn   = document.getElementById("cached-load-btn");
+const cachedDeleteBtn = document.getElementById("cached-delete-btn");
 
 let currentVideo  = null;
 let pollTimer     = null;
@@ -38,10 +39,13 @@ fileInput.addEventListener("change", () => {
 });
 
 // ── Vidéos en cache ──
-async function loadCachedVideos() {
+async function loadCachedVideos(retries = 0) {
     try {
         const resp = await fetch("/videos");
-        if (!resp.ok) return;
+        if (!resp.ok) {
+            if (retries < 4) setTimeout(() => loadCachedVideos(retries + 1), 1500);
+            return;
+        }
         const data = await resp.json();
         const videos = data.videos || [];
         const prev = cachedSelect.value;
@@ -53,7 +57,12 @@ async function loadCachedVideos() {
             cachedSelect.appendChild(opt);
         });
         if (prev && videos.includes(prev)) cachedSelect.value = prev;
-    } catch (e) { /* non-critique */ }
+        const hasSelection = !!cachedSelect.value;
+        cachedLoadBtn.disabled = !hasSelection;
+        cachedDeleteBtn.disabled = !hasSelection;
+    } catch (e) {
+        if (retries < 4) setTimeout(() => loadCachedVideos(retries + 1), 1500);
+    }
 }
 
 async function loadCachedVideo() {
@@ -98,9 +107,44 @@ async function loadCachedVideo() {
 }
 
 cachedSelect.addEventListener("change", () => {
-    cachedLoadBtn.disabled = !cachedSelect.value;
+    const hasSelection = !!cachedSelect.value;
+    cachedLoadBtn.disabled = !hasSelection;
+    cachedDeleteBtn.disabled = !hasSelection;
 });
 cachedLoadBtn.addEventListener("click", loadCachedVideo);
+
+async function deleteCachedVideo() {
+    const filename = cachedSelect.value;
+    if (!filename) return;
+    if (!confirm(`Supprimer "${filename}" et tous ses fichiers associés ?`)) return;
+
+    cachedDeleteBtn.disabled = true;
+    cachedLoadBtn.disabled = true;
+    setStatus(`Suppression de "${filename}"…`);
+    try {
+        const resp = await fetch(`/videos/${encodeURIComponent(filename)}`, { method: "DELETE" });
+        if (!resp.ok) {
+            const err = await resp.json().catch(() => ({ detail: resp.statusText }));
+            throw new Error(err.detail || "Erreur lors de la suppression");
+        }
+        if (currentVideo === filename) {
+            currentVideo = null;
+            uploadInfo.textContent = "Aucune vidéo chargée";
+            videoPlayer.src = "";
+            processBtn.disabled = true;
+            playBtn.disabled = true;
+            stopBtn.disabled = true;
+            processInfo.textContent = "En attente d'une vidéo";
+        }
+        setStatus(`"${filename}" supprimé`, "ok");
+        await loadCachedVideos();
+    } catch (e) {
+        setStatus(e.message, "error");
+        cachedDeleteBtn.disabled = !cachedSelect.value;
+        cachedLoadBtn.disabled = !cachedSelect.value;
+    }
+}
+cachedDeleteBtn.addEventListener("click", deleteCachedVideo);
 
 // ── Status bar ──
 function setStatus(msg, kind) {

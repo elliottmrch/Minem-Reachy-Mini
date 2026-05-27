@@ -240,6 +240,16 @@ button:disabled {
     transform: none;
 }
 
+/* ── Delete button ── */
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    padding: 7px 10px;
+}
+
+.btn-delete:hover:not(:disabled) {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+}
+
 /* ── YouTube button ── */
 .btn-yt {
     background: linear-gradient(135deg, #dc2626, #991b1b);
