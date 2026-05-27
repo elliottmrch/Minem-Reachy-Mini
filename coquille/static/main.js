@@ -11,9 +11,13 @@ const processBtn      = document.getElementById("process-btn");
 const processInfo     = document.getElementById("process-info");
 const processProgress = document.getElementById("process-progress");
 
-const videoPlayer = document.getElementById("video-player");
-const playBtn     = document.getElementById("play-btn");
-const stopBtn     = document.getElementById("stop-btn");
+const videoPlayer  = document.getElementById("video-player");
+const playBtn      = document.getElementById("play-btn");
+const pauseBtn     = document.getElementById("pause-btn");
+const stopBtn      = document.getElementById("stop-btn");
+const seekControls = document.getElementById("seek-controls");
+const seekBackBtn  = document.getElementById("seek-back-btn");
+const seekFwdBtn   = document.getElementById("seek-fwd-btn");
 
 const statusBar       = document.getElementById("status-bar");
 const cachedSelect    = document.getElementById("cached-select");
@@ -23,6 +27,7 @@ const cachedDeleteBtn = document.getElementById("cached-delete-btn");
 let currentVideo  = null;
 let pollTimer     = null;
 let isDownloading = false;
+let isPaused      = false;
 
 // ── Afficher le nom du fichier sélectionné ──
 fileInput.addEventListener("change", () => {
@@ -323,7 +328,27 @@ async function pollStatus() {
     }
 }
 
-// ── Play / Stop ──
+// ── UI state helpers ──
+function setPlayingUI() {
+    playBtn.hidden = true;
+    pauseBtn.hidden = false; pauseBtn.disabled = false;
+    stopBtn.disabled = false;
+    seekControls.hidden = true;
+}
+function setPausedUI() {
+    playBtn.hidden = true;
+    pauseBtn.hidden = false; pauseBtn.disabled = false;
+    stopBtn.disabled = false;
+    seekControls.hidden = false;
+}
+function setIdleUI() {
+    playBtn.hidden = false; playBtn.disabled = false;
+    pauseBtn.hidden = true;
+    stopBtn.disabled = true;
+    seekControls.hidden = true;
+}
+
+// ── Play / Stop / Pause / Seek ──
 async function play() {
     playBtn.disabled = true;
     setStatus("Démarrage du rejeu…");
@@ -339,7 +364,9 @@ async function play() {
         const elapsed = (performance.now() - t0) / 1000;
         videoPlayer.currentTime = elapsed / 2;
         await videoPlayer.play();
-        stopBtn.disabled = false;
+        isPaused = false;
+        pauseBtn.textContent = "⏸ Pause";
+        setPlayingUI();
         setStatus("Rejeu en cours (robot + vidéo)", "playing");
     } catch (e) {
         setStatus(e.message, "error");
@@ -353,16 +380,56 @@ async function stop() {
         await fetch("/stop", { method: "POST" });
         videoPlayer.pause();
         setStatus("Rejeu arrêté", "ok");
-        playBtn.disabled = false;
+        isPaused = false;
+        setIdleUI();
     } catch (e) {
         setStatus(e.message, "error");
+        stopBtn.disabled = false;
     }
+}
+
+async function togglePause() {
+    pauseBtn.disabled = true;
+    if (!isPaused) {
+        const resp = await fetch("/pause", { method: "POST" });
+        if (!resp.ok) { pauseBtn.disabled = false; return; }
+        videoPlayer.pause();
+        isPaused = true;
+        pauseBtn.textContent = "▶ Reprendre";
+        setPausedUI();
+        setStatus("En pause", "ok");
+    } else {
+        const resp = await fetch("/resume", { method: "POST" });
+        if (!resp.ok) { pauseBtn.disabled = false; return; }
+        const data = await resp.json();
+        videoPlayer.currentTime = data.elapsed;
+        await videoPlayer.play();
+        isPaused = false;
+        pauseBtn.textContent = "⏸ Pause";
+        setPlayingUI();
+        setStatus("Rejeu en cours (robot + vidéo)", "playing");
+    }
+}
+
+async function seek(delta) {
+    seekBackBtn.disabled = seekFwdBtn.disabled = true;
+    const resp = await fetch("/seek", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ delta }),
+    });
+    if (resp.ok) {
+        const data = await resp.json();
+        videoPlayer.currentTime = Math.max(0, Math.min(data.elapsed, videoPlayer.duration || Infinity));
+        setStatus(`Position : ${data.elapsed.toFixed(1)}s`, "ok");
+    }
+    seekBackBtn.disabled = seekFwdBtn.disabled = false;
 }
 
 videoPlayer.addEventListener("ended", () => {
     setStatus("Rejeu terminé", "ok");
-    stopBtn.disabled = true;
-    playBtn.disabled = false;
+    isPaused = false;
+    setIdleUI();
 });
 
 // ── Listeners ──
@@ -371,6 +438,9 @@ ytBtn.addEventListener("click", downloadYoutube);
 processBtn.addEventListener("click", processVideo);
 playBtn.addEventListener("click", play);
 stopBtn.addEventListener("click", stop);
+pauseBtn.addEventListener("click", togglePause);
+seekBackBtn.addEventListener("click", () => seek(-10));
+seekFwdBtn.addEventListener("click",  () => seek(+10));
 
 // ── Init : synchronise l'UI avec le backend ──
 (async function init() {
@@ -388,6 +458,16 @@ stopBtn.addEventListener("click", stop);
         if (s.frame_count > 0) {
             playBtn.disabled = false;
             processInfo.textContent = `Mouvement prêt (${s.frame_count} frames, ${s.duration.toFixed(1)}s)`;
+        }
+        if (s.is_replaying && s.is_paused) {
+            isPaused = true;
+            pauseBtn.textContent = "▶ Reprendre";
+            videoPlayer.currentTime = s.paused_elapsed || 0;
+            setPausedUI();
+        } else if (s.is_replaying) {
+            isPaused = false;
+            pauseBtn.textContent = "⏸ Pause";
+            setPlayingUI();
         }
         if (s.status_message) setStatus(s.status_message);
     } catch (e) {

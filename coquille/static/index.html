@@ -22,8 +22,13 @@
         <section class="card card--player">
             <video controls muted id="video-player" preload="metadata"></video>
             <div class="player-controls">
-                <button class="btn-play" disabled id="play-btn">▶ Play</button>
-                <button class="btn-stop" disabled id="stop-btn">⏹ Stop</button>
+                <button class="btn-play"  disabled id="play-btn">▶ Play</button>
+                <button class="btn-pause" disabled id="pause-btn" hidden>⏸ Pause</button>
+                <button class="btn-stop"  disabled id="stop-btn">⏹ Stop</button>
+            </div>
+            <div class="seek-controls" id="seek-controls" hidden>
+                <button class="btn-seek" id="seek-back-btn">⏮ -10s</button>
+                <button class="btn-seek" id="seek-fwd-btn">+10s ⏭</button>
             </div>
         </section>
 
