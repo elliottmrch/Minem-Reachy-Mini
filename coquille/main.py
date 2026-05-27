@@ -45,6 +45,14 @@ except ImportError as e:
     charger_mouvement = None
 
 try:
+    from audio_player import LecteurAudio, charger_audio, extraire_audio_video
+except ImportError as e:
+    print(f"[INFO] Module audio indisponible : {e}")
+    LecteurAudio = None
+    charger_audio = None
+    extraire_audio_video = None
+
+try:
     import yt_dlp as _yt_dlp
 except ImportError:
     _yt_dlp = None
@@ -56,7 +64,7 @@ ROBOT_FPS = 100
 
 class Coquille(ReachyMiniApp):
     custom_app_url: str | None = "http://0.0.0.0:8042"
-    request_media_backend: str | None = "no_media"
+    request_media_backend: str | None = "default"
 
     def run(self, reachy_mini: ReachyMini, stop_event: threading.Event):
         state = {
@@ -68,6 +76,8 @@ class Coquille(ReachyMiniApp):
             "current_movement": None,
             "processing_status": "idle",
             "status_message": "Prêt",
+            "audio_data": None,       # tableau numpy de l'audio chargé
+            "audio_lecteur": None,    # instance LecteurAudio en cours
         }
         lock = threading.Lock()
 
@@ -254,10 +264,28 @@ class Coquille(ReachyMiniApp):
                         raise RuntimeError("Échec de la génération du mouvement")
 
                     frames, meta = charger_mouvement(mvt_path)
+
+                    # Extraction audio si disponible
+                    audio_data = None
+                    if extraire_audio_video is not None and charger_audio is not None:
+                        stem = os.path.splitext(os.path.basename(req.filename))[0]
+                        audio_path = os.path.join(DATA_DIR, f"{stem}_audio.wav")
+                        if not os.path.exists(audio_path):
+                            try:
+                                extraire_audio_video(video_path, audio_path)
+                            except Exception as ae:
+                                print(f"[WARN] Extraction audio échouée : {ae}")
+                        if os.path.exists(audio_path):
+                            try:
+                                audio_data = charger_audio(audio_path)
+                            except Exception as ae:
+                                print(f"[WARN] Chargement audio échoué : {ae}")
+
                     with lock:
                         state["movement_frames"] = frames
                         state["movement_duration"] = float(meta.get("duration_s", 0.0))
                         state["current_movement"] = mvt_path
+                        state["audio_data"] = audio_data
                         state["processing_status"] = "ready"
                         state["status_message"] = (
                             f"Mouvement prêt ({len(frames)} frames, "
@@ -280,6 +308,15 @@ class Coquille(ReachyMiniApp):
             with lock:
                 if not state["movement_frames"]:
                     raise HTTPException(status_code=400, detail="Aucun mouvement chargé")
+                # Arrêter un éventuel lecteur audio précédent
+                if state["audio_lecteur"] is not None:
+                    state["audio_lecteur"].arreter()
+                    state["audio_lecteur"] = None
+                # Démarrer le lecteur audio si on a de l'audio
+                if LecteurAudio is not None and state["audio_data"] is not None:
+                    lecteur = LecteurAudio(reachy_mini, state["audio_data"])
+                    lecteur.demarrer()
+                    state["audio_lecteur"] = lecteur
                 state["is_replaying"] = True
                 state["replay_start_time"] = time.time()
                 state["processing_status"] = "playing"
@@ -290,6 +327,9 @@ class Coquille(ReachyMiniApp):
         def stop_play():
             with lock:
                 state["is_replaying"] = False
+                if state["audio_lecteur"] is not None:
+                    state["audio_lecteur"].arreter()
+                    state["audio_lecteur"] = None
                 state["processing_status"] = "ready" if state["movement_frames"] else "idle"
                 state["status_message"] = "Rejeu arrêté"
             _set_neutral()
@@ -330,6 +370,9 @@ class Coquille(ReachyMiniApp):
                 if idx >= len(frames):
                     with lock:
                         state["is_replaying"] = False
+                        if state["audio_lecteur"] is not None:
+                            state["audio_lecteur"].arreter()
+                            state["audio_lecteur"] = None
                         state["processing_status"] = "ready"
                         state["status_message"] = "Rejeu terminé"
                     _set_neutral()
