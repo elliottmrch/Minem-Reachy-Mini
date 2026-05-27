@@ -48,7 +48,7 @@ class Rejoueur(ReachyMiniApp):
         print(f"[INFO] Durée   : {duration}s | {total} frames")
         print(f"[INFO] Début du rejeu...\n")
 
-        ALPHA = 0.15
+        ALPHA = 0.18
         smoothed = {"yaw": 0.0, "pitch": 0.0, "roll": 0.0,
                     "x": 0.0, "y": 0.0, "z": 0.0,
                     "ant_l": 0.0, "ant_r": 0.0, "body_yaw": 0.0}
