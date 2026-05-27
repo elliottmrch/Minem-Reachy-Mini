@@ -56,9 +56,19 @@ class LecteurAudio:
         self.chunk_size = chunk_size
         self._thread: threading.Thread | None = None
         self._stop_event = threading.Event()
+        self._start_sample = 0
 
     def demarrer(self):
         """Lance start_playing() puis démarre la lecture en arrière-plan."""
+        self._start_sample = 0
+        self._stop_event.clear()
+        self.reachy_mini.media.start_playing()
+        self._thread = threading.Thread(target=self._jouer, daemon=True)
+        self._thread.start()
+
+    def demarrer_depuis(self, offset_seconds: float):
+        """Lance la lecture depuis un offset en secondes."""
+        self._start_sample = int(offset_seconds * SAMPLE_RATE)
         self._stop_event.clear()
         self.reachy_mini.media.start_playing()
         self._thread = threading.Thread(target=self._jouer, daemon=True)
@@ -82,9 +92,10 @@ class LecteurAudio:
         except Exception:
             pass
 
+        audio_slice = self.audio[self._start_sample:]
         chunks = [
-            self.audio[i : i + self.chunk_size]
-            for i in range(0, len(self.audio), self.chunk_size)
+            audio_slice[i : i + self.chunk_size]
+            for i in range(0, len(audio_slice), self.chunk_size)
         ]
 
         t_start = time.perf_counter()

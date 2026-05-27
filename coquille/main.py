@@ -403,11 +403,16 @@ class Coquille(ReachyMiniApp):
             with lock:
                 if not state["is_replaying"] or not state["is_paused"]:
                     raise HTTPException(status_code=400, detail="Pas en pause")
-                state["replay_start_time"] = time.time() - state["paused_elapsed"]
+                elapsed = state["paused_elapsed"]
+                state["replay_start_time"] = time.time() - elapsed
                 state["is_paused"] = False
                 state["processing_status"] = "playing"
                 state["status_message"] = "Rejeu en cours..."
-            return {"resumed": True, "elapsed": state["paused_elapsed"]}
+                if LecteurAudio is not None and state["audio_data"] is not None:
+                    lecteur = LecteurAudio(reachy_mini, state["audio_data"])
+                    lecteur.demarrer_depuis(elapsed)
+                    state["audio_lecteur"] = lecteur
+            return {"resumed": True, "elapsed": elapsed}
 
         @self.settings_app.post("/seek")
         def seek_play(req: SeekReq):
