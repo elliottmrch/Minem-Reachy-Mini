@@ -5,20 +5,21 @@ import numpy as np
 YAW_FACTOR = 0.8
 YAW_MAX = 30.0
 PITCH_FACTOR = 0.8
-PITCH_MAX = 20.0
+PITCH_MAX = 15.0
 ROLL_FACTOR = 0.5
 ROLL_MAX = 15.0
 
-PITCH_MOUTH_FACTOR = -25.0
+PITCH_MOUTH_FACTOR = -80.0
 ROLL_MOUTH_FACTOR = 15.0
 
 TRANS_MAX = 0.02
 HEAD_X_EYE_FACTOR = -0.2
+HEAD_X_EYE_DEAD = 0.04
 HEAD_Z_SMILE_FACTOR = 0.05
 
 ANTENNA_MAX = 1.2
-ANT_EYEBROW_FACTOR = 18.0
-ANT_BROW_DEAD = 0.025
+ANT_EYEBROW_FACTOR = 20.0
+ANT_BROW_DEAD = 0.03
 
 BODY_YAW_FACTOR = 1.2
 BODY_YAW_DEAD = 0.06
@@ -106,6 +107,7 @@ def _appliquer_mapping(frames: list[dict]) -> list[dict]:
                           -ROLL_MAX, ROLL_MAX)
 
             eye_mean = (frame["left_eye_opening"] + frame["right_eye_opening"]) / 2.0
+            eye_mean = eye_mean if abs(eye_mean) > HEAD_X_EYE_DEAD else 0.0
             head_x = _clamp(eye_mean * HEAD_X_EYE_FACTOR, -TRANS_MAX, TRANS_MAX)
             head_y = 0.0
             head_z = _clamp(frame["smile_index"] * HEAD_Z_SMILE_FACTOR, -TRANS_MAX, TRANS_MAX)

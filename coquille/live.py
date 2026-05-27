@@ -14,6 +14,7 @@ from mapper import (
     BODY_YAW_DEAD,
     BODY_YAW_FACTOR,
     BODY_YAW_MAX,
+    HEAD_X_EYE_DEAD,
     HEAD_X_EYE_FACTOR,
     HEAD_Z_SMILE_FACTOR,
     PITCH_FACTOR,
@@ -167,6 +168,7 @@ class LiveProcessor:
         )
 
         eye_mean = (eye_l + eye_r) / 2.0
+        eye_mean = eye_mean if abs(eye_mean) > HEAD_X_EYE_DEAD else 0.0
         head_x = _clamp(eye_mean * HEAD_X_EYE_FACTOR, -TRANS_MAX, TRANS_MAX)
         head_z = _clamp(smile * HEAD_Z_SMILE_FACTOR, -TRANS_MAX, TRANS_MAX)
 
