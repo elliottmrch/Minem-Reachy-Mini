@@ -1,15 +1,32 @@
-/* ── Reset ── */
+/* ══════════════════════════════════════════════════════════════════════════════
+   style.css — Feuille de style principale de l'interface Coquille
+   Organisation : Reset → Base → Header → Status bar → Layout → Cards →
+                  Boutons → Inputs → Séparateurs → Progress → Modes →
+                  Live view → Responsive
+══════════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Reset universel ─────────────────────────────────────────────────────────
+   Supprime les marges/padding par défaut du navigateur et normalise
+   le modèle de boîte (border-box inclut padding et border dans width/height).
+   *::before et *::after ciblent les pseudo-éléments (ex: séparateurs). */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Base ── */
+
+/* ── Base de la page ─────────────────────────────────────────────────────────
+   Police système (stack -apple-system → garantit la police native sur chaque OS).
+   Fond gris très clair pour contraster avec les cartes blanches. */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #f0f2f7;
     color: #1a1f36;
-    min-height: 100vh;
+    min-height: 100vh;  /* la page occupe au minimum toute la hauteur de la fenêtre */
 }
 
-/* ── Header ── */
+
+/* ── Header ──────────────────────────────────────────────────────────────────
+   Barre du haut : logo centré, navigation modes, barre de statut.
+   flex-direction: column pour empiler verticalement sur petits écrans. */
 header {
     display: flex;
     flex-direction: column;
@@ -18,40 +35,46 @@ header {
     gap: 10px;
     background: #ffffff;
     border-bottom: 1px solid #e4e7ef;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* ombre douce sous le header */
 }
 
-
+/* Logo MINEM : taille max pour éviter le débordement sur mobile */
 #logo {
     max-width: 280px;
     height: auto;
     display: block;
 }
 
-/* ── Status bar (top, visible) ── */
+
+/* ── Barre de statut ─────────────────────────────────────────────────────────
+   Affiche l'état courant (upload, traitement, rejeu, erreur…).
+   3 variantes de couleur : ok (vert), error (rouge), playing (orange animé). */
 #status-bar {
     padding: 7px 22px;
-    border-radius: 20px;
+    border-radius: 20px;  /* forme pilule */
     font-size: 13px;
     font-weight: 600;
     color: #6b7280;
     background: #f3f4f8;
     border: 1px solid #dde1ed;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
+    transition: background 0.25s, border-color 0.25s, color 0.25s; /* transition douce entre états */
 }
 
+/* État : succès / prêt */
 #status-bar.status-ok {
     background: #ecfdf5;
     border-color: #86efac;
     color: #16a34a;
 }
 
+/* État : erreur */
 #status-bar.status-error {
     background: #fef2f2;
     border-color: #fca5a5;
     color: #dc2626;
 }
 
+/* État : rejeu en cours — animation "respiration" pour indiquer une activité continue */
 #status-bar.status-playing {
     background: #fffbeb;
     border-color: #fcd34d;
@@ -59,22 +82,29 @@ header {
     animation: breathe 2s ease-in-out infinite;
 }
 
+/* Animation de "respiration" : opacité oscillant entre 1 et 0.65 */
 @keyframes breathe {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.65; }
 }
 
-/* ── Main layout ── */
+
+/* ── Layout principal ────────────────────────────────────────────────────────
+   Conteneur centré avec max-width 820px pour ne pas s'étirer sur grands écrans.
+   flex column : les sections (cards) s'empilent verticalement. */
 main {
     max-width: 820px;
     margin: 0 auto;
     padding: 20px 20px 48px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 16px; /* espace entre les cartes */
 }
 
-/* ── Cards ── */
+
+/* ── Cartes ──────────────────────────────────────────────────────────────────
+   Chaque "carte" est un bloc blanc arrondi avec ombre légère.
+   Deux variantes : card--player (colonne, centré) et card--setup (ligne). */
 .card {
     background: #ffffff;
     border: 1px solid #e4e7ef;
@@ -83,7 +113,7 @@ main {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
-/* ── Player card ── */
+/* Carte player : centrage vertical et horizontal du player + contrôles */
 .card--player {
     display: flex;
     flex-direction: column;
@@ -91,6 +121,7 @@ main {
     gap: 20px;
 }
 
+/* Lecteur vidéo : noir pour le mode cinéma, bord arrondi, ombre */
 video {
     width: 100%;
     max-width: 680px;
@@ -100,7 +131,10 @@ video {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
-/* ── Play / Stop buttons ── */
+
+/* ── Boutons Play / Stop / Pause (grands boutons du player) ──────────────────
+   Gros boutons en pilule avec dégradé et effet de survol (élévation + ombre colorée).
+   :disabled → apparence grisée, cursor not-allowed. */
 .player-controls {
     display: flex;
     gap: 20px;
@@ -110,7 +144,7 @@ video {
 .btn-stop {
     padding: 16px 48px;
     border: none;
-    border-radius: 50px;
+    border-radius: 50px;  /* forme pilule */
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
@@ -119,26 +153,28 @@ video {
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
 }
 
+/* Bouton Play : dégradé vert */
 .btn-play {
     background: linear-gradient(145deg, #22c55e, #15803d);
     color: #fff;
 }
-
+/* Effet hover : légère élévation + ombre verte */
 .btn-play:hover:not(:disabled) {
     transform: translateY(-3px);
     box-shadow: 0 10px 28px rgba(34, 197, 94, 0.35);
 }
 
+/* Bouton Stop : dégradé rouge */
 .btn-stop {
     background: linear-gradient(145deg, #ef4444, #b91c1c);
     color: #fff;
 }
-
 .btn-stop:hover:not(:disabled) {
     transform: translateY(-3px);
     box-shadow: 0 10px 28px rgba(239, 68, 68, 0.35);
 }
 
+/* État désactivé : opacité réduite, curseur interdit, pas d'effet hover */
 .btn-play:disabled,
 .btn-stop:disabled {
     opacity: 0.3;
@@ -147,6 +183,7 @@ video {
     box-shadow: none !important;
 }
 
+/* Bouton Pause : dégradé orange (entre Play et Stop visuellement) */
 .btn-pause {
     padding: 16px 48px;
     border: none;
@@ -160,12 +197,10 @@ video {
     background: linear-gradient(145deg, #f59e0b, #b45309);
     color: #fff;
 }
-
 .btn-pause:hover:not(:disabled) {
     transform: translateY(-3px);
     box-shadow: 0 10px 28px rgba(245, 158, 11, 0.35);
 }
-
 .btn-pause:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -173,12 +208,15 @@ video {
     box-shadow: none !important;
 }
 
+
+/* ── Boutons Seek (+/-10s) ────────────────────────────────────────────────────
+   Affichés uniquement en pause (seekControls.hidden = false dans main.js).
+   Dégradé violet pour les distinguer des boutons de lecture. */
 .seek-controls {
     display: flex;
     gap: 12px;
     justify-content: center;
 }
-
 .btn-seek {
     padding: 10px 28px;
     border: none;
@@ -192,12 +230,10 @@ video {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
     transition: transform 0.12s ease, box-shadow 0.2s ease;
 }
-
 .btn-seek:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(99, 102, 241, 0.35);
 }
-
 .btn-seek:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -205,25 +241,31 @@ video {
     box-shadow: none !important;
 }
 
-/* ── Setup card ── */
+
+/* ── Carte Setup ─────────────────────────────────────────────────────────────
+   Disposition côte-à-côte : bloc "Choisir vidéo" (flex: 1) + séparateur + bloc "Traiter" (fixe).
+   Sur mobile (<580px) : passage en colonne (voir section Responsive). */
 .card--setup {
     display: flex;
     gap: 24px;
     align-items: flex-start;
 }
 
+/* Séparateur vertical entre les deux blocs de la carte setup */
 .v-divider {
     width: 1px;
     background: #e4e7ef;
-    align-self: stretch;
-    flex-shrink: 0;
+    align-self: stretch; /* s'étire sur toute la hauteur de la carte */
+    flex-shrink: 0;      /* ne se rétrécit pas */
 }
 
+/* Bloc gauche (choisir vidéo) : prend l'espace restant */
 .setup-block {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* évite le débordement si le contenu est trop large */
 }
 
+/* Bloc droite (pipeline) : largeur fixe, disposition colonne */
 .setup-block--pipeline {
     flex: 0 0 auto;
     width: 200px;
@@ -232,6 +274,7 @@ video {
     gap: 12px;
 }
 
+/* Titre de chaque bloc (numéro en badge bleu + texte) */
 .setup-title {
     font-size: 14px;
     font-weight: 600;
@@ -242,6 +285,7 @@ video {
     margin-bottom: 14px;
 }
 
+/* Badge numéroté (cercle bleu avec le chiffre) */
 .step-num {
     display: inline-flex;
     align-items: center;
@@ -256,7 +300,10 @@ video {
     flex-shrink: 0;
 }
 
-/* ── Rows ── */
+
+/* ── Lignes (rows) dans les blocs ────────────────────────────────────────────
+   Disposition flex inline pour label + input + bouton sur la même ligne.
+   flex-wrap: wrap → passage à la ligne si trop étroit. */
 .row {
     display: flex;
     align-items: center;
@@ -265,6 +312,7 @@ video {
     margin-bottom: 2px;
 }
 
+/* Ligne YouTube : fond rouge très clair pour distinguer visuellement */
 .row--yt {
     background: #fff5f5;
     border: 1px solid #fca5a5;
@@ -272,7 +320,9 @@ video {
     padding: 8px 10px;
 }
 
-/* ── Default button (small) ── */
+
+/* ── Bouton par défaut (petit, utilisé dans les blocs setup) ─────────────────
+   Style de base pour tous les <button> non spécialisés. */
 button {
     padding: 7px 15px;
     border: none;
@@ -281,16 +331,14 @@ button {
     font-size: 13px;
     font-weight: 600;
     border-radius: 8px;
-    background: #3b82f6;
+    background: #3b82f6;  /* bleu primaire */
     transition: background 0.15s, transform 0.1s;
-    white-space: nowrap;
+    white-space: nowrap;  /* évite le retour à la ligne dans les boutons */
 }
-
 button:hover:not(:disabled) {
     background: #2563eb;
     transform: translateY(-1px);
 }
-
 button:disabled {
     background: #e5e7eb;
     color: #9ca3af;
@@ -298,31 +346,33 @@ button:disabled {
     transform: none;
 }
 
-/* ── Delete button ── */
+/* Bouton supprimer (rouge) */
 .btn-delete {
     background: linear-gradient(135deg, #ef4444, #b91c1c);
     padding: 7px 10px;
 }
-
 .btn-delete:hover:not(:disabled) {
     background: linear-gradient(135deg, #dc2626, #991b1b);
 }
 
-/* ── YouTube button ── */
+/* Bouton YouTube (rouge YouTube) */
 .btn-yt {
     background: linear-gradient(135deg, #dc2626, #991b1b);
     font-weight: 700;
 }
-
 .btn-yt:hover:not(:disabled) {
     background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
-/* ── File input ── */
+
+/* ── Input file caché ────────────────────────────────────────────────────────
+   L'input file réel est invisible ; le label .file-label le remplace visuellement.
+   Cliquer sur le label déclenche l'input via for="file-input". */
 input[type="file"] {
     display: none;
 }
 
+/* Label-bouton pour l'input file : apparence de chip/tag */
 .file-label {
     padding: 6px 13px;
     border: 1px solid #d1d5db;
@@ -333,15 +383,17 @@ input[type="file"] {
     font-size: 13px;
     white-space: nowrap;
     transition: border-color 0.15s, color 0.15s;
-    user-select: none;
+    user-select: none; /* empêche la sélection du texte au clic */
 }
-
 .file-label:hover {
     border-color: #3b82f6;
     color: #1a1f36;
 }
 
-/* ── Text input + select ── */
+
+/* ── Inputs texte et selects ─────────────────────────────────────────────────
+   Style uniforme : fond gris clair, bordure, arrondi.
+   :focus → bordure bleue pour indiquer le focus clavier/souris. */
 input[type="text"],
 select {
     padding: 7px 10px;
@@ -352,7 +404,6 @@ select {
     font-size: 13px;
     transition: border-color 0.15s;
 }
-
 input[type="text"]:focus,
 select:focus {
     outline: none;
@@ -360,23 +411,27 @@ select:focus {
     background: #fff;
 }
 
+/* Input YouTube : thème rouge pour cohérence avec la ligne row--yt */
 #yt-input {
-    flex: 1;
+    flex: 1;         /* prend l'espace disponible dans la ligne */
     min-width: 0;
     border-color: #fca5a5;
     background: transparent;
     color: #b91c1c;
 }
-
 #yt-input::placeholder { color: #fca5a5; }
 #yt-input:focus { border-color: #ef4444; background: #fff; }
 
+/* Select : curseur pointer pour indiquer l'interactivité */
 select {
     cursor: pointer;
     min-width: 180px;
 }
 
-/* ── Separator ── */
+
+/* ── Séparateur "ou" ─────────────────────────────────────────────────────────
+   Texte centré avec des lignes horizontales de part et d'autre.
+   Les lignes sont créées avec ::before et ::after (pseudo-éléments). */
 .separator {
     text-align: center;
     color: #9ca3af;
@@ -384,21 +439,22 @@ select {
     margin: 8px 0;
     position: relative;
 }
-
 .separator::before,
 .separator::after {
     content: "";
     position: absolute;
-    top: 50%;
-    width: 43%;
+    top: 50%;        /* aligné verticalement sur le texte */
+    width: 43%;      /* lignes à 43% de la largeur de chaque côté */
     height: 1px;
     background: #e5e7eb;
 }
-
 .separator::before { left: 0; }
-.separator::after { right: 0; }
+.separator::after  { right: 0; }
 
-/* ── Progress ── */
+
+/* ── Barre de progression du pipeline ───────────────────────────────────────
+   Fine barre bleue (h=5px) pour le suivi extracting/mapping/ready.
+   Préfixes -webkit et -moz pour la compatibilité cross-browser. */
 progress {
     width: 100%;
     height: 5px;
@@ -407,55 +463,61 @@ progress {
     background: #e5e7eb;
     overflow: hidden;
 }
-
-progress::-webkit-progress-bar { background: #e5e7eb; border-radius: 4px; }
+progress::-webkit-progress-bar   { background: #e5e7eb; border-radius: 4px; }
 progress::-webkit-progress-value { background: #3b82f6; border-radius: 4px; transition: width 0.3s; }
-progress::-moz-progress-bar { background: #3b82f6; border-radius: 4px; }
+progress::-moz-progress-bar      { background: #3b82f6; border-radius: 4px; }
 
-/* ── Info text ── */
+
+/* ── Texte informatif sous les blocs ─────────────────────────────────────────
+   Couleur grise atténuée, petite taille. */
 .info {
     color: #9ca3af;
     font-size: 12px;
     margin-top: 10px;
 }
 
-/* ── Mode nav ── */
+
+/* ── Navigation modes (Vidéo / Live) ─────────────────────────────────────────
+   Deux boutons-pilule ; le mode actif reçoit la classe mode-btn--active (fond bleu).
+   switchMode() dans main.js gère l'ajout/retrait de cette classe. */
 .mode-nav {
     display: flex;
     gap: 8px;
 }
-
 .mode-btn {
     padding: 8px 28px;
     border-radius: 50px;
     font-size: 14px;
     font-weight: 700;
-    background: #f3f4f8;
+    background: #f3f4f8;  /* gris inactif */
     color: #6b7280;
     border: 1.5px solid #dde1ed;
     cursor: pointer;
     transition: all 0.15s;
 }
-
+/* Mode actif : fond bleu + texte blanc */
 .mode-btn--active {
     background: #3b82f6;
     color: #fff;
     border-color: #3b82f6;
 }
-
+/* Hover sur le mode inactif : légèrement plus foncé */
 .mode-btn:hover:not(.mode-btn--active) {
     background: #e5e7eb;
     color: #1a1f36;
-    transform: none;
+    transform: none; /* annule le transform par défaut des boutons */
 }
 
-/* ── Live view ── */
+
+/* ── Vue Live ────────────────────────────────────────────────────────────────
+   Même layout que la vue vidéo. */
 #view-live > main {
     max-width: 820px;
     margin: 0 auto;
     padding: 20px 20px 48px;
 }
 
+/* Carte live : colonne centrée comme card--player */
 .card--live {
     display: flex;
     flex-direction: column;
@@ -463,6 +525,7 @@ progress::-moz-progress-bar { background: #3b82f6; border-radius: 4px; }
     gap: 20px;
 }
 
+/* Flux MJPEG affiché dans un <img> : même dimensions que le lecteur vidéo */
 #live-stream-img {
     width: 100%;
     max-width: 680px;
@@ -472,16 +535,21 @@ progress::-moz-progress-bar { background: #3b82f6; border-radius: 4px; }
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
+/* Message de statut live (calibration, en cours, arrêté) */
 #live-status-msg {
     color: #6b7280;
     font-size: 14px;
     font-weight: 600;
 }
 
-/* ── Responsive ── */
+
+/* ── Responsive (<580px) ─────────────────────────────────────────────────────
+   Sur petits écrans, les deux blocs de card--setup passent en colonne.
+   Le séparateur vertical devient horizontal.
+   Les grands boutons player sont légèrement réduits. */
 @media (max-width: 580px) {
-    .card--setup { flex-direction: column; }
-    .v-divider { width: 100%; height: 1px; }
-    .setup-block--pipeline { width: 100%; }
-    .btn-play, .btn-pause, .btn-stop { padding: 14px 32px; font-size: 17px; }
+    .card--setup { flex-direction: column; }             /* blocs en colonne */
+    .v-divider { width: 100%; height: 1px; }            /* séparateur horizontal */
+    .setup-block--pipeline { width: 100%; }              /* pipeline pleine largeur */
+    .btn-play, .btn-pause, .btn-stop { padding: 14px 32px; font-size: 17px; } /* boutons réduits */
 }

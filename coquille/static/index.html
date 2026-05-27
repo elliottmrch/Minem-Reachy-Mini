@@ -4,46 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <title>MINEM</title>
+    <!-- viewport meta : nécessaire pour le responsive mobile -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Feuille de style principale (servie par FastAPI depuis /static/) -->
     <link href="/static/style.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- ── Header ── -->
+    <!-- ══════════════════════════════════════════════════════════════════
+         HEADER — Logo + navigation entre modes + barre de statut globale
+         La barre de statut est mise à jour dynamiquement par setStatus() dans main.js
+    ══════════════════════════════════════════════════════════════════════ -->
     <header>
+        <!-- Logo MINEM centré -->
         <img alt="MINEM" id="logo" src="https://i.imgur.com/iyYoYOP.png">
+
+        <!-- Navigation : bascule entre le mode "Vidéo" et le mode "Live caméra" -->
+        <!-- La classe mode-btn--active est ajoutée/retirée par switchMode() dans main.js -->
         <nav class="mode-nav">
             <button class="mode-btn mode-btn--active" id="btn-mode-video">Vidéo</button>
             <button class="mode-btn" id="btn-mode-live">Live</button>
         </nav>
+
+        <!-- Barre de statut : affiche le message courant de l'app (upload, traitement, rejeu…) -->
+        <!-- Les classes status-ok / status-error / status-playing changent la couleur -->
         <div id="status-bar">Statut : prêt</div>
     </header>
 
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         VUE VIDÉO — Affichée par défaut
+         Masquée (hidden) quand on passe en mode Live
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="view-video">
     <main>
 
-        <!-- ── Player (vedette) ── -->
+        <!-- ── Carte Player (section principale) ── -->
+        <!-- Affiche la vidéo source et les contrôles de rejeu robot -->
         <section class="card card--player">
+
+            <!-- Lecteur vidéo HTML natif : src mis à jour dynamiquement via /video/<nom> -->
+            <!-- muted : requis par les navigateurs pour autoplay en JS -->
             <video controls muted id="video-player" preload="metadata"></video>
+
+            <!-- Boutons de contrôle du rejeu.
+                 État initial : play désactivé (aucun mouvement chargé), stop désactivé.
+                 play() → pause/stop activés ; stop() → play activé.
+                 pause/resume gérés par togglePause() dans main.js. -->
             <div class="player-controls">
                 <button class="btn-play"  disabled id="play-btn">▶ Play</button>
+                <!-- Bouton pause : hidden au départ, affiché pendant le rejeu -->
                 <button class="btn-pause" disabled id="pause-btn" hidden>⏸ Pause</button>
                 <button class="btn-stop"  disabled id="stop-btn">⏹ Stop</button>
             </div>
+
+            <!-- Boutons seek : affichés uniquement pendant la pause (+/-10s) -->
+            <!-- Envoi POST /seek avec delta = ±10 secondes -->
             <div class="seek-controls" id="seek-controls" hidden>
                 <button class="btn-seek" id="seek-back-btn">⏮ -10s</button>
                 <button class="btn-seek" id="seek-fwd-btn">+10s ⏭</button>
             </div>
         </section>
 
-        <!-- ── Import + Pipeline (secondaire) ── -->
+        <!-- ── Carte Setup (section secondaire) ── -->
+        <!-- Divisée en deux blocs : "Choisir une vidéo" et "Traiter" -->
         <section class="card card--setup">
 
-            <!-- Importer -->
+            <!-- ── Bloc 1 : Choisir une vidéo ── -->
             <div class="setup-block">
                 <h2 class="setup-title"><span class="step-num">1</span> Choisir une vidéo</h2>
 
+                <!-- Option A : Upload d'un fichier local -->
+                <!-- L'input file est caché (display:none dans CSS), déclenché par le label -->
                 <div class="row">
                     <label class="file-label" for="file-input">📁 Fichier</label>
                     <input accept="video/mp4" id="file-input" type="file">
@@ -52,6 +85,8 @@
 
                 <div class="separator">ou</div>
 
+                <!-- Option B : Téléchargement YouTube via yt-dlp -->
+                <!-- POST /download_youtube avec l'URL → téléchargement asynchrone (polling) -->
                 <div class="row row--yt">
                     <input id="yt-input" placeholder="https://www.youtube.com/watch?v=…" type="text">
                     <button class="btn-yt" id="yt-btn">⬇ YouTube</button>
@@ -59,24 +94,39 @@
 
                 <div class="separator">ou</div>
 
+                <!-- Option C : Sélection d'une vidéo déjà traitée (depuis GET /videos) -->
+                <!-- Peuplé au chargement de la page par loadCachedVideos() dans main.js -->
                 <div class="row">
                     <select id="cached-select">
                         <option value="">— Vidéos déjà traitées —</option>
                     </select>
+                    <!-- Charger : POST /select_video → charge mouvement et audio en mémoire -->
                     <button disabled id="cached-load-btn">Charger</button>
+                    <!-- Supprimer : DELETE /videos/<nom> → supprime tous les fichiers associés -->
                     <button class="btn-delete" disabled id="cached-delete-btn" title="Supprimer l'enregistrement">🗑</button>
                 </div>
 
+                <!-- Message d'info sous les options (mis à jour au fil des actions) -->
                 <p class="info" id="upload-info">Aucune vidéo chargée</p>
             </div>
 
+            <!-- Séparateur vertical entre les deux blocs -->
             <div class="v-divider"></div>
 
-            <!-- Pipeline -->
+            <!-- ── Bloc 2 : Pipeline de traitement ── -->
+            <!-- Extraction signaux (Jalon 2) + génération mouvement (Jalon 3) via POST /process_video -->
             <div class="setup-block setup-block--pipeline">
                 <h2 class="setup-title"><span class="step-num">2</span> Traiter</h2>
+
+                <!-- Déclenche le pipeline complet (extraction → mapping → audio) -->
+                <!-- Désactivé tant qu'aucune vidéo n'est chargée -->
                 <button disabled id="process-btn">⚙ Lancer le pipeline</button>
+
+                <!-- Barre de progression : hidden au repos, visible pendant le traitement -->
+                <!-- Valeur : 0→33 (extracting) → 66 (mapping) → 100 (ready) -->
                 <progress hidden id="process-progress" max="100" value="0"></progress>
+
+                <!-- Message d'état du pipeline (mis à jour par pollStatus() via /status) -->
                 <p class="info" id="process-info">En attente d'une vidéo</p>
             </div>
 
@@ -85,19 +135,32 @@
     </main>
     </div>
 
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         VUE LIVE — Cachée par défaut, affichée en mode "Live"
+         Affiche le flux MJPEG de la caméra et les contrôles de démarrage/arrêt
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="view-live" hidden>
         <main>
             <section class="card card--live">
+                <!-- Message de statut du live (calibration, en cours, arrêté) -->
                 <p id="live-status-msg">Mode live arrêté</p>
+
+                <!-- Image MJPEG : src = /live/stream (flux multipart) -->
+                <!-- Hidden au départ, visible pendant le live -->
                 <img id="live-stream-img" alt="Flux caméra" hidden>
+
+                <!-- Contrôles live : Démarrer (POST /live/start) / Arrêter (POST /live/stop) -->
                 <div class="player-controls">
                     <button class="btn-play" id="live-start-btn">▶ Démarrer</button>
+                    <!-- Stop : hidden au départ, affiché pendant le live -->
                     <button class="btn-stop" id="live-stop-btn" hidden disabled>⏹ Arrêter</button>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- Script principal de l'UI (logique métier côté navigateur) -->
     <script src="/static/main.js"></script>
 </body>
 
