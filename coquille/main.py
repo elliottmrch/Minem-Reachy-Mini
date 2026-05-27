@@ -79,6 +79,19 @@ class Coquille(ReachyMiniApp):
                 body_yaw=0.0,
             )
 
+        def _get_processed_videos():
+            result = []
+            if not os.path.isdir(DATA_DIR):
+                return result
+            for fname in sorted(os.listdir(DATA_DIR)):
+                if not fname.lower().endswith(ALLOWED_VIDEO_EXT):
+                    continue
+                stem = os.path.splitext(fname)[0]
+                mvt = os.path.join(DATA_DIR, f"{stem}_signaux_mouvement.json")
+                if os.path.exists(mvt):
+                    result.append(fname)
+            return result
+
         @self.settings_app.post("/upload_video")
         async def upload_video(file: UploadFile = File(...)):
             if not file.filename or not file.filename.lower().endswith(ALLOWED_VIDEO_EXT):
@@ -154,6 +167,49 @@ class Coquille(ReachyMiniApp):
             threading.Thread(target=_download, daemon=True).start()
             return {"started": True}
 
+        @self.settings_app.get("/videos")
+        def list_videos():
+            return {"videos": _get_processed_videos()}
+
+        class SelectReq(BaseModel):
+            filename: str
+
+        @self.settings_app.post("/select_video")
+        def select_video(req: SelectReq):
+            if charger_mouvement is None:
+                raise HTTPException(status_code=500, detail="Module rejoueur indisponible")
+            with lock:
+                if state["processing_status"] in ("extracting", "mapping", "downloading"):
+                    raise HTTPException(status_code=409, detail="Un traitement est déjà en cours")
+            safe_name = os.path.basename(req.filename)
+            video_path = os.path.join(DATA_DIR, safe_name)
+            if not os.path.exists(video_path):
+                raise HTTPException(status_code=404, detail="Vidéo introuvable")
+            stem = os.path.splitext(safe_name)[0]
+            mvt_path = os.path.join(DATA_DIR, f"{stem}_signaux_mouvement.json")
+            if os.path.exists(mvt_path):
+                frames, meta = charger_mouvement(mvt_path)
+                with lock:
+                    state["current_video"] = safe_name
+                    state["movement_frames"] = frames
+                    state["movement_duration"] = float(meta.get("duration_s", 0.0))
+                    state["current_movement"] = mvt_path
+                    state["processing_status"] = "ready"
+                    state["status_message"] = (
+                        f"Mouvement prêt ({len(frames)} frames, "
+                        f"{float(meta.get('duration_s', 0.0)):.1f}s)"
+                    )
+                return {"filename": safe_name, "cached": True}
+            else:
+                with lock:
+                    state["current_video"] = safe_name
+                    state["movement_frames"] = []
+                    state["current_movement"] = None
+                    state["movement_duration"] = 0.0
+                    state["processing_status"] = "idle"
+                    state["status_message"] = f"Vidéo chargée : {safe_name}"
+                return {"filename": safe_name, "cached": False}
+
         class ProcessReq(BaseModel):
             filename: str
 
@@ -168,6 +224,21 @@ class Coquille(ReachyMiniApp):
 
             def _pipeline():
                 try:
+                    stem = os.path.splitext(os.path.basename(req.filename))[0]
+                    mvt_path = os.path.join(DATA_DIR, f"{stem}_signaux_mouvement.json")
+                    if os.path.exists(mvt_path):
+                        frames, meta = charger_mouvement(mvt_path)
+                        with lock:
+                            state["movement_frames"] = frames
+                            state["movement_duration"] = float(meta.get("duration_s", 0.0))
+                            state["current_movement"] = mvt_path
+                            state["processing_status"] = "ready"
+                            state["status_message"] = (
+                                f"Mouvement prêt (cache) — {len(frames)} frames, "
+                                f"{float(meta.get('duration_s', 0.0)):.1f}s"
+                            )
+                        return
+
                     with lock:
                         state["processing_status"] = "extracting"
                         state["status_message"] = "Extraction des signaux..."

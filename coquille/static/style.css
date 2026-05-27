@@ -163,3 +163,19 @@ progress {
     border-left-color: #f39c12;
     background: #fff7e6;
 }
+
+select {
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fafafa;
+    font-size: 14px;
+    color: #1f2330;
+    cursor: pointer;
+    min-width: 220px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3498db;
+}

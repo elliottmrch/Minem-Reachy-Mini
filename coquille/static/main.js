@@ -16,10 +16,77 @@ const playBtn = document.getElementById("play-btn");
 const stopBtn = document.getElementById("stop-btn");
 
 const statusBar = document.getElementById("status-bar");
+const cachedSelect = document.getElementById("cached-select");
+const cachedLoadBtn = document.getElementById("cached-load-btn");
 
 let currentVideo = null;       // nom du fichier .mp4 chargé côté backend
 let pollTimer = null;          // setInterval pour /status pendant le traitement
 let isDownloading = false;     // true pendant un téléchargement YouTube
+
+async function loadCachedVideos() {
+    try {
+        const resp = await fetch("/videos");
+        if (!resp.ok) return;
+        const data = await resp.json();
+        const videos = data.videos || [];
+        const prev = cachedSelect.value;
+        cachedSelect.innerHTML = '<option value="">— Vidéos déjà traitées —</option>';
+        videos.forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v;
+            opt.textContent = v;
+            cachedSelect.appendChild(opt);
+        });
+        if (prev && videos.includes(prev)) cachedSelect.value = prev;
+    } catch (e) { /* non-critique */ }
+}
+
+async function loadCachedVideo() {
+    const filename = cachedSelect.value;
+    if (!filename) return;
+    cachedLoadBtn.disabled = true;
+    setStatus(`Chargement de "${filename}"...`);
+    try {
+        const resp = await fetch("/select_video", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filename }),
+        });
+        if (!resp.ok) {
+            const err = await resp.json().catch(() => ({ detail: resp.statusText }));
+            throw new Error(err.detail || "Erreur lors du chargement");
+        }
+        const data = await resp.json();
+        currentVideo = data.filename;
+        uploadInfo.textContent = `Vidéo chargée : ${currentVideo}`;
+        videoPlayer.src = `/video/${encodeURIComponent(currentVideo)}`;
+        if (data.cached) {
+            processBtn.disabled = false;
+            playBtn.disabled = false;
+            stopBtn.disabled = true;
+            processProgress.hidden = true;
+            processInfo.textContent = "Mouvement chargé depuis le cache";
+            setStatus(`Mouvement prêt pour "${currentVideo}"`, "ok");
+        } else {
+            processBtn.disabled = false;
+            playBtn.disabled = true;
+            stopBtn.disabled = true;
+            processInfo.textContent = "Prêt à être traité";
+            setStatus(`Vidéo "${currentVideo}" chargée — lancez le pipeline`, "ok");
+        }
+    } catch (e) {
+        uploadInfo.textContent = `Erreur : ${e.message}`;
+        setStatus(e.message, "error");
+    } finally {
+        cachedLoadBtn.disabled = !cachedSelect.value;
+    }
+}
+
+cachedSelect.addEventListener("change", () => {
+    cachedLoadBtn.disabled = !cachedSelect.value;
+});
+
+cachedLoadBtn.addEventListener("click", loadCachedVideo);
 
 function setStatus(msg, kind) {
     statusBar.textContent = `Statut : ${msg}`;
@@ -176,6 +243,7 @@ async function pollStatus() {
             stopBtn.disabled = true;
             setStatus("Mouvement prêt — vous pouvez lancer le rejeu", "ok");
             setTimeout(() => { processProgress.hidden = true; }, 1000);
+            loadCachedVideos();
         } else if (s.processing_status === "error") {
             processInfo.textContent = s.status_message || "Erreur lors du traitement";
             stopPolling();
@@ -238,6 +306,7 @@ stopBtn.addEventListener("click", stop);
 
 // État initial : synchronise l'UI avec ce que le backend pourrait déjà connaître
 (async function init() {
+    loadCachedVideos();
     try {
         const resp = await fetch("/status");
         if (!resp.ok) return;
