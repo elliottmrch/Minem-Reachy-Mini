@@ -16,7 +16,9 @@ dependencies = [
     "python-multipart",
     "yt-dlp",
     "mediapipe==0.10.14",
-    "numpy"
+    "numpy",
+    "moviepy",
+    "librosa"
 ]
 keywords = ["reachy-mini-app"]
 
