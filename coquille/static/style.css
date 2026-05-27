@@ -419,6 +419,65 @@ progress::-moz-progress-bar { background: #3b82f6; border-radius: 4px; }
     margin-top: 10px;
 }
 
+/* ── Mode nav ── */
+.mode-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.mode-btn {
+    padding: 8px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    background: #f3f4f8;
+    color: #6b7280;
+    border: 1.5px solid #dde1ed;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.mode-btn--active {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+.mode-btn:hover:not(.mode-btn--active) {
+    background: #e5e7eb;
+    color: #1a1f36;
+    transform: none;
+}
+
+/* ── Live view ── */
+#view-live > main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px 20px 48px;
+}
+
+.card--live {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#live-stream-img {
+    width: 100%;
+    max-width: 680px;
+    border-radius: 12px;
+    background: #000;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+#live-status-msg {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 /* ── Responsive ── */
 @media (max-width: 580px) {
     .card--setup { flex-direction: column; }

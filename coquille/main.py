@@ -5,7 +5,7 @@ import time
 
 import numpy as np
 from fastapi import File, HTTPException, UploadFile
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 from reachy_mini import ReachyMini, ReachyMiniApp
 from reachy_mini.utils import create_head_pose
@@ -53,6 +53,12 @@ except ImportError as e:
     extraire_audio_video = None
 
 try:
+    from live import LiveProcessor
+except ImportError as e:
+    print(f"[INFO] Module live indisponible : {e}")
+    LiveProcessor = None
+
+try:
     import yt_dlp as _yt_dlp
 except ImportError:
     _yt_dlp = None
@@ -80,6 +86,8 @@ class Coquille(ReachyMiniApp):
             "audio_lecteur": None,
             "is_paused": False,
             "paused_elapsed": 0.0,
+            "is_live_mode": False,
+            "live_processor": None,
         }
         lock = threading.Lock()
 
@@ -442,6 +450,73 @@ class Coquille(ReachyMiniApp):
             )
             return {"elapsed": new_elapsed}
 
+        @self.settings_app.post("/live/start")
+        def live_start():
+            if LiveProcessor is None:
+                raise HTTPException(status_code=500, detail="Module live indisponible")
+            with lock:
+                if state["is_replaying"]:
+                    state["is_replaying"] = False
+                    if state["audio_lecteur"] is not None:
+                        state["audio_lecteur"].arreter()
+                        state["audio_lecteur"] = None
+                    state["is_paused"] = False
+                    state["paused_elapsed"] = 0.0
+                    state["processing_status"] = "ready" if state["movement_frames"] else "idle"
+                if state["live_processor"] is not None:
+                    state["live_processor"].stop()
+                proc = LiveProcessor(reachy_mini)
+                proc.start()
+                state["live_processor"] = proc
+                state["is_live_mode"] = True
+            return {"started": True}
+
+        @self.settings_app.post("/live/stop")
+        def live_stop():
+            with lock:
+                proc = state["live_processor"]
+                state["is_live_mode"] = False
+                state["live_processor"] = None
+            if proc is not None:
+                proc.stop()
+            _set_neutral()
+            return {"stopped": True}
+
+        @self.settings_app.get("/live/stream")
+        async def live_stream():
+            import asyncio
+
+            async def _mjpeg():
+                with lock:
+                    proc = state["live_processor"]
+                while True:
+                    with lock:
+                        proc = state["live_processor"]
+                    if proc is None:
+                        break
+                    frame = proc.get_latest_frame()
+                    if frame:
+                        yield (
+                            b"--frame\r\n"
+                            b"Content-Type: image/jpeg\r\n\r\n"
+                            + frame
+                            + b"\r\n"
+                        )
+                    await asyncio.sleep(1 / 30)
+
+            return StreamingResponse(
+                _mjpeg(),
+                media_type="multipart/x-mixed-replace; boundary=frame",
+            )
+
+        @self.settings_app.get("/live/status")
+        def live_status():
+            with lock:
+                proc = state["live_processor"]
+                is_live = state["is_live_mode"]
+            calibrated = proc.is_calibrated() if proc is not None else False
+            return {"is_live": is_live, "calibrated": calibrated}
+
         @self.settings_app.get("/status")
         def get_status():
             with lock:
@@ -473,6 +548,11 @@ class Coquille(ReachyMiniApp):
                 is_paused = state["is_paused"]
                 frames = state["movement_frames"]
                 t0 = state["replay_start_time"]
+                is_live = state["is_live_mode"]
+
+            if is_live:
+                time.sleep(period)
+                continue
 
             if replaying and not is_paused and frames and t0 is not None:
                 t = time.time() - t0

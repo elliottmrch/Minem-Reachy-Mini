@@ -13,9 +13,14 @@
     <!-- ── Header ── -->
     <header>
         <img alt="MINEM" id="logo" src="https://i.imgur.com/iyYoYOP.png">
+        <nav class="mode-nav">
+            <button class="mode-btn mode-btn--active" id="btn-mode-video">Vidéo</button>
+            <button class="mode-btn" id="btn-mode-live">Live</button>
+        </nav>
         <div id="status-bar">Statut : prêt</div>
     </header>
 
+    <div id="view-video">
     <main>
 
         <!-- ── Player (vedette) ── -->
@@ -78,6 +83,20 @@
         </section>
 
     </main>
+    </div>
+
+    <div id="view-live" hidden>
+        <main>
+            <section class="card card--live">
+                <p id="live-status-msg">Mode live arrêté</p>
+                <img id="live-stream-img" alt="Flux caméra" hidden>
+                <div class="player-controls">
+                    <button class="btn-play" id="live-start-btn">▶ Démarrer</button>
+                    <button class="btn-stop" id="live-stop-btn" hidden disabled>⏹ Arrêter</button>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="/static/main.js"></script>
 </body>

@@ -442,6 +442,84 @@ pauseBtn.addEventListener("click", togglePause);
 seekBackBtn.addEventListener("click", () => seek(-10));
 seekFwdBtn.addEventListener("click",  () => seek(+10));
 
+// ── Mode Live ──
+const btnModeVideo  = document.getElementById("btn-mode-video");
+const btnModeLive   = document.getElementById("btn-mode-live");
+const viewVideo     = document.getElementById("view-video");
+const viewLive      = document.getElementById("view-live");
+const liveStreamImg = document.getElementById("live-stream-img");
+const liveStartBtn  = document.getElementById("live-start-btn");
+const liveStopBtn   = document.getElementById("live-stop-btn");
+const liveStatusMsg = document.getElementById("live-status-msg");
+
+function switchMode(mode) {
+    if (mode === "live") {
+        viewVideo.hidden = true;
+        viewLive.hidden = false;
+        btnModeLive.classList.add("mode-btn--active");
+        btnModeVideo.classList.remove("mode-btn--active");
+    } else {
+        viewLive.hidden = true;
+        viewVideo.hidden = false;
+        btnModeVideo.classList.add("mode-btn--active");
+        btnModeLive.classList.remove("mode-btn--active");
+        stopLive();
+    }
+}
+
+async function startLive() {
+    liveStartBtn.disabled = true;
+    setStatus("Démarrage du live…");
+    try {
+        const resp = await fetch("/live/start", { method: "POST" });
+        if (!resp.ok) {
+            const err = await resp.json().catch(() => ({ detail: resp.statusText }));
+            throw new Error(err.detail || "Impossible de démarrer le live");
+        }
+        liveStreamImg.src = "/live/stream";
+        liveStreamImg.hidden = false;
+        liveStopBtn.hidden = false;
+        liveStopBtn.disabled = false;
+        liveStatusMsg.textContent = "Calibration en cours…";
+        setStatus("Mode live démarré", "playing");
+        pollLiveCalibration();
+    } catch (e) {
+        liveStartBtn.disabled = false;
+        setStatus(e.message, "error");
+    }
+}
+
+async function stopLive() {
+    if (liveStopBtn.disabled && liveStopBtn.hidden) return;
+    liveStopBtn.disabled = true;
+    await fetch("/live/stop", { method: "POST" }).catch(() => {});
+    liveStreamImg.src = "";
+    liveStreamImg.hidden = true;
+    liveStopBtn.hidden = true;
+    liveStartBtn.disabled = false;
+    liveStatusMsg.textContent = "Mode live arrêté";
+    setStatus("Live arrêté");
+}
+
+function pollLiveCalibration() {
+    const t = setInterval(async () => {
+        const r = await fetch("/live/status").catch(() => null);
+        if (!r || !r.ok) return;
+        const d = await r.json();
+        if (!d.is_live) { clearInterval(t); return; }
+        if (d.calibrated) {
+            liveStatusMsg.textContent = "Live en cours";
+            setStatus("Live en cours (robot actif)", "playing");
+            clearInterval(t);
+        }
+    }, 300);
+}
+
+btnModeVideo.addEventListener("click", () => switchMode("video"));
+btnModeLive.addEventListener("click",  () => switchMode("live"));
+liveStartBtn.addEventListener("click", startLive);
+liveStopBtn.addEventListener("click",  stopLive);
+
 // ── Init : synchronise l'UI avec le backend ──
 (async function init() {
     loadCachedVideos();
