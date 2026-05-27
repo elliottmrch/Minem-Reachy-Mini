@@ -1,5 +1,5 @@
 ---
-title: REACHY-MINEM
+title: MINEM
 emoji: 🍱
 colorFrom: red
 colorTo: blue
