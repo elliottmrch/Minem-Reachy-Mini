@@ -1,3 +1,4 @@
 docs/jalon1/Diagramme_de_classes_envisage.pdf filter=lfs diff=lfs merge=lfs -text
 docs/jalon2/Rapport_Comment_rendre_un_robot_expressif.pdf filter=lfs diff=lfs merge=lfs -text
 docs/jalon3/Rapport_Analyse_critique_du_resultat.pdf filter=lfs diff=lfs merge=lfs -text
+docs/jalon1/Diagramme_de_classes.pdf filter=lfs diff=lfs merge=lfs -text
