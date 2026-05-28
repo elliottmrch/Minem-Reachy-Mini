@@ -1,54 +1,156 @@
 <!doctype html>
 <html lang="fr">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>MINEM</title>
+	<title>MINEM - Reachy Mini App</title>
 	<link rel="stylesheet" href="style.css" />
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-	<div class="noise-overlay"></div>
-
-	<div class="hero">
-		<div class="hero-bg">
-			<div class="circle c1"></div>
-			<div class="circle c2"></div>
-			<div class="circle c3"></div>
+<!-- HERO -->
+<header class="hero">
+	<div class="hero-bg">
+		<div class="circle c1"></div>
+		<div class="circle c2"></div>
+		<div class="circle c3"></div>
+	</div>
+	<div class="hero-content">
+		<span class="badge">🍱 Reachy Mini App · CIR2 2025-2026</span>
+		<h1>MINEM</h1>
+		<p class="tagline">
+			<span class="jp">人間の表情をロボットへ転送する</span><br>
+			Transférez vos expressions faciales sur Reachy Mini en temps réel ou depuis une vidéo.
+		</p>
+		<div class="team">
+			<div class="member"><div class="avatar" style="background:#dc2626">N</div><span>Noah Normand</span><span class="member-jp">ノア・ノルマン</span></div>
+			<div class="member"><div class="avatar" style="background:#7c3aed">E</div><span>Elliott Amrouche</span><span class="member-jp">エリオット・アムルーシュ</span></div>
+			<div class="member"><div class="avatar" style="background:#1d4ed8">M</div><span>Martin Hurvois</span><span class="member-jp">マルタン・ユルヴォワ</span></div>
 		</div>
-		<div class="hero-content">
-			<div class="badge">🍱 Reachy Mini App</div>
-			<h1 class="title">
-				<span class="title-main">MINEM</span>
-			</h1>
-			<p class="subtitle">
-				<span class="jp">人間の表情をロボットへ転送する</span><br>
-				Importez une vidéo, extrayez vos expressions faciales et rejouez-les sur Reachy Mini avec synchronisation audio.
-			</p>
-			<div class="team">
-				<div class="member">
-					<div class="avatar" style="background: var(--red)">N</div>
-					<span>Noah Normand</span>
-					<span class="member-jp">ノア・ノルマン</span>
-				</div>
-				<div class="member">
-					<div class="avatar" style="background: #7c3aed">E</div>
-					<span>Elliott Amrouche</span>
-					<span class="member-jp">エリオット・アムルーシュ</span>
-				</div>
-				<div class="member">
-					<div class="avatar" style="background: var(--blue)">M</div>
-					<span>Martin Hurvois</span>
-					<span class="member-jp">マルタン・ユルヴォワ</span>
-				</div>
+	</div>
+</header>
+
+<!-- FONCTIONNALITES -->
+<section class="section section--alt">
+	<div class="container">
+		<h2>Fonctionnalités</h2>
+		<div class="features-grid">
+			<div class="feature-card">
+				<div class="feature-icon">🎬</div>
+				<h3>Import vidéo</h3>
+				<p>Upload local ou téléchargement YouTube automatique via <code>yt-dlp</code>.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🧠</div>
+				<h3>Analyse faciale</h3>
+				<p>478 landmarks MediaPipe FaceMesh - orientation tête, bouche, sourcils, EAR.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🤖</div>
+				<h3>Rejeu sur robot</h3>
+				<p>Pipeline signal -> mapper -> frames JSON rejoué à 100 Hz avec synchronisation audio.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🎥</div>
+				<h3>Mode Live</h3>
+				<p>Contrôle temps réel par webcam - calibration automatique en 30 frames, stream MJPEG.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🔊</div>
+				<h3>Audio synchronisé</h3>
+				<p>Lecture audio via le haut-parleur du robot, synchronisée frame-par-frame.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🌐</div>
+				<h3>API REST</h3>
+				<p>FastAPI complète - upload, process, play/stop/pause/seek, live, statut global.</p>
 			</div>
 		</div>
 	</div>
+</section>
 
+<!-- INSTALLATION -->
+<section class="section">
+	<div class="container">
+		<h2>Installation</h2>
+
+		<h3>Depuis le tableau de bord Reachy Mini</h3>
+		<ol>
+			<li>Ouvrez le tableau de bord de votre Reachy Mini sur <code>http://reachy-mini:8000</code>.</li>
+			<li>Allez dans la section <strong>Apps</strong>.</li>
+			<li>Cherchez <strong>MINEM</strong> dans le store et cliquez sur <strong>Install</strong>.</li>
+			<li>L'app est accessible sur <code>http://reachy-mini:8042</code>.</li>
+		</ol>
+		<p class="note">Installation en un clic - les dépendances sont gérées automatiquement.</p>
+
+		<h3>Prérequis</h3>
+		<ul>
+			<li>Un robot Reachy Mini connecté au réseau local</li>
+			<li>Une webcam (pour le mode live)</li>
+		</ul>
+	</div>
+</section>
+
+<!-- UTILISATION -->
+<section class="section section--alt">
+	<div class="container">
+		<h2>Utilisation</h2>
+
+		<h3>Mode vidéo</h3>
+		<ol>
+			<li><strong>Importer</strong> - uploadez un fichier MP4/MOV ou collez une URL YouTube.</li>
+			<li><strong>Traiter</strong> - cliquez sur <em>Analyser</em> pour lancer l'extraction des expressions et le mapping robot.</li>
+			<li><strong>Rejouer</strong> - appuyez sur <em>Play</em>. Reachy Mini reproduit les mouvements avec synchronisation audio.</li>
+		</ol>
+		<p class="note">Les contrôles pause / resume / seek sont disponibles pendant la lecture.</p>
+
+		<h3>Mode live</h3>
+		<ol>
+			<li>Placez-vous face à la webcam.</li>
+			<li>Cliquez sur <em>Démarrer le live</em> - une calibration de 30 frames s'effectue automatiquement.</li>
+			<li>Reachy Mini mime vos expressions en temps réel.</li>
+			<li>Cliquez sur <em>Arrêter</em> pour revenir en mode normal.</li>
+		</ol>
+
+	</div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section section--alt">
+	<div class="container">
+		<h2>Architecture</h2>
+		<div class="arch-cols">
+			<div>
+				<h3>Backend</h3>
+				<dl>
+					<dt><code>main.py</code></dt><dd>Point d'entrée - hérite de <code>ReachyMiniApp</code>, enregistre toutes les routes.</dd>
+					<dt><code>app_context.py</code></dt><dd>État partagé entre toutes les routes (<code>AppContext</code> dataclass + verrou).</dd>
+					<dt><code>robot_loop.py</code></dt><dd>Boucle 100 Hz - envoie les commandes au robot ou cède au LiveProcessor.</dd>
+					<dt><code>extracteur.py</code></dt><dd>Analyse MediaPipe FaceMesh sur chaque frame vidéo.</dd>
+					<dt><code>mapper.py</code></dt><dd>Convertit les signaux faciaux en commandes robot (yaw, pitch, roll, antennes).</dd>
+					<dt><code>audio_player.py</code></dt><dd>Lecture audio synchronisée via le haut-parleur du robot.</dd>
+					<dt><code>live.py</code></dt><dd>Capture webcam + traitement temps réel (<code>LiveProcessor</code>).</dd>
+				</dl>
+			</div>
+			<div>
+				<h3>Routes FastAPI</h3>
+				<dl>
+					<dt><code>routes_video.py</code></dt><dd>Upload, téléchargement YouTube, liste et sélection de vidéos.</dd>
+					<dt><code>routes_processing.py</code></dt><dd>Pipeline complet d'analyse et de génération du mouvement.</dd>
+					<dt><code>routes_playback.py</code></dt><dd>Play, stop, pause, resume, seek.</dd>
+					<dt><code>routes_live.py</code></dt><dd>Démarrage/arrêt du mode live, stream MJPEG, statut.</dd>
+					<dt><code>routes_misc.py</code></dt><dd>Statut global, accès aux fichiers vidéo.</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+	<span class="jp">コキーユ</span> · CIR2 2025-2026
+</footer>
 
 </body>
-
 </html>
