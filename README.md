@@ -66,5 +66,5 @@ Python · FastAPI · Uvicorn · MediaPipe · NumPy · librosa · MoviePy · yt-d
 ## Équipe
 
 - **Elliott Amrouche** ([@elliottmrch](https://github.com/elliottmrch))
-- **Noah Normand**
-- **Martin Hurvois**
+- **Noah Normand** ([@noahnormand](https://github.com/noahnormand))
+- **Martin Hurvois** ([@Martinhrvs](https://github.com/Martinhrvs))
